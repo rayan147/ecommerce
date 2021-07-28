@@ -1,0 +1,28 @@
+{
+  "name": "organic_produces",
+  "version": "1.0.0",
+  "description": "local marketplace which sells organic locally grown fresh produces",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
+  },
+  "author": "Rayan Ramirez",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "mongoose": "^5.13.3"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
