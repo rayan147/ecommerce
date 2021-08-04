@@ -1,7 +1,7 @@
 import User from '../../models/userModel.js';
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
-import throwError from '../../utlis/errorResponse.js';
+
 
 
 /**
@@ -27,10 +27,12 @@ const authenticateUser = asyncHandler(  async(req, res) => {
       }
        break;
        case user === null ?? user === undefined:
-         throwError(401, "Invalid email or password")
+         res.status(401)
+         throw new Error("User not found");
           break;
        default:
-          throwError(500, "Internal server error")
+          res.status(500)
+         throw new Error("Internal server error")
           break;
     }
  

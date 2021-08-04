@@ -2,7 +2,8 @@ import {USER_CONSTANTS} from '../../constants/userContants'
 const  {
 USER_LOGIN_REQUEST,
 USER_LOGIN_FAILURE,
-USER_LOGIN_SUCCESS
+USER_LOGIN_SUCCESS,
+USER_LOGOUT_SUCCESS
 } = USER_CONSTANTS
 
 const userLoginReducer = (state = {}, action) => {
@@ -11,23 +12,28 @@ const userLoginReducer = (state = {}, action) => {
             return {    
                 ...state,
                 isLoading: true,
-                isAuthenticated: false,
-                error: null,
             }
         case USER_LOGIN_SUCCESS:
             return {    
                 ...state,
                 isLoading: false,
-                isAuthenticated: true,
                 userInfo: action.payload,
-                error: null,
+                error: null
             }
         case USER_LOGIN_FAILURE:
             return {    
                 ...state,
-                isLoading: true,
-                isAuthenticated: false,
+                isLoading: false,
+                userInfo: null,
                 error: action.payload,
+            }
+
+        case USER_LOGOUT_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                userInfo: null,
+                error: null,
             }
     
         default:

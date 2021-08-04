@@ -7,6 +7,7 @@ const {
     PRODUCT_LIST_SUCCESS,
    
 } = PRODUCT_TYPE_CHOICES
+
  const listProducts =() => async (dispatch, getState) => {
    try {
        dispatch({type: PRODUCT_LIST_REQUEST})

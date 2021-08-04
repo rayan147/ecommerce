@@ -1,7 +1,7 @@
 import User from '../../models/userModel.js';
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
-import throwError from '../../utlis/errorResponse.js';
+
 
 
 /**
@@ -16,7 +16,8 @@ import throwError from '../../utlis/errorResponse.js';
 
     switch (true) {
         case userExits !== null ?? userExits !== undefined:
-            throwError(400, "User already exists")
+             res.status(400)
+             throw new Error('User already exists');
             break;
         case userExits === null ?? userExits === undefined:
             const user = await User.create({
@@ -34,7 +35,8 @@ import throwError from '../../utlis/errorResponse.js';
         })
             break;
         default: 
-            throwError(400, "invalid user input data");
+            res.status(400)
+            throw new Error('invalid user input data');
             break;
     }
   
