@@ -4,7 +4,8 @@ import {Row,Col} from 'react-bootstrap'
 
 import PropTypes from 'prop-types'
 
-const MapProducts = ({products}) => {
+
+const MapProducts = ({products }) => {
     return (
         <>
            <Row>
@@ -24,4 +25,7 @@ MapProducts.propTypes = {
     products: PropTypes.array.isRequired
 }
 
+MapProducts.defaultProps = {
+    products: []
+}
 export default MapProducts

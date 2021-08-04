@@ -8,11 +8,11 @@ import PropTypes from 'prop-types'
 const Product = ({product}) => {
     const {_id,image,name,numReviews,rating,price } = product
     return (
-        <Card className="my-3 p-3 rounded">
-            <Link to={`/product/${_id}`}>
+        <Card className="my-3 p-3 rounded"  >
+            <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
                 <Card.Img src={image} alt={name} className="img-fluid" variant='top' />
             </Link>
-            <Link to={`/product/${_id}`}>
+            <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
                 <Card.Title as='div' > <strong>{name}</strong></Card.Title>
             </Link>
             <Card.Text as='div'>

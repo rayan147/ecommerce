@@ -1,55 +1,16 @@
 import mongoose from 'mongoose';
+import shippingsSchema from './shippingsSchema.js';
+import orderItemsSchema from './orderItemsSchema.js';
+import paymentResultsSchema from './paymentResultsSchema.js';
 const { Schema } = mongoose;
 
-const orderItemsSchema = new Schema({
-    name: {
-        type: String, 
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    quantity: {
-        type: Number,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
-    },
-    product: {
-        type: Schema.Types.ObjectId,
-        ref: 'Product'
-    },
-}, {timestamps: true});
 
 
 
 
 
-const shippingsSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    postalCode: {
-        type: String,
-        required: true
-    },
-    country: {
-        type: String,
-        required: true
-    }
-}, {timestamps: true});
+
+
 
 const orderSchema = new Schema({
     user:{
@@ -63,12 +24,7 @@ const orderSchema = new Schema({
         type: String,
         required: true
    },
-   paymentResult :{
-    id: {type: String},
-    status: {type: String},
-    update_time: {type: String},
-    email_address: {type: String}
-    },
+   paymentResult :paymentResultsSchema,
    taxPrice :{
         type: Number,
         required: true,

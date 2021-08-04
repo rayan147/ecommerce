@@ -1,8 +1,4 @@
-const notFound = (req,res,next) => { 
-    const err = new Error(`Not Found at ${req.originalUrl}`);
-    res.status(404);
-    next(err);
-}
+
 
 const errorHandler = (err, req, res, next) => { 
         const status = res.statusCode ?? 500;
@@ -17,4 +13,4 @@ const errorHandler = (err, req, res, next) => {
       
 }
 
-export {notFound, errorHandler}
+export default errorHandler

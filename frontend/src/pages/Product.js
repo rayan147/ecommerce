@@ -1,28 +1,29 @@
 import React,{useState,useEffect} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
-import {listProductDetails} from "../actions/productActions"
+import listProductDetails from "../actions/product/listProductDetails"
 import {Link} from 'react-router-dom'
 import {Row,Col,Image,ListGroup,Card,Button,Form} from 'react-bootstrap'
 import {IoArrowBackOutline} from 'react-icons/io5'
 
-import Loader from '../components/view/Loader'
+import DelayedSpinner from '../components/view/Loader'
 import  Message from '../components/view/Message'
 import Rating from '../components/view/Rating'
 
 const Product = ({history,match}) => {
-    const [qty,setQty] = useState(0)
+    const [qty,setQty] = useState(1)
     const dispatch = useDispatch()
 
     const productDetails = useSelector(state => state.productDetails)
-    const {error,loading,product} = productDetails
+    const {error,isLoading,product} = productDetails
     const {countInStock,image,name,numReviews,rating,price,description } = product
 
 
     useEffect(() => {
       dispatch(listProductDetails(match.params.id))
     }, [dispatch,match.params.id])
-    
+ // QTY Selection
+
 // Handlers
   const addToCartHandler = () => { 
         history.push(`/cart/${match.params.id}?qty=${qty}`)
@@ -34,7 +35,7 @@ const Product = ({history,match}) => {
                     <IoArrowBackOutline  size="2.5rem" color="black"/>
            </Link>
          
-          {loading ? <Loader/> : error ? <Message variant="danger">{error}</Message> :(
+          {isLoading ? <DelayedSpinner/> : error ? <Message variant="danger">{error}</Message> :(
               <>
 <Row className="mt-5">
              <Col md={6}>
@@ -93,7 +94,7 @@ const Product = ({history,match}) => {
                                    >
                                      {
                                          [...Array(countInStock).keys()].map((i)=>{
-                                             return <option key={i + 1} value={i}>{i + 1}</option>
+                                             return <option key={i + 1} value={i + 1 }>{i + 1}</option>
                                             })
                                      }  
                                    </Form.Control>

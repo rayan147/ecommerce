@@ -3,7 +3,9 @@ import dotenv from 'dotenv';
 import colors from 'colors';
 import connectMongo from '../backend/config/db.js'
 import productRoutes from './routes/productRoutes.js'
-import  {errorHandler, notFound } from './middleware/errorHandler.js';
+import userRoutes from './routes/userRoutes.js'
+import  notFound  from './middleware/notFound.js';
+import  errorHandler from './middleware/errorHandler.js';
 
 const PORT = process.env.PORT ?? 5000;
 const NODE_ENV = process.env.NODE_ENV ?? 'dev';
@@ -14,7 +16,7 @@ dotenv.config();
 connectMongo()
 
 const app = express();
-
+app.use(express.json())
 
 app.get('/', (req, res) => {
    return res.send('Hello World!');
@@ -24,6 +26,7 @@ app.get('/', (req, res) => {
 
 // ROUTES
 app.use('/api/products', productRoutes);
+app.use('/api/users',userRoutes);
 
 //ERROR HANDLERS
 app.use(errorHandler)
