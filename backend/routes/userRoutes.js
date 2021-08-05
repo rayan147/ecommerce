@@ -11,5 +11,5 @@ router.route('/profile').get(authenticateUserToken,getCurrentUserProfile);
 
 // POST  
 router.route('/login').post(authenticateUser);
-router.route('/').post(registerUser);
+router.route('/register').post(registerUser);
 export default router;

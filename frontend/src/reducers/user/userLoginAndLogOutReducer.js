@@ -12,18 +12,22 @@ const userLoginReducer = (state = {}, action) => {
             return {    
                 ...state,
                 isLoading: true,
+                isAuthenticated: false,
+                error: null,
             }
         case USER_LOGIN_SUCCESS:
             return {    
                 ...state,
                 isLoading: false,
+                isAuthenticated: true,
                 userInfo: action.payload,
-                error: null
+                error: null,
             }
         case USER_LOGIN_FAILURE:
             return {    
                 ...state,
                 isLoading: false,
+                isAuthenticated: false,
                 userInfo: null,
                 error: action.payload,
             }
@@ -31,7 +35,7 @@ const userLoginReducer = (state = {}, action) => {
         case USER_LOGOUT_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
+                isAuthenticated: false,
                 userInfo: null,
                 error: null,
             }

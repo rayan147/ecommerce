@@ -20,4 +20,4 @@ Message.propTypes = {
     variant:PropTypes.string,
     children:PropTypes.element
 }
-export default Message
+export default memo(Message)

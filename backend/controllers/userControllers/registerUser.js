@@ -12,6 +12,7 @@ import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFro
  * */
  const registerUser = asyncHandler(  async(req, res) => {
     const { email, password,name } = req.body;
+    console.log(email, password,name);
     const userExits = await User.findOne({ email });
 
     switch (true) {

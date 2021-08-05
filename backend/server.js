@@ -1,6 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
+import fs from 'fs';
+import path from 'path';    
+import morgan from 'morgan';
 import connectMongo from '../backend/config/db.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
@@ -22,7 +25,10 @@ app.get('/', (req, res) => {
    return res.send('Hello World!');
 });
 
-
+// create a write stream (in append mode)
+const accessLogStream = fs.createWriteStream(new URL('access.log',import.meta.url), { flags: 'a' })
+// setup the logger
+app.use(morgan('combined', { stream: accessLogStream }))
 
 // ROUTES
 app.use('/api/products', productRoutes);
