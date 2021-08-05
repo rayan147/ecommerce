@@ -48,7 +48,14 @@ const Login = ({location,history}) => {
                    <Form.Control type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}>        
                    </Form.Control>
                    <Button className='btn w-100 mt-1' type='submit' variant='primary'>Login</Button>
-                   <p>New Customer? Register</p>
+                   <Row>
+                        <Col xs={12}>
+                            <Link to={redirect ? `/register?=redirect=${redirect}` : '/register'}>
+                              <p>New Customer? Register</p> 
+                            </Link>
+                        </Col>
+                    </Row>
+                   
                </Form.Group>
                
            </Form>

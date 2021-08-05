@@ -8,4 +8,4 @@ const paymentResultsSchema = new Schema({
     update_time: {type: String},
     email_address: {type: String}
 }, {timestamps: true});
-export default spaymentResultsSchema
+export default paymentResultsSchema 

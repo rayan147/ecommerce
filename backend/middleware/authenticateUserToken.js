@@ -1,7 +1,7 @@
 import jsonWebToken from 'jsonwebtoken';
 import asyncHandler from "express-async-handler"
 import User from '../models/userModel.js';
-import throwError from '../utlis/errorResponse.js';
+
 
 const authenticateUserToken = asyncHandler( async(req, res, next) => {
     let token = null
@@ -12,11 +12,13 @@ const authenticateUserToken = asyncHandler( async(req, res, next) => {
                  req.user = await User.findById(decoded.id).select('-password');
              break;
          case req.headers.authorization === undefined ?? !req.headers.authorization.includes("Bearer"):
-                    throwError(401, "Invalid token")
+             res.status(401)
+             throw new Error("Unauthorized,no token provide")
              break;
      
          default:
-             throwError(401, "No token provided")
+            res.status(401)
+             throw new Error("Unauthorized,no token provide")
              break;
      }
     next();

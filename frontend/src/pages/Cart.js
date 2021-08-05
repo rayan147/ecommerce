@@ -30,6 +30,11 @@ const removeFromCartHandler = id=>{
     console.log(id)
     //dispatch(removeFromCart(id))
 }
+// const addToCartHandler = () => {
+//     dispatch(addToCart(product._id, qty))
+//     history.push('/cart')
+// }
+
 const checkoutHandler = () =>{
     history.push(`/loging?redirect=shipping`)
 }
