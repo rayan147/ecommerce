@@ -1,11 +1,12 @@
 import React,{useEffect,lazy} from 'react'
+
 import {useDispatch,useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Row,Col,Image,ListGroup,Button,Form} from 'react-bootstrap'
 import {BiTrash} from 'react-icons/bi'
+
 import addToCart from "../actions/cart/addToCart"
 import removeFromCart from "../actions/cart/removeFromCart"
-
 
 // ONLY LOADS WHEN REQUESTED
 const Message = lazy(() => import('../components/view/Message'))

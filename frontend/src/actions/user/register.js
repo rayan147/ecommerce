@@ -20,13 +20,13 @@ const  {
             },
           }
       
-          const { data,status } = await axios.post(
+          const { data } = await axios.post(
             '/api/users/register',
             { name, email, password },
             config
           )
       
-          status === 200 && dispatch({
+       dispatch({
             type: USER_REGISTER_SUCCESS,
             payload: data,
           })

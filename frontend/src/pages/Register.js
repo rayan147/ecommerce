@@ -1,26 +1,32 @@
-import {useEffect,useState,lazy} from 'react'
+import {useEffect,lazy,useReducer} from 'react'
+
+
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {Form,Button,Row,Col} from 'react-bootstrap'
+
+
 import FormContainer from '../components/view/FormContainer'
 import register from '../actions/user/register'
+import initialState from '../store/internalState/internalRegisterState'
+import reducer from '../reducers/internal/registerReducer'
+import INTERNAL_STATE from '../constants/internalState'
 
-
+// LOADS WHEN REQUESTED
 const  Message = lazy(() =>  import('../components/view/Message'))
-const Register = ({location,history}) => {
-    const [name, setName] = useState(null)
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
-    const [confirmPassword, setConfirmPassword] = useState(null)
-    const [message, setMessage] = useState(null)
 
+const {NAME,EMAIL,ERROR_MESSAGE,PASSWORD,CONFIRM_PASSWORD} = INTERNAL_STATE
+
+const Register = ({location,history}) => {
+    const [state, dispatchUseReducer] = useReducer(reducer, initialState)
+    const {name,email,password,confirmPassword,errorMessage} = state
 
     const dispatch = useDispatch()
     const userRegister = useSelector(state => state.userRegister)
     const {isRegistering,error,userInfo} = userRegister
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
-
+   
     useEffect(() => {
         if(userInfo && userInfo._id){
             history.push(redirect)
@@ -29,16 +35,21 @@ const Register = ({location,history}) => {
     const submitHandler = (e) => {
         e.preventDefault()
         if(password !== confirmPassword){
-            setMessage('Password do not match')
+            dispatchUseReducer({
+              type:ERROR_MESSAGE,
+              errorMessage:'Passwords do not match'
+            })
             return
         }
             dispatch(register(name, email, password ))
     }
 
+  
+
     return (
         <FormContainer>
       <h1>Sign Up</h1>
-      {message && <Message variant='danger'>{message}</Message>}
+      {errorMessage && <Message variant='danger'>{errorMessage}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {isRegistering && <Message variant='info'>Registering ...</Message>}
       <Form onSubmit={submitHandler}>
@@ -48,7 +59,7 @@ const Register = ({location,history}) => {
             type='name'
             placeholder='Enter name'
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => dispatchUseReducer({type:NAME,payload:e.target.value})}
           ></Form.Control>
         </Form.Group>
 
@@ -57,8 +68,8 @@ const Register = ({location,history}) => {
           <Form.Control
             type='email'
             placeholder='Enter email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={state.email}
+            onChange={(e) => dispatchUseReducer({type:EMAIL,payload:e.target.value})}
           ></Form.Control>
         </Form.Group>
 
@@ -68,7 +79,7 @@ const Register = ({location,history}) => {
             type='password'
             placeholder='Enter password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => dispatchUseReducer({type:PASSWORD,payload:e.target.value})}
           ></Form.Control>
         </Form.Group>
 
@@ -78,7 +89,7 @@ const Register = ({location,history}) => {
             type='password'
             placeholder='Confirm password'
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => dispatchUseReducer({type:CONFIRM_PASSWORD,payload:e.target.value})}
           ></Form.Control>
         </Form.Group>
 

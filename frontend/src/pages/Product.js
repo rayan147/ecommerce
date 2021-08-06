@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
-import listProductDetails from "../actions/product/listProductDetails"
 import {Link} from 'react-router-dom'
 import {Row,Col,Image,ListGroup,Card,Button,Form} from 'react-bootstrap'
 import {IoArrowBackOutline} from 'react-icons/io5'
@@ -9,6 +8,7 @@ import {IoArrowBackOutline} from 'react-icons/io5'
 import DelayedSpinner from '../components/view/Loader'
 import  Message from '../components/view/Message'
 import Rating from '../components/view/Rating'
+import listProductDetails from "../actions/product/listProductDetails"
 
 const Product = ({history,match}) => {
     const [qty,setQty] = useState(1)
