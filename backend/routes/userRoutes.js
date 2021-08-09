@@ -7,10 +7,16 @@ import updateCurrentUserProfile from '../controllers/userControllers/updateCurre
 const router = express.Router();
 
 
-// GET
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Retrieve a list of JSONPlaceholder users
+ *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+*/
 router
 .route('/profile')
-.post(authenticateUserToken,getCurrentUserProfile)
+.get(authenticateUserToken,getCurrentUserProfile)
 .put(authenticateUserToken,updateCurrentUserProfile)
 
 // POST  

@@ -2,10 +2,12 @@ import mongoose from 'mongoose';
 
 const connectMongo = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI,{
+        const conn = await mongoose.connect(process.env.MONGO_URL,{
             useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true}
+            useCreateIndex: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true
+        }
             );
             console.log(`Connected to MongoDB ${conn.connection.host}`.yellow.bold);
     }

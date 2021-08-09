@@ -2,13 +2,14 @@ import React,{useState,useEffect} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Row,Col,Image,ListGroup,Card,Button,Form} from 'react-bootstrap'
+import {Row,Col,Image,ListGroup,Card,Button,Form,Container} from 'react-bootstrap'
 import {IoArrowBackOutline} from 'react-icons/io5'
 
 import DelayedSpinner from '../components/view/Loader'
 import  Message from '../components/view/Message'
 import Rating from '../components/view/Rating'
 import listProductDetails from "../actions/product/listProductDetails"
+import AddToCard from '../components/view/AddToCard'
 
 const Product = ({history,match}) => {
     const [qty,setQty] = useState(1)
@@ -30,37 +31,38 @@ const Product = ({history,match}) => {
   }
     
     return (
-        <>
+        <Container className="">
            <Link  to='/'>
                     <IoArrowBackOutline  size="2.5rem" color="black"/>
            </Link>
          
           {isLoading ? <DelayedSpinner/> : error ? <Message variant="danger">{error}</Message> :(
               <>
-<Row className="mt-5">
+<Row className="d-flex align-items-center justify-content-center " >
              <Col md={6}>
-               <Image src={image} alt={name} fluid/>
+               <Image src={image} alt={name} fluid className="shadow-sm p-3 mb-5 bg-body rounded"/>
              </Col>
-             <Col md={3}>
-               <ListGroup >
-                   <ListGroup.Item>
-                       <h4>{name}</h4>
-                   </ListGroup.Item>               
-                   <ListGroup.Item>
-                      <Rating value={rating} text={`${numReviews} reviews`}/>
-                   </ListGroup.Item>               
-                   <ListGroup.Item>
+             <Col md={6} >
+               <ListGroup variant="flush">
+                   <ol>
+                       <strong className='fs-3'>{name}</strong>
+                   </ol>               
+                   <ol>
+                      <Rating value={rating} text={`${numReviews}`}/>
+                   </ol>               
+                   <ol>
                      Price: ${price}
-                   </ListGroup.Item>               
-                   <ListGroup.Item>
+                   </ol>               
+                   <ol>
                      Description: {description}
-                   </ListGroup.Item>               
+                   </ol>               
                </ListGroup>
              </Col>
-            <Col md={3}>
+            <Col>
+                
                <Card>
                    <ListGroup variant="flush">
-                       <ListGroup.Item>
+                       <ol>
                            <Row>
                                <Col>
                                Price:
@@ -69,8 +71,8 @@ const Product = ({history,match}) => {
                                <strong>{price}</strong>
                                </Col>
                            </Row>
-                       </ListGroup.Item>
-                       <ListGroup.Item>
+                       </ol>
+                       <ol>
                            <Row>
                                <Col>
                                Status:
@@ -79,9 +81,9 @@ const Product = ({history,match}) => {
                                {countInStock > 0 ? 'In stock' : 'Out of stock'}
                                </Col>
                            </Row>
-                       </ListGroup.Item>
+                       </ol>
                        {countInStock > 0 && (
-                           <ListGroup.Item>
+                           <ol>
                                <Row>
                                    <Col>
                                    Quantity:
@@ -100,22 +102,27 @@ const Product = ({history,match}) => {
                                    </Form.Control>
                                    </Col>
                                </Row>
-                           </ListGroup.Item>
+                           </ol>
                        )}
-                       <ListGroup.Item>
-                           <Button onClick={addToCartHandler} className="btn-block w-100" type="button" disabled={countInStock === 0}>
+                       <ol>
+                           <Button onClick={addToCartHandler} className="" type="button" disabled={countInStock === 0}>
                                Add to cart
                            </Button>
-                       </ListGroup.Item>
+                       </ol>
                    </ListGroup>        
                </Card>   
             </Col>  
-        </Row>
+        </Row >
+        {/* <Row  className="bg-danger ">
+            <Col >
+                <AddToCard price={price} quantity={qty}/>
+            </Col>
+        </Row> */}
               </>
           )}
           
            
-        </>
+        </Container>
     )
 }
 

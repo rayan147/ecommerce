@@ -13,6 +13,7 @@ const Product = lazy(()=> import('./pages/Product'));
 const Cart = lazy(()=> import('./pages/Cart'));
 const Login = lazy(()=> import('./pages/Login'));
 const Register = lazy(()=> import('./pages/Register'));
+const Profile = lazy(()=> import('./pages/Profile'));
 
 const Fallback = () => (
 <div className="d-flex align-items-center justify-content-center mt-10">
@@ -32,6 +33,7 @@ const  App =()=> {
         <Route path='/' component={Home} exact />
         <Route path='/login' component={Login}  />
         <Route path='/register' component={Register}  />
+        <Route path='/profile' component={Profile}  />
         <Route path='/product/:id' component={Product}  />
         <Route path='/cart/:id?' component={Cart}  />
         </Switch>

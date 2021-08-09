@@ -1,12 +1,13 @@
-import React,{useEffect,lazy} from 'react'
+import React,{useEffect,lazy,useCallback} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Row,Col,Image,ListGroup,Button,Form} from 'react-bootstrap'
-import {BiTrash} from 'react-icons/bi'
+import {Row,Col,ListGroup,Button} from 'react-bootstrap'
+
 
 import addToCart from "../actions/cart/addToCart"
 import removeFromCart from "../actions/cart/removeFromCart"
+import MapCart from '../components/view/MapCart'
 
 // ONLY LOADS WHEN REQUESTED
 const Message = lazy(() => import('../components/view/Message'))
@@ -28,13 +29,12 @@ const Cart = ({match,location,history}) => {
 // HANDLERS
 const removeFromCartHandler = id=>{
     dispatch(removeFromCart(id))
-    console.log(id)
-    //dispatch(removeFromCart(id))
+  
 }
-// const addToCartHandler = () => {
-//     dispatch(addToCart(product._id, qty))
-//     history.push('/cart')
-// }
+
+const subTotalItem =useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity,0),[cartItems])
+const totalPrice = useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity * item.price,0).toFixed(2),[cartItems])
+
 
 const checkoutHandler = () =>{
     history.push(`/loging?redirect=shipping`)
@@ -48,53 +48,18 @@ const checkoutHandler = () =>{
                   You have no items in your cart. <Link to="/">Add something to cart</Link>
               </Message>
           ):(
-          <ListGroup variant="flush"> 
-              {cartItems.map(item => (
-                  <ListGroup.Item key={item.product_id}>
-                      <Row>
-                          <Col md={2}>
-                            <Image src={item.image} alt={item.name} fluid rounded/>
-                          </Col>
-                          <Col md={3}>
-                              <Link to={`/product/${item.product_id}`} style={{ textDecoration:'none'}}>{item.name} </Link>
-                          </Col>
-                          <Col md={2}>
-                              Price: {item.price}
-                          </Col>
-                          <Col md={2}>
-                             <Form.Control 
-                                   as="select"
-                                   value={item.quantity}
-                                   onChange={(e)=>dispatch(addToCart(item.product_id,Number(e.target.value)))}
-                                   >
-                                     {
-                                         [...Array(item.countInStock).keys()].map((i)=>{
-                                             return <option key={i + 1} value={i + 1 }>{i + 1}</option>
-                                            })
-                                     }  
-                             </Form.Control>
-                          </Col>
-                          <Col md={2}>
-                              <Button 
-                               type='button'
-                               size='sm'
-                               variant='danger'
-                               onClick={() => removeFromCartHandler(item.product_id)}>
-                                  <BiTrash/>
-                             </Button>
-                          </Col>
-                      </Row> 
-                </ListGroup.Item>
-                
-              ))}
-        </ListGroup>
+           <MapCart 
+           cartItems= {cartItems}
+           dispatch= {dispatch}
+           addToCart= {addToCart}
+           removeFromCartHandler ={removeFromCartHandler} />
           )}
           </Col>
           <Col md={4}>
               <ListGroup>
                   <ListGroup.Item>
-                      <h3> Subtotal {cartItems.reduce((acc,item)=> acc + item.quantity,0)} items</h3>
-                  ${cartItems.reduce((acc,item)=> acc + item.quantity * item.price,0).toFixed(2)}
+                      <h3> Subtotal {subTotalItem} items</h3>
+                  ${totalPrice}
                   </ListGroup.Item>
                   <ListGroup.Item>
                       <Button 

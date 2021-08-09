@@ -23,6 +23,7 @@ const userRegisterReducer = (state = { } , action) => {
             return {
                 ...state,
                 isRegistering: false,
+                userInfo: null,
                 error: action.payload
             }
             
