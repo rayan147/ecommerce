@@ -9,24 +9,26 @@ import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFro
  * */
 const updateCurrentUserProfile = asyncHandler(async(req, res) => {
   
-  const {id,email,name,password} =req.body
-  
-  console.log('req.body',req.body)
-  const user = await User.findByIdAndUpdate(id,{email,name,password} ,{
+  const {user_id,email,name,password} =req.body
+
+  const user = await User.findByIdAndUpdate(user_id,{email,name,password} ,{
     new: true,
     runValidators: true
   });
 
-
-   res.status(201).json({
-    _id: user._id,
+    const updatedUser ={
+      _id: user._id,
     isAdmin:user.isAdmin,
     email: user.email,
     name : user.name,
     token: generateJsonWebTokenFromUserId(user._id)
-   });
+    }
 
-    console.log({user}) 
+
+
+   res.status(201).json(updatedUser);
+   
+
 })
 
 export default updateCurrentUserProfile;

@@ -58,8 +58,8 @@ const checkoutHandler = () =>{
           <Col md={4}>
               <ListGroup>
                   <ListGroup.Item>
-                      <h3> Subtotal {subTotalItem} items</h3>
-                  ${totalPrice}
+                      <h3> Subtotal {subTotalItem()} items</h3>
+                  ${totalPrice()}
                   </ListGroup.Item>
                   <ListGroup.Item>
                       <Button 

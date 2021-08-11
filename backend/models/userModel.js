@@ -7,16 +7,19 @@ const userSchema = new Schema({
 
     name: {
         type: String,
-        required: true,
+        required: [true, 'Name is required'],
     },
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        match: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i
     },
     password: {
         type: String,
         required: true,
+        minlength: 6,
+        select: false
     },
     isAdmin: {
         type: Boolean,

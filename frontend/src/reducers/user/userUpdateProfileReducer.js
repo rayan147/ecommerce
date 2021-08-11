@@ -3,6 +3,7 @@ const  {
 USER_UPDATE_PROFILE_REQUEST,
 USER_UPDATE_PROFILE_FAILURE,
 USER_UPDATE_PROFILE_SUCCESS,
+USER_UPDATE_PROFILE_RESTORE_REQUEST
 
 } = USER_CONSTANTS
 const userUpdateProfileReducer = (state = { } , action) => {
@@ -20,6 +21,7 @@ const userUpdateProfileReducer = (state = { } , action) => {
                 userInfo: action.payload,
                 error: null
             }
+        
         case USER_UPDATE_PROFILE_FAILURE:
             return {
                 ...state,
@@ -28,7 +30,8 @@ const userUpdateProfileReducer = (state = { } , action) => {
                 error: action.payload
             }
             
-    
+        case USER_UPDATE_PROFILE_RESTORE_REQUEST:
+            return { }
         default:
             return state
           

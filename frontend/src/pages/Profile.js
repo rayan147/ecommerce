@@ -11,7 +11,9 @@ import updateUserProfile from '../actions/user/updateUserProfile'
 import initialState from '../store/internalState/internalRegisterState'
 import reducer from '../reducers/internal/registerReducer'
 import INTERNAL_STATE from '../constants/internalState'
+import { USER_CONSTANTS} from '../constants/userContants'
 
+const { USER_UPDATE_PROFILE_RESTORE_REQUEST } = USER_CONSTANTS
 
 // LOADS WHEN REQUESTED
 const  Message = lazy(() =>  import('../components/view/Message'))
@@ -24,25 +26,27 @@ const Profile = ({location,history}) => {
 
     const dispatch = useDispatch()
     const userDetails = useSelector(state => state.userDetails)
-    const {isLoading,error,user} = userDetails
+    const {isLoading,user} = userDetails
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
     const userUpdatedProfile = useSelector(state => state.userUpdatedProfile)
-    const {success} =  userUpdatedProfile
+    const {success,error} =  userUpdatedProfile
     
    useEffect(() => {
         if(!userInfo){
            history.push('/login')
+           return
         }
-        if(!user || !user.name){ 
+        if(!user || !user.name ||success){ 
+            dispatch({type:USER_UPDATE_PROFILE_RESTORE_REQUEST})
             dispatch(getUserDetails('profile'))
-         
-        } else{
+           return
+        } 
        dispatchUseReducer({type:EMAIL,payload:user.email})
        dispatchUseReducer({type:NAME,payload:user.name})
-        }
+      
        
-    },[dispatchUseReducer,dispatch,userInfo,history,user])
+    },[dispatchUseReducer,dispatch,userInfo,history,user,success])
 
 
 
@@ -54,10 +58,10 @@ const Profile = ({location,history}) => {
               type:ERROR_MESSAGE,
               errorMessage:'Passwords do not match'
             })
-          
+          return
         }
         const updatedUserDetail ={
-          id:user._id,
+          user_id:user._id,
           name:state.name,
           email:state.email,
           password:state.password
@@ -73,9 +77,11 @@ const Profile = ({location,history}) => {
         <Row>
             <Col md={3}><h1>User Profile</h1>
       {errorMessage && <Message variant='danger'>{errorMessage}</Message>}
+      {}
+      
+      {success && <Message variant='success'>Updated Details</Message>}
       {error && <Message variant='danger'>{error}</Message>}
-      {success && <Message variant='sucesss'>Updated </Message>}
-      {isLoading && <Message variant='info'>Laoding ...</Message>}
+      {isLoading && <Message variant='info'>Loading ...</Message>}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
