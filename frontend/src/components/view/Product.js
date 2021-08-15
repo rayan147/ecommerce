@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Card} from "react-bootstrap"
+import {Card,Row,Col,Container} from "react-bootstrap"
 import Rating from './Rating'
 
 import PropTypes from 'prop-types'
@@ -8,21 +8,31 @@ import PropTypes from 'prop-types'
 const Product = ({product}) => {
     const {_id,image,name,numReviews,rating,price } = product
     return (
-        <Card className="shadow-sm p-3 mb-5 bg-body rounded"  style={{ width: '200px' ,height:'420px'}} >
+<Container>
+    <Row>
+        <Col>
+            <Card className="shadow-sm p-3 my-5  rounded  w-30" >
             
             <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
-                <Card.Img src={image} alt={name} className="img-fluid" variant='top' />
+                <Card.Img src={image} alt={name} className="img-fluid " variant='top' />
             </Link>
-            <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
-                <Card.Title as='div' > <strong>{name}</strong></Card.Title>
+            <Card.Body>
+              <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
+                <Card.Title as='div'  > <strong>{name}</strong></Card.Title>
             </Link>
             <Card.Text as='div'>
                 <Rating value={rating} text={`${numReviews} reviews`}  />
             </Card.Text>
             <Card.Text as='h3'>
                 ${price}
-            </Card.Text>
-        </Card>
+            </Card.Text>  
+            </Card.Body>
+            
+        </Card> 
+        </Col>
+    </Row>
+       
+    </Container>
     )
 }
 

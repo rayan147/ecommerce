@@ -58,20 +58,20 @@ const checkoutHandler = () => {
           </Col>
           <Col md={4}>
               <ListGroup>
-                  <ListGroup.Item>
+                  <ol>
                       <h3> Subtotal {subTotalItem()} items</h3>
                   ${totalPrice()}
-                  </ListGroup.Item>
-                  <ListGroup.Item>
+                  </ol>
+                  <ol>
                       <Button 
-                      className="btn btn-primary btn-block w-100"
+                      className="btn btn-primary btn-block w-100 rounded"
                       type='button'
                       disabled ={cartItems.length === 0}
                       onClick={checkoutHandler}
                       >
                       Proceed to Checkout
                       </Button>
-                  </ListGroup.Item>
+                  </ol>
               </ListGroup>
           </Col>
         </Row>

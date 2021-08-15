@@ -19,7 +19,7 @@ const Home = () => {
 
     return (
         <>
-          <h1>Latest Products</h1>
+          <h1>Latest Produce</h1>
           <Suspense fallback={ isLoading && <DelayedSpinner/>}>
             {error ? <Message variant='danger'>{error}</Message> : <MapProducts products={products}/>}
           </Suspense>

@@ -9,14 +9,14 @@ import logout from  '../actions/user/logout'
 
 const Header = () => {
   const dispatch = useDispatch()
-  const {userInfo,isAuthenticated}  = useSelector(state => state.userLogin)
+  const {userInfo}  = useSelector(state => state.userLogin)
 
   const logOutHandler = () => {
     dispatch(logout())
   }
     return (
  <header>
-   <Navbar bg="info" variant="dark" expand="lg" collapseOnSelect>
+   <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
      <Container>
        <LinkContainer to="/">
           <Navbar.Brand >Organic Produce </Navbar.Brand>
@@ -30,7 +30,7 @@ const Header = () => {
                    Cart
                 </Nav.Link>
             </LinkContainer>
-            {userInfo  && isAuthenticated? (
+            {userInfo ? (
               
               <NavDropdown title={userInfo.name} id='username'>
               <LinkContainer to='/profile'>

@@ -40,7 +40,7 @@ const Product = ({history,match}) => {
               <>
 <Row className="d-flex align-items-center justify-content-center " >
              <Col md={6}>
-               <Image src={image} alt={name} fluid className="shadow-sm p-3 mb-5 bg-body rounded"/>
+               <Image src={image} alt={name} fluid className="shadow-sm p-3 mb-5  rounded"/>
              </Col>
              <Col md={6} >
                <ListGroup variant="flush">
@@ -105,7 +105,7 @@ const Product = ({history,match}) => {
                            </ol>
                        )}
                        <ol>
-                           <Button onClick={addToCartHandler} className="" type="button" disabled={countInStock === 0}>
+                           <Button onClick={addToCartHandler} className="rounded" type="button" disabled={countInStock === 0}>
                                Add to cart
                            </Button>
                        </ol>

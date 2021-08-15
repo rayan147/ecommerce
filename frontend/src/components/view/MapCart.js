@@ -4,9 +4,9 @@ import {BiTrash} from 'react-icons/bi'
 const MapCart = ({cartItems,dispatch,addToCart,removeFromCartHandler}) => {
     return (
         <>
-         <ListGroup variant="flush"> 
+         <ListGroup > 
               {cartItems.map(item => (
-                  <ListGroup.Item key={item.product_id}>
+                  <ol key={item.product_id}>
                       <Row>
                           <Col md={2}>
                             <Image src={item.image} alt={item.name} fluid rounded/>
@@ -40,7 +40,7 @@ const MapCart = ({cartItems,dispatch,addToCart,removeFromCartHandler}) => {
                              </Button>
                           </Col>
                       </Row> 
-                </ListGroup.Item>
+                </ol>
                 
               ))}
         </ListGroup>   
