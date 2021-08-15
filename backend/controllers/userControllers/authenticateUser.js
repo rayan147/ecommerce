@@ -12,25 +12,33 @@ import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFro
  * */
 const authenticateUser = asyncHandler(  async(req, res) => {
    const { email, password } = req.body
-
-  const user = await User.findOne({ email })
-  
-  if(user){
-   const isValidPassword = await user.comparePassword(password) 
-   const { _id, email, name,isAdmin } = user
-   if(isValidPassword){
-       res.json({
-      _id,
-      name,
-      email,
-      isAdmin,
-      token: generateJsonWebTokenFromUserId(_id),
-    })
-    return
-  }}
-
+   if(!email || !password) {
+      res.status(400)
+      throw new Error('Email and password are required')
+      
+   }
+  const user = await User.findOne({ email }).select('+password')
+  if(!user){
     res.status(401)
-    throw new Error('Invalid email or password')
+    throw new Error('User not found')
+ 
+  }
+  const isValidPassword = await user.comparePassword(password) 
+  console.log('isValidPassword', isValidPassword)
+  if(!isValidPassword){
+    res.status(401)
+    throw new Error('Incorrect password')
+  }
+
+   const loggedInUser ={
+      userId: user._id,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      name: user.name,
+      token: generateJsonWebTokenFromUserId(user._id)
+   }
+   res.json(loggedInUser)
+
   
 
 })

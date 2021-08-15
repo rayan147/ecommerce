@@ -21,12 +21,12 @@ const Login = ({location,history}) => {
     const [password,setPassword] = useState('')
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.userLogin)
-    const {isLoading,error,userInfo,isAuthenticated} = userLogin
+    const {isLoading,error,isAuthenticated} = userLogin
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
+    const redirect =location?.search?.split('=')[1] ??  '/'
 
     useEffect(() => {
-        if(isAuthenticated && redirect !== '/'){
+        if(isAuthenticated === true){
             history.push(redirect)
         }
         },[redirect,history,isAuthenticated])

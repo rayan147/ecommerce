@@ -36,9 +36,10 @@ const subTotalItem =useCallback(()=>cartItems.reduce((acc,item)=> acc + item.qua
 const totalPrice = useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity * item.price,0).toFixed(2),[cartItems])
 
 
-const checkoutHandler = () =>{
-    history.push(`/loging?redirect=shipping`)
-}
+const checkoutHandler = () => {
+    history.push('/login?redirect=shipping')
+  }
+
     return (
         <Row>
           <Col md={8}>

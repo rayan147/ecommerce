@@ -10,7 +10,7 @@ const MapProducts = ({products }) => {
         <Container>
            <Row >
              { products.map( product => (
-                 <Col key={product.id} sm={4} md={4} lg={3} xs={12}>
+                 <Col key={product._id} sm={4} md={4} lg={3} xs={12}>
                     <p className="fs-5" key={product._id}>{product.name}</p>
                     <Product product={product}/>
                  </Col>

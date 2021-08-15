@@ -8,7 +8,8 @@ import userRegisterReducer from '../reducers/user/userRegisterReducer'
 import cartReducer from '../reducers/cart/cartReducers'
 import userDetailsReducer from '../reducers/user/userDetailsReducer'
 import userUpdateProfileReducer from '../reducers/user/userUpdateProfileReducer'
-
+import shippingReducer from '../reducers/shipping/shipping'
+import paymentReducer from '../reducers/payment/payment'
 const reducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
@@ -16,6 +17,8 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
-    userUpdatedProfile: userUpdateProfileReducer
+    userUpdatedProfile: userUpdateProfileReducer,
+    shippingAddress: shippingReducer,
+    payment: paymentReducer
 })
 export default reducer

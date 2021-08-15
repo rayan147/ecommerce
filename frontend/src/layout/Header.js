@@ -5,9 +5,11 @@ import {LinkContainer} from 'react-router-bootstrap'
 import {TiShoppingCart} from 'react-icons/ti'
 import {FaUserAstronaut,FaUserNinja} from 'react-icons/fa'
 import logout from  '../actions/user/logout'
+
+
 const Header = () => {
   const dispatch = useDispatch()
-  const {userInfo}  = useSelector(state => state.userLogin)
+  const {userInfo,isAuthenticated}  = useSelector(state => state.userLogin)
 
   const logOutHandler = () => {
     dispatch(logout())
@@ -28,9 +30,9 @@ const Header = () => {
                    Cart
                 </Nav.Link>
             </LinkContainer>
-            {userInfo ? (
+            {userInfo  && isAuthenticated? (
               
-              <NavDropdown title={userInfo.name} id='username' className="mx-1">
+              <NavDropdown title={userInfo.name} id='username'>
               <LinkContainer to='/profile'>
                 <NavDropdown.Item>Profile</NavDropdown.Item>
               </LinkContainer>

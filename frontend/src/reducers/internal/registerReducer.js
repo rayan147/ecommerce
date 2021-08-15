@@ -7,7 +7,7 @@ const {
     CONFIRM_PASSWORD,
     ERROR_MESSAGE
 } = INTERNAL_STATE
-const reducer = (state, action) => {
+const profileReducer = (state, action) => {
     switch (action.type) {
       case NAME:
         return {...state,name:action.payload}
@@ -29,4 +29,4 @@ const reducer = (state, action) => {
         return state
     }
   }
-  export default reducer
+  export default profileReducer

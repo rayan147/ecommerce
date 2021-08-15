@@ -2,14 +2,14 @@ import {useEffect,lazy,useReducer} from 'react'
 
 
 import {useDispatch,useSelector} from 'react-redux'
-import {Form,Button,Row,Col} from 'react-bootstrap'
+import {Form,Button,Row,Col,Spinner} from 'react-bootstrap'
 
 
 
 import getUserDetails from '../actions/user/getUserDetails'
 import updateUserProfile from '../actions/user/updateUserProfile'
 import initialState from '../store/internalState/internalRegisterState'
-import reducer from '../reducers/internal/registerReducer'
+import profileReducer from '../reducers/internal/registerReducer'
 import INTERNAL_STATE from '../constants/internalState'
 import { USER_CONSTANTS} from '../constants/userContants'
 
@@ -21,7 +21,7 @@ const  Message = lazy(() =>  import('../components/view/Message'))
 const {NAME,EMAIL,ERROR_MESSAGE,PASSWORD,CONFIRM_PASSWORD} = INTERNAL_STATE
 
 const Profile = ({location,history}) => {
-    const [state, dispatchUseReducer] = useReducer(reducer, initialState)
+    const [state, dispatchUseReducer] = useReducer(profileReducer, initialState)
     const {name,email,password,confirmPassword,errorMessage} = state
 
     const dispatch = useDispatch()
@@ -81,7 +81,7 @@ const Profile = ({location,history}) => {
       
       {success && <Message variant='success'>Updated Details</Message>}
       {error && <Message variant='danger'>{error}</Message>}
-      {isLoading && <Message variant='info'>Loading ...</Message>}
+     
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>

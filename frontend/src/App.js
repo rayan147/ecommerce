@@ -14,6 +14,10 @@ const Cart = lazy(()=> import('./pages/Cart'));
 const Login = lazy(()=> import('./pages/Login'));
 const Register = lazy(()=> import('./pages/Register'));
 const Profile = lazy(()=> import('./pages/Profile'));
+const Shipping = lazy(()=> import('./pages/Shipping'));
+const Payment = lazy(()=> import('./pages/Payment'));
+
+
 
 const Fallback = () => (
 <div className="d-flex align-items-center justify-content-center mt-10">
@@ -31,8 +35,11 @@ const  App =()=> {
         <Suspense fallback={<Fallback/>}>
         <Switch>
         <Route path='/' component={Home} exact />
-        <Route path='/login' component={Login}  />
+        <Route path='/shipping' component={Shipping}  />
+        <Route path='/payment' component={Payment}  />
         <Route path='/register' component={Register}  />
+        <Route path='/login' component={Login}  />
+        
         <Route path='/profile' component={Profile}  />
         <Route path='/product/:id' component={Product}  />
         <Route path='/cart/:id?' component={Cart}  />
