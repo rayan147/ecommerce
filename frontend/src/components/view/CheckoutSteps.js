@@ -9,7 +9,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
         {step1 ? (
       
           
-         <Card className="mx-2 shadow-sm bg-body rounded" >
+         <Card className="mx-2 shadow-sm rounded" >
           <LinkContainer  to='/login'>
             <Nav.Link>Sign In </Nav.Link>
           </LinkContainer>
@@ -23,7 +23,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 
       <Nav.Item>
         {step2 ? (
-          <Card className="mx-2 shadow-sm bg-body rounded">
+          <Card className="mx-2 shadow-sm rounded">
           <LinkContainer to='/shipping'>
             <Nav.Link>Shipping</Nav.Link>
           </LinkContainer>
@@ -35,7 +35,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 
       <Nav.Item>
         {step3 ? (
-          <Card className="mx-2 shadow-sm bg-body rounded">
+          <Card className="mx-2 shadow-sm rounded">
           <LinkContainer to='/payment'>
             <Nav.Link>Payment</Nav.Link>
           </LinkContainer>
@@ -47,7 +47,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 
       <Nav.Item>
         {step4 ? (
-          <Card className="mx-2 shadow-sm bg-body rounded" >
+          <Card className="mx-2 shadow-sm rounded" >
           <LinkContainer to='/placeorder'>
             <Nav.Link>Place Order</Nav.Link>
           </LinkContainer>

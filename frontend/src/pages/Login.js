@@ -21,15 +21,15 @@ const Login = ({location,history}) => {
     const [password,setPassword] = useState('')
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.userLogin)
-    const {isLoading,error,isAuthenticated} = userLogin
+    const {isLoading,error,userInfo} = userLogin
 
     const redirect =location?.search?.split('=')[1] ??  '/'
 
     useEffect(() => {
-        if(isAuthenticated === true){
+        if(userInfo){
             history.push(redirect)
         }
-        },[redirect,history,isAuthenticated])
+        },[redirect,history,userInfo])
     const submitHandler = (e) => {
         e.preventDefault()
             dispatch(login(email,password))
@@ -50,9 +50,12 @@ const Login = ({location,history}) => {
                    <Form.Label>Password</Form.Label>
                    <Form.Control type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}>        
                    </Form.Control>
-                   <Button className='btn w-100 mt-1' type='submit' variant='primary'>Login</Button>
-                   <Row>
-                        <Col xs={12}>
+                   <div className="d-flex justify-content-center align-items-center">
+<Button className='btn w-50 my-2 rounded ' type='submit' variant='primary'>Login</Button>
+                   </div>
+                   
+                   <Row >
+                        <Col  xs={12}>
                             <Link to={redirect ? `/register?=redirect=${redirect}` : '/register'}>
                               <p>New Customer? Register</p> 
                             </Link>

@@ -45,21 +45,45 @@ const Payment = ({history}) => {
                 id='PayPal'
                 name='paymentMethod'
                 value='PayPal'
-                checked
+             
                 onChange={(e) => setPaymentMethod(e.target.value)}
               ></Form.Check>
-              {/* <Form.Check
+              <Form.Check
                 type='radio'
                 label='Stripe'
                 id='Stripe'
                 name='paymentMethod'
                 value='Stripe'
                 onChange={(e) => setPaymentMethod(e.target.value)}
-              ></Form.Check> */}
+              ></Form.Check>
+              <Form.Check
+                type='radio'
+                label='Amex'
+                id='Stripe'
+                name='paymentMethod'
+                value='Amex'
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              ></Form.Check>
+              <Form.Check
+                type='radio'
+                label='Visa'
+                id='Stripe'
+                name='paymentMethod'
+                value='Visa'
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              ></Form.Check>
+              <Form.Check
+                type='radio'
+                label='MaterCard'
+                id='Stripe'
+                name='paymentMethod'
+                value='MaterCard'
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              ></Form.Check>
             </Col>
           </Form.Group>
   
-          <Button type='submit' variant='primary'>
+          <Button type='submit' variant='primary' className="w-30 my-2 rounded">
             Continue
           </Button>
         </Form>

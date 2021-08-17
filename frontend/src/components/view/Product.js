@@ -11,7 +11,7 @@ const Product = ({product}) => {
 <Container>
     <Row>
         <Col>
-            <Card className="shadow-sm p-3 my-5  rounded  w-30" >
+            <Card  className="shadow-sm p-3 my-5  rounded  w-30" >
             
             <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
                 <Card.Img src={image} alt={name} className="img-fluid " variant='top' />
@@ -52,4 +52,5 @@ Product.defaultProps = {
     rating: 0,
     price: 0  
 }
+
 export default Product

@@ -95,8 +95,8 @@ const Shipping = ({history}) => {
             onChange={(e) => dispatchUseReducer({type:COUNTRY,payload:e.target.value})}
           ></Form.Control>
         </Form.Group>
-
-        <Button type='submit' variant='primary'>
+        
+        <Button type='submit' variant='primary' className="w-50 my-2 rounded ">
           Continue
         </Button>
       </Form>

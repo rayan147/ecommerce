@@ -57,8 +57,8 @@ const checkoutHandler = () => {
           )}
           </Col>
           <Col md={4}>
-              <ListGroup>
-                  <ol>
+              <ListGroup className="shadow-sm rounded p-3 my-2">
+                  <ol >
                       <h3> Subtotal {subTotalItem()} items</h3>
                   ${totalPrice()}
                   </ol>

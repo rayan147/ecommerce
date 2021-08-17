@@ -11,13 +11,14 @@ import helmet from 'helmet';
 import connectMongo from '../backend/config/db.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 import  notFound  from './middleware/notFound.js';
 import  errorHandler from './middleware/errorHandler.js';
 import options from './swaggerOptions.js';
 
 // Load environment variables
-const PORT = process.env.PORT ?? 5000;
-const NODE_ENV = process.env.NODE_ENV ?? 'development';
+const PORT = process.env?.PORT ?? 5000;
+const NODE_ENV = process.env?.NODE_ENV ?? 'development';
 
 //CONFIG
 dotenv.config();
@@ -53,6 +54,7 @@ app.use(cors());
 // ROUTES
 app.use('/api/products', productRoutes);
 app.use('/api/users',userRoutes);
+app.use('/api/orders',orderRoutes);
 
 //ERROR HANDLERS
 app.use(errorHandler)

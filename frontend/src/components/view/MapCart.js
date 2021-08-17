@@ -1,12 +1,13 @@
-import {Row,Col,Image,ListGroup,Button,Form} from 'react-bootstrap'
+import {Row,Col,Image,ListGroup,Button,Form,Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {BiTrash} from 'react-icons/bi'
 const MapCart = ({cartItems,dispatch,addToCart,removeFromCartHandler}) => {
     return (
         <>
+     
          <ListGroup > 
               {cartItems.map(item => (
-                  <ol key={item.product_id}>
+                  <ol key={item.product_id} className="shadow-sm rounded p-3 my-2">
                       <Row>
                           <Col md={2}>
                             <Image src={item.image} alt={item.name} fluid rounded/>
@@ -28,22 +29,24 @@ const MapCart = ({cartItems,dispatch,addToCart,removeFromCartHandler}) => {
                                              return <option key={i + 1} value={i + 1 }>{i + 1}</option>
                                             })
                                      }  
+ 
                              </Form.Control>
                           </Col>
                           <Col md={2}>
-                              <Button 
+                              <BiTrash
                                type='button'
-                               size='sm'
-                               variant='danger'
+                               size="1.5rem"
+                               color='red'
                                onClick={() => removeFromCartHandler(item.product_id)}>
-                                  <BiTrash/>
-                             </Button>
+                                  
+                             </BiTrash>
                           </Col>
                       </Row> 
                 </ol>
                 
               ))}
-        </ListGroup>   
+        </ListGroup>  
+       
         </>
     )
 }
