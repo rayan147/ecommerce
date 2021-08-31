@@ -1,12 +1,14 @@
 import {useEffect,useState,lazy} from 'react'
+import { renderToStaticMarkup } from "react-dom/server";
 
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import {Form,Button,Row,Col} from 'react-bootstrap'
+import {Form,Button,Row,Col,Card,Container} from 'react-bootstrap'
 
 
 import FormContainer from '../components/view/FormContainer'
 import login from '../actions/user/login'
+
 
 
 const  Message = lazy(() => {
@@ -16,6 +18,9 @@ const  Message = lazy(() => {
     ])
     .then(([moduleExports]) => moduleExports);
   });
+
+
+
 const Login = ({location,history}) => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -34,24 +39,30 @@ const Login = ({location,history}) => {
         e.preventDefault()
             dispatch(login(email,password))
     }
-
+//    const svgString = encodeURIComponent(renderToStaticMarkup(<LoginCoverBg/>))
+//    const dataUri = `url("data:image/svg+xml,${svgString}")`;
     return (
-        <FormContainer>
-           <h2>Sign</h2>
+      <FormContainer className="h-100 d-flex justify-content-center align-items-center">
+      <Card classNameName="shadow-lg p-3 mx-5  rounded" style={{ width: '23rem' }}>
+            <Card.Header className="text-center fs-2 text-uppercase">
+                <h3 classNameName="">Login</h3>
+            </Card.Header>
+            <Card.Body>
+        
             {error && <Message variant="danger">{error}</Message>}
             {error === null &&  isLoading &&  <Message variant="info">Loging in...</Message>}
            <Form onSubmit={submitHandler}> 
-               <Form.Group controlId='p'>
+               <Form.Group controlId='email' className="m-3 border-rouned">
                    <Form.Label>Email</Form.Label>
                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)}>
                    </Form.Control>
                </Form.Group>
-               <Form.Group>
+               <Form.Group controlId='password' className="m-3 border ">
                    <Form.Label>Password</Form.Label>
                    <Form.Control type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}>        
                    </Form.Control>
-                   <div className="d-flex justify-content-center align-items-center">
-<Button className='btn w-50 my-2 rounded ' type='submit' variant='primary'>Login</Button>
+                   <div classNameName="d-flex justify-content-center align-items-center">
+<Button classNameName='btn w-100 my-2 rounded ' type='submit' variant='primary'>Login</Button>
                    </div>
                    
                    <Row >
@@ -65,8 +76,13 @@ const Login = ({location,history}) => {
                </Form.Group>
                
            </Form>
-        </FormContainer>
+    </Card.Body>
+    </Card> 
+    </FormContainer>
+   
+          
     )
 }
+
 
 export default Login

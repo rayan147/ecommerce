@@ -1,43 +1,32 @@
 
-import ORDER_STATUS from "../../constants/orderContants";
+import ORDER_STATUS from "../../constants/orderConstants";
 
 const {
-   ORDER_DETAIL_FAILURE,
-   ORDER_DETAIL_REQUEST_START,
-   ORDER_DETAIL_SUCCESS
+   ORDER_DETAILS_FAILURE,
+   ORDER_DETAILS_REQUEST_START,
+   ORDER_DETAILS_SUCCESS
     
 } = ORDER_STATUS;
 
-const orderDetailsReducer = (state = { orderItems:[],userShippingAddress :{}}, action) => {
+const orderDetailsReducer = (state = { isLoading: true,orderItems:[],shippingAddress :{}}, action) => {
         switch (action.type) {
-            case ORDER_DETAIL_REQUEST_START:
+            case ORDER_DETAILS_REQUEST_START:
                 return {
                     ...state,
-                    isFetching: true,
-                    isFetchingRequest: true,
-                    isFetchingRequestSuccess: false,
-                    isFetchingRequestFailure: false,
-                    isFetchingRequestStart: true,
+                    isLoading: true,
+                    
                 };
           
-            case ORDER_DETAIL_FAILURE:
+            case ORDER_DETAILS_FAILURE:
                 return {
                     ...state,
-                    isFetching: false,
-                    isFetchingRequest: false,
-                    isFetchingRequestSuccess: false,
-                    isFetchingRequestFailure: true,
-                    isFetchingRequestStart: false,
+                    isLoading: false,
                     error:action.payload
                 };
-            case ORDER_DETAIL_SUCCESS:
+            case ORDER_DETAILS_SUCCESS:
                 return {
                     ...state,
-                    isFetching: false,
-                    isFetchingRequest: false,
-                    isFetchingRequestSuccess: true,
-                    isFetchingRequestFailure: false,
-                    isFetchingRequestStart: false,
+                    isLoading: false,
                     order: action.payload
                 };
             

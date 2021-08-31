@@ -1,5 +1,5 @@
 import axios from "axios"
-import { USER_CONSTANTS } from "../../constants/userContants"
+import { USER_CONSTANTS } from "../../constants/userConstants"
 
 const  {
     USER_DETAILS_REQUEST,
@@ -31,10 +31,7 @@ const  {
         } catch (error) {
           dispatch({
             type: USER_DETAILS_FAILURE,
-            payload:
-              error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message,
+            payload: error?.response?.data?.message ?? error.message
           })
         }
       }

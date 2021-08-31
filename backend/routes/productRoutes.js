@@ -1,23 +1,13 @@
 import express from 'express';
+
+import authenticateUserToken from '../middleware/authenticateUserToken.js';
+import isAdmin from '../middleware/isAdmin.js';
+import deleteProductById from '../controllers/productControllers/deleteProductById.js';
 import getAllProducts from '../controllers/productControllers/getAllProducts.js'
 import getProductById from '../controllers/productControllers/getProductById.js'
 const router = express.Router();
 
-/**
-  @swagger
- * components:
- * - schemas:
- *  - Product:
- *   - type: object
- *   - required:
- *   - id:
- *   - name:
- * - Product:
- * - type: object
- * - properties:
- * - id:
- * **/
-router.route('/').get(getAllProducts);
-router.route('/:id',).get(getProductById);
 
+router.route('/').get(getAllProducts);
+router.route('/:id',).get(getProductById).delete(authenticateUserToken,isAdmin, deleteProductById)
 export default router;

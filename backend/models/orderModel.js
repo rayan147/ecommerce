@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import shippingsSchema from './shippingsSchema.js';
+import shippingSchema from './shippingSchema.js';
 import orderItemsSchema from './orderItemsSchema.js';
 import paymentResultsSchema  from './paymentResultsSchema.js';
 const { Schema } = mongoose;
@@ -19,12 +19,40 @@ const orderSchema = new Schema({
         ref:'User'
     },
    orderItems: [orderItemsSchema],
-   shippingsAdress: shippingsSchema,
+   shippingAddress: {
+     address: {
+           type: String,
+           required: true
+       }, 
+        country: {
+           type: String,
+           required: true
+       },
+       city: {
+           type: String,
+           required: true
+       },
+     
+       zipCode: {
+           type: String,
+           required: true
+       },
+       _state: {
+           type: String,
+           required: true
+       },
+     
+   },
    paymentMethod :{
         type: String,
         required: true
    },
-   paymentResult :paymentResultsSchema,
+   paymentResult :{
+    id: { type: String },
+    status: { type: String },
+    update_time: { type: String },
+    email_address: { type: String },
+  },
    taxPrice :{
         type: Number,
         required: true,
@@ -46,7 +74,7 @@ const orderSchema = new Schema({
         default: false
    },
    paidAt :{
-      type: Date
+      type:  Date
    },
    isDelivered:{
         type: Boolean,

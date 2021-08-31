@@ -1,4 +1,4 @@
-import SHIPPING_CONSTANTS from '../../constants/shippingContants'
+import SHIPPING_CONSTANTS from '../../constants/shippingConstants'
 const {CART_SAVE_SHIPPING_ADDRESS} = SHIPPING_CONSTANTS
 
 

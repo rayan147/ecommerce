@@ -1,22 +1,24 @@
 
 import Product from './Product'
-import {Row,Col,Container} from 'react-bootstrap'
+import {Row,Col} from 'react-bootstrap'
 
 import PropTypes from 'prop-types'
 
 
-const MapProducts = ({products }) => {
+const MapProducts = ({products,history,match }) => {
     return (
-        <Container>
+        <>
            <Row >
              { products.map( product => (
-                 <Col key={product._id} sm={4} md={4} lg={3} xs={12}>
-                    <Product product={product}/>
+                 <>
+                 <Col className="container  mt-2 " key={product._id} sm={6} md={4} lg={3} xs={8}>
+                    <Product key={product._id} product={product} history={history} match={match}/>
                  </Col>
+                 </>
              ))
             }
           </Row>   
-        </Container>
+        </>
     )
 }
 

@@ -1,10 +1,10 @@
-import {PRODUCT_TYPE_CHOICES} from '../../constants/productContants'
+import PRODUCT_CONSTANTS from '../../constants/productConstants'
 const {
   PRODUCT_LIST_FAILURE,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   
-} = PRODUCT_TYPE_CHOICES
+} = PRODUCT_CONSTANTS
  const productListReducer = (state = {products:[]}, action) => {
   switch (action.type) { 
       case  PRODUCT_LIST_REQUEST:

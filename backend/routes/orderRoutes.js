@@ -2,6 +2,8 @@ import express from 'express';
 import addOrderItems from '../controllers/orderControllers/addOrderItems.js'
 import authenticateUserToken from '../middleware/authenticateUserToken.js';
 import getOrderById from '../controllers/orderControllers/getOrderById.js';
+import updateOrderToPaid from '../controllers/orderControllers/updateOrderToPaid.js';
+import getLoggedUsersOrders from '../controllers/orderControllers/getPaidOrders.js';
 const router = express.Router();
 
 
@@ -17,6 +19,8 @@ const router = express.Router();
 router.route('/create').post(authenticateUserToken,addOrderItems);
 
 // GET
+router.route('/myorders').get(authenticateUserToken,getLoggedUsersOrders);
 router.route('/:id').get(authenticateUserToken,getOrderById);
+router.route('/:id/pay').put(authenticateUserToken,updateOrderToPaid);
 
 export default router;

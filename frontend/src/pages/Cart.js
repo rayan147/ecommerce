@@ -15,7 +15,7 @@ const Message = lazy(() => import('../components/view/Message'))
 const Cart = ({match,location,history}) => {
     const dispatch = useDispatch()
     const productId = match.params.id
-    const qty =  location.search ? Number(location.search.split('=')[1]) : 1
+    const qty =  location?.search?.split('=')[1] ?? 1
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
 
@@ -27,18 +27,18 @@ const Cart = ({match,location,history}) => {
 
 
 // HANDLERS
-const removeFromCartHandler = id=>{
+const removeFromCartHandler =useCallback( id=>{
     dispatch(removeFromCart(id))
   
-}
+},[dispatch])
 
-const subTotalItem =useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity,0),[cartItems])
+const subTotalItem =useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity ,0),[cartItems])
 const totalPrice = useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity * item.price,0).toFixed(2),[cartItems])
 
 
-const checkoutHandler = () => {
+const checkoutHandler = useCallback(() => {
     history.push('/login?redirect=shipping')
-  }
+  },[history])
 
     return (
         <Row>

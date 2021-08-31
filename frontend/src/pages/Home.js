@@ -3,11 +3,10 @@ import listProducts from "../actions/product/listProducts"
 import {useDispatch,useSelector} from 'react-redux'
 
 
-import  Message from '../components/view/Message'
 import MapProducts from '../components/view/MapProducts'
-const DelayedSpinner = lazy(() => import('../components/view/Loader'))
+const Message  = lazy(() => import('../components/view/Message'))
 
-const Home = () => {
+const Home = ({history,match}) => {
  const dispatch = useDispatch() 
  
  const productList = useSelector(state => state.productList)
@@ -20,8 +19,8 @@ const Home = () => {
     return (
         <>
           <h1>Latest Produce</h1>
-          <Suspense fallback={ isLoading && <DelayedSpinner/>}>
-            {error ? <Message variant='danger'>{error}</Message> : <MapProducts products={products}/>}
+          <Suspense fallback={ isLoading && <Message>loading...</Message>}>
+            {error ? <Message variant='danger'>{error}</Message> : <MapProducts products={products} history={history} match={match}/>}
           </Suspense>
         
         </>

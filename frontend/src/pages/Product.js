@@ -9,7 +9,7 @@ import DelayedSpinner from '../components/view/Loader'
 import  Message from '../components/view/Message'
 import Rating from '../components/view/Rating'
 import listProductDetails from "../actions/product/listProductDetails"
-import AddToCard from '../components/view/AddToCard'
+
 
 const Product = ({history,match}) => {
     const [qty,setQty] = useState(1)
@@ -113,11 +113,7 @@ const Product = ({history,match}) => {
                </Card>   
             </Col>  
         </Row >
-        {/* <Row  className="bg-danger ">
-            <Col >
-                <AddToCard price={price} quantity={qty}/>
-            </Col>
-        </Row> */}
+       
               </>
           )}
           

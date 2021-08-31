@@ -1,4 +1,4 @@
-import {USER_CONSTANTS} from '../../constants/userContants'
+import {USER_CONSTANTS} from '../../constants/userConstants'
 const  {
 USER_LOGIN_REQUEST,
 USER_LOGIN_FAILURE,

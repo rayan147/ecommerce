@@ -1,7 +1,7 @@
 
 import axios from "axios"
 
-import ORDER_STATUS from "../../constants/orderContants";
+import ORDER_STATUS from "../../constants/orderConstants";
 
 const {
     ORDER_CREATE_FAILURE,
@@ -45,10 +45,7 @@ const createOrder = (order) => async (dispatch,getState) => {
           })
       dispatch({
         type: ORDER_CREATE_FAILURE,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        payload: error?.response?.data?.message ?? error.message
       })
     }
   }

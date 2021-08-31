@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {CART_TYPES_CHOICES} from '../../constants/cartContants'
+import {CART_TYPES_CHOICES} from '../../constants/cartConstants'
 const {CART_ADD_TO_CART} = CART_TYPES_CHOICES
 
 const addToCart = (productId, quantity) => async (dispatch,getState) => {

@@ -7,15 +7,6 @@ import PropTypes from 'prop-types'
 const Rating = ({value,text,color}) => {
     return (
         <>
-         <Row>
-             <Col md={6}>
-                
-                  <strong className='fs-3'>{value}</strong >
-                  <BsStarFill style={{marginBottom:'1rem',marginRight:'.2rem'}} color={color} size='2rem' />
-                   <span > ({text && text}) </span>
-                   </Col>
-
-         </Row>
         { [1, 2, 3, 4, 5].map(index => (         
                  <span key={index}>
                      {value >= index ? <BsStarFill color={color} /> : 

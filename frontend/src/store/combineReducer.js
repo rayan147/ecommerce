@@ -2,28 +2,58 @@ import {combineReducers} from 'redux'
 
 import productListReducer from '../reducers/product/productListReducer'
 import productDetailsReducer from '../reducers/product/productDetailsReducer'
+import productDeleteReducer from '../reducers/product/productDeleteReducer'
+import productCreateReducer from '../reducers/product/productTopRatedReducer'
+import productUpdateReducer from '../reducers/product/productUpdateReducer'
+
+
+
+import cartReducer from '../reducers/cart/cartReducers'
 
 import userLoginReducer from '../reducers/user/userLoginReducer'
 import userRegisterReducer from '../reducers/user/userRegisterReducer'
-import cartReducer from '../reducers/cart/cartReducers'
 import userDetailsReducer from '../reducers/user/userDetailsReducer'
 import userUpdateProfileReducer from '../reducers/user/userUpdateProfileReducer'
 import shippingReducer from '../reducers/shipping/shipping'
 import paymentReducer from '../reducers/payment/payment'
+
+
 import orderCreateReducer from '../reducers/order/orderReducer'
 import orderDetailsReducer from '../reducers/order/orderDetailsReducer'
+import orderPayReducer from '../reducers/order/orderPayReducer'
+import getUserListOrderReducer from '../reducers/order/getUserListOrderReducer'
 
+import adminGetUsersListReducer from '../reducers/admin/adminGetUsersListReducer'
+import adminDeleteUserReducer from '../reducers/admin/adminDeleteUserReducer'
+import adminUpdateUserReducer from  '../reducers/admin/adminUpdateUserReducer '
+import  adminGetDetailsReducer from '../reducers/admin/adminGetUserDetails'
 const reducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
+    productDelete: productDeleteReducer,
+    productCreate: productCreateReducer,
+    productUpdate: productUpdateReducer,
+
+
     cart: cartReducer,
+
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdatedProfile: userUpdateProfileReducer,
     shippingAddress: shippingReducer,
     payment: paymentReducer,
+    
     orderCreate: orderCreateReducer,
-    orderDetails: orderDetailsReducer
+    orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    getUserListOrder: getUserListOrderReducer,
+
+
+    adminGetUsersList: adminGetUsersListReducer,
+    adminDeleteUser: adminDeleteUserReducer,
+    adminUpdateUser:adminUpdateUserReducer,
+    adminGetFromUser:adminGetDetailsReducer
+
 })
 export default reducer

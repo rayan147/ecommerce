@@ -1,6 +1,6 @@
 
 
-import {CART_TYPES_CHOICES} from "../../constants/cartContants"
+import {CART_TYPES_CHOICES} from "../../constants/cartConstants"
 const { CART_REMOVE_FROM_CART} = CART_TYPES_CHOICES
  
  const removeFromCart = (productId) => async (dispatch,getState) => {

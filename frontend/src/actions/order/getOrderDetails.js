@@ -1,12 +1,12 @@
 
 import axios from "axios"
 
-import ORDER_STATUS from "../../constants/orderContants";
+import ORDER_STATUS from "../../constants/orderConstants";
 
 const {
-    ORDER_DETAIL_FAILURE,
-    ORDER_DETAIL_REQUEST_START,
-    ORDER_DETAIL_SUCCESS
+    ORDER_DETAILS_FAILURE,
+    ORDER_DETAILS_REQUEST_START,
+    ORDER_DETAILS_SUCCESS
      
  } = ORDER_STATUS;
  
@@ -14,7 +14,7 @@ const {
 const getOrderDetails = (id) => async (dispatch,getState) => {
     try {
       dispatch({
-        type: ORDER_DETAIL_REQUEST_START,
+        type: ORDER_DETAILS_REQUEST_START,
       })
     const {userLogin:{userInfo}} = getState()
       const config = {
@@ -29,18 +29,15 @@ const getOrderDetails = (id) => async (dispatch,getState) => {
    
 
     dispatch({  
-        type: ORDER_DETAIL_SUCCESS,
+        type: ORDER_DETAILS_SUCCESS,
         payload: data,
       })
      
     } catch (error) {
-    
       dispatch({
-        type: ORDER_DETAIL_FAILURE,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        type: ORDER_DETAILS_FAILURE,
+        payload: error?.response?.data?.message ?? error.message
+         
       })
     }
   }

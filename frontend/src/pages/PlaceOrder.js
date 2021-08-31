@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import Message from '../components/view/Message'
 import CheckoutSteps from '../components/view/CheckoutSteps'
 import createOrder from '../actions/order/createOrder'
- const addDecimal = (num) => +num.toFixed(2)
+import roundDecimalToTwo from '../helpers/roundDecimalToTwo'
  
   
 
@@ -18,17 +18,18 @@ const PlaceOrder = ({history}) => {
 
 
     const cart = useSelector(state => state.cart)
+    const shippingAdress =useSelector(state =>state.shippingAddress)
     const payment = useSelector(state => state.payment)
     const orderCreate = useSelector((state) => state.orderCreate)
     const { order, isFetchingRequestSuccess, error } = orderCreate
 
 
-     cart.itemsPrice =addDecimal( cart.cartItems.reduce((sum, item) => {
+     cart.itemsPrice =roundDecimalToTwo( cart.cartItems.reduce((sum, item) => {
         return sum + item.price * item.quantity
     }, 0))
     cart.shippingPrice = cart.itemsPrice > 100 ? 5 : 0
-    cart.taxPrice =addDecimal(cart.itemsPrice > 100 ? (cart.itemsPrice - 100).toFixed(2) * 0.1 : 0)
-    cart.totalPrice = addDecimal(cart.itemsPrice + cart.shippingPrice + cart.taxPrice)
+    cart.taxPrice =roundDecimalToTwo(cart.itemsPrice > 100 ? (cart.itemsPrice - 100).toFixed(2) * 0.1 : 0)
+    cart.totalPrice = roundDecimalToTwo(cart.itemsPrice + cart.shippingPrice + cart.taxPrice)
    
 
     useEffect(() => {
@@ -44,7 +45,7 @@ const PlaceOrder = ({history}) => {
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
-        shippingAddress: cart.userShippingAddress,
+        shippingAddress: shippingAdress?.data,
         paymentMethod: payment.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
@@ -63,9 +64,9 @@ const PlaceOrder = ({history}) => {
                       <h2 className="fs-2">SHIPPING</h2>
                       <span>
                         <strong>Adress:</strong>
-                       <ul> {cart.userShippingAddress.address},</ul>
-                        <ul>{cart.userShippingAddress.city}, {cart.userShippingAddress._state}{""}{cart.userShippingAddress.zipCode}</ul>
-                        <ul>{cart.userShippingAddress.country}</ul>
+                       <ul> {shippingAdress.data.address},</ul>
+                        <ul>{shippingAdress.data.city}, {shippingAdress.data._state}{""}{shippingAdress.data.zipCode}</ul>
+                        <ul>{shippingAdress.data.country}</ul>
                         
                       </span>
                   </ol>
@@ -73,9 +74,9 @@ const PlaceOrder = ({history}) => {
                       <h2 className="fs-2">BILLING</h2>
                       <span>
                         <strong>Adress:</strong>
-                        <ul> {cart.userShippingAddress.address},</ul>
-                        <ul>{cart.userShippingAddress.city}, {cart.userShippingAddress._state}{""}{cart.userShippingAddress.zipCode}</ul>
-                        <ul>{cart.userShippingAddress.country}</ul> 
+                        <ul> {shippingAdress.data.address},</ul>
+                        <ul>{shippingAdress.data.city}, {shippingAdress.data._state}{""}{shippingAdress.data.zipCode}</ul>
+                        <ul>{shippingAdress.data.country}</ul> 
                       </span>
                   </ol>
                   <ol className="shadow-sm rounded p-3 my-2">

@@ -1,4 +1,4 @@
-import PAYMENT_CONSTANTS from "../../constants/paymentContants";
+import PAYMENT_CONSTANTS from "../../constants/paymentConstants";
 
 const {CART_SAVE_PAYMENT_METHOD} = PAYMENT_CONSTANTS;
 

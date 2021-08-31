@@ -22,4 +22,6 @@ router
 // POST  
 router.route('/login').post(authenticateUser);
 router.route('/register').post(registerUser);
+
+router.route('/:id').get(authenticateUserToken,getCurrentUserProfile)
 export default router;

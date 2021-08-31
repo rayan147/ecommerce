@@ -1,24 +1,27 @@
-import React from 'react'
+import {useState}from 'react'
 import {Link} from 'react-router-dom'
-import {Card,Row,Col,Container} from "react-bootstrap"
+import {Card,Button} from "react-bootstrap"
 import Rating from './Rating'
 
 import PropTypes from 'prop-types'
 
-const Product = ({product}) => {
+const Product = ({product,history,match }) => {
+    const [qty,setQty] = useState(1)
     const {_id,image,name,numReviews,rating,price } = product
+    const addToCartHandler = () => { 
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
+  }
     return (
-<Container>
-    <Row>
-        <Col>
-            <Card  className="shadow-sm p-3 my-5  rounded  w-30" >
+
+    
+            <Card  className="shadow-sm p-2 my-5  rounded  h-70" >
             
             <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
-                <Card.Img src={image} alt={name} className="img-fluid " variant='top' />
+                <Card.Img src={image} alt={name} className="img-fluid rounded" variant='top' />
             </Link>
             <Card.Body>
               <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
-                <Card.Title as='div'  > <strong>{name}</strong></Card.Title>
+                <Card.Title as='div'  > <strong>{`${name}`.substr(0,15)}</strong></Card.Title>
             </Link>
             <Card.Text as='div'>
                 <Rating value={rating} text={`${numReviews} reviews`}  />
@@ -27,12 +30,12 @@ const Product = ({product}) => {
                 ${price}
             </Card.Text>  
             </Card.Body>
-            
+            <Button onClick={addToCartHandler} className="rounded" type="button" variant="primary rounded m-2 w-60">Add to Cart</Button>
         </Card> 
-        </Col>
-    </Row>
+      
+  
        
-    </Container>
+  
     )
 }
 

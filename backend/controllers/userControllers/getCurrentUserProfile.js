@@ -8,12 +8,13 @@ import asyncHandler from "express-async-handler"
  * @return  user object
  * */
 const getCurrentUserProfile = asyncHandler(async(req, res) => {
+   console.log(req.user)
   const user = await User.findById(req.user._id);
 
   if(!user) {
      res.status(404)
      throw new Error('User not found');
-     return;
+ 
    };
    res.status(200).json({
       _id: user._id,

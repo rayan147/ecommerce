@@ -1,65 +1,152 @@
-import {useEffect} from 'react'
+import {useCallback, useEffect,useState,useLayoutEffect} from 'react'
 
 
-
+import axios from 'axios'
 import {useDispatch,useSelector} from 'react-redux'
-import {Button, Row,Col,ListGroup,Image,Card,} from 'react-bootstrap'
+import { Row,Col,ListGroup,Image,Card,Container} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import { PayPalButton } from 'react-paypal-button-v2'
+ 
+
+
+
 
 import Message from '../components/view/Message'
 import getOrderDetails from '../actions/order/getOrderDetails'
+import roundDecimalToTwo from '../helpers/roundDecimalToTwo'
+import payOrder from '../actions/payment/payOrder'
+import ORDER_STATUS from '../constants/orderConstants'
+const {ORDER_PAYMENT_RESET} = ORDER_STATUS
+const Order = ({match,history}) => {
 
- 
-  
-
-const Order = ({match}) => {
+const [sdkReady, setSdkReady] = useState(false)
 const orderId = match.params.id
-  const dispatch = useDispatch()
+const dispatch = useDispatch()
    
-  const orderDetails = useSelector(state => state.orderDetails)
- const {isFetchingRequestSuccess,order,error} =orderDetails
-    useEffect(() => {
-        
-         dispatch(getOrderDetails(orderId))
-   
-      // eslint-disable-next-line
-    }, [ dispatch, orderId])
+const orderDetails = useSelector(state => state.orderDetails)
+const {isLoading,order,error} =orderDetails
 
+
+const orderPay = useSelector((state) => state.orderPay)
+const { isLoading: loadingPay, isSuccess: successPay } = orderPay
+
+const userLogin = useSelector((state) => state.userLogin)
+const { userInfo } = userLogin
+
+ if (!isLoading) {
+  //   Calculate prices
+  order.itemsPrice = roundDecimalToTwo (
+    order.orderItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+  )
+}
+
+
+useEffect(() => {
+  if(!userInfo){
+    history.push('/login')
+  }
+}, [userInfo,history])
+
+
+useLayoutEffect(() => {
+  const addPayPalScript = async () => {
+    const { data: clientId } = await axios.get('/api/config/paypal')
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+    script.async = true
+    script.onload = () => {
+      setSdkReady(true)
+    }
+    document.body.appendChild(script)
+  }
+    if (!order?.isPaid) {
+    if (!window.paypal) {
+      addPayPalScript()
+    } else {
+      setSdkReady(true)
+    }
+  }
   
+}, [dispatch, orderId, successPay, order,history,userInfo])
+
+
+
+useEffect(() => {
+  if(!order || successPay  || order._id !== orderId){
+    dispatch({ type: ORDER_PAYMENT_RESET })
+    // dispatch({ type: ORDER_DELIVER_RESET })
+    dispatch(getOrderDetails(orderId))
+  }
+
+}, [order,successPay,orderId,dispatch])
+
+
+
+
+// Handle paypal payment
+const successPaymentHandler = useCallback((paymentResult) => {
+  console.log(paymentResult)
+  dispatch(payOrder(orderId, paymentResult))
+},[orderId,dispatch])
+
     return (
         <>
-          <ul>
-            {error && <Message variant='danger'>{error}</Message>}
-        </ul>
-          <h1 className="fs-1"> ORDER {order?._id}</h1>
+        {isLoading && <Message>Loading order...</Message> }
+        {!isLoading && error && <Message variant="danger">{error}</Message>}
+        {!isLoading && !error && (
+          <>
+       
+          <h2 className="fs-2"> Order Number {`${order._id}`.toUpperCase()} </h2>
           <Row>
             <Col md={8}>
               <ListGroup variant="flush">
                   <ol className="shadow-sm rounded p-3 my-2">
-                      <h2 className="fs-2">SHIPPING</h2>
-                      <span>
-                        <strong>Adress:</strong>
-                       <ul> {order.userShippingAddress.address},</ul>
-                        <ul>{order.userShippingAddress.city}, {order.userShippingAddress._state}{""}{order.userShippingAddress.zipCode}</ul>
-                        <ul>{order.userShippingAddress.country}</ul>
-                        
-                      </span>
+                      <h3 className="fs-3">SHIPPING</h3>
+                       
+                         <strong>Adress Info:</strong>
+                         <>
+                        <ul><strong>Name:{order.user.name}</strong></ul>
+                        <ul><a href={`mailto:${order.user.email}`}> Email:{order.user.email}</a></ul> 
+                        </>
+                       <ul> {order.shippingAddress.address},</ul>
+                        <ul>{order.shippingAddress.city}, {order.shippingAddress._state}{""}{order.shippingAddress.zipCode}</ul>
+                        <ul>{order.shippingAddress.country}</ul>
+                        <span className="my-4">
+                            
+                        <ul><strong>Deliver Status:</strong></ul>
+                        {order.isDelivered ? <ul><strong>Deliver Status:</strong> 
+                        <Message variant="success"> Delivered on {order.deliveredAt}</Message>
+                        </ul> 
+                        : <Message variant="warning rounded">Order is not delivered yet</Message>
+                        }
+                        </span>
+  
                   </ol>
                   <ol className="shadow-sm rounded p-3 my-2">
                       <h2 className="fs-2">BILLING</h2>
+                     
                       <span>
-                        <strong>Adress:</strong>
-                        <ul> {order.userShippingAddress.address},</ul>
-                        <ul>{order.userShippingAddress.city}, {order.userShippingAddress._state}{""}{order.userShippingAddress.zipCode}</ul>
-                        <ul>{order.userShippingAddress.country}</ul> 
+                        <strong>Billing Info:</strong>
+                        <ul><strong>{order.user.name}</strong></ul>
+                        <ul> {order.shippingAddress.address},</ul>
+                        <ul>{order.shippingAddress.city}, {order.shippingAddress._state}{""}{order.shippingAddress.zipCode}</ul>
+                        <ul>{order.shippingAddress.country}</ul> 
                       </span>
                   </ol>
                   <ol className="shadow-sm rounded p-3 my-2">
-                      <h2 className="fs-2">PAYMENT</h2>
-                      <span>
-                        <strong>Payment Method:</strong>
+                      <h3 className="fs-3">PAYMENT</h3>
+                     
+                        <span className="my-4">
+                            <strong>Payment Method:</strong>
                         <ul>{order?.paymentMethod ?? 'Choose a payment Method'}</ul>
-                      </span>
+                        {order.isPaid ? <ul><strong>Payment Status:</strong> 
+                        <Message variant="success"> Paid on {order.paidAt}</Message></ul> 
+                          : <Message variant="warning rounded">Order is not paid yet</Message>
+                          }
+                        </span>
+                      
+                   
                   </ol>
                   <ol >
                       <h2 className="fs-2 my-5 text-center">ORDER DETAILS</h2>
@@ -68,7 +155,7 @@ const orderId = match.params.id
                         {order.orderItems.legth === 0 && <Message>Your order is empty</Message>}
                         <ListGroup variant="flush">
                           {order.orderItems.map(item =>(
-                            <ul key={item.product_id} className="shadow-sm rounded p-3 my-2">
+                            <ul key={item._id} className="shadow-sm rounded p-3 my-2">
                               <Row>
                                 <Col md={2}>
                                     <Image src={item.image} alt={item.name} fluid rounded/>
@@ -122,12 +209,33 @@ const orderId = match.params.id
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ul>
+              <Container>
+                
+                  {!order.isPaid && (
+                   <>
+                  {loadingPay && <Message>Loading...</Message>}
+                  {!sdkReady ? (
+                    <Message>Loading...</Message>
+                  ) : (
+                    <PayPalButton
+                      amount={order.totalPrice}
+                      onSuccess={successPaymentHandler}
+                    />
+                   
+                  )}
+               </>
+              )}
+ 
+        
+              </Container>
+             
             </ListGroup>
           </Card>
         </Col>
-          </Row>
-            
-        </>
+          </Row> 
+          </>
+        )  
+                          }</>
     )
 }
 

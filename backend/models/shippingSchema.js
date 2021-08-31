@@ -2,8 +2,12 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 
-const shippingsSchema = new Schema({
-    name: {
+const shippingSchema = new Schema({
+  address: {
+        type: String,
+        required: true
+    }, 
+     country: {
         type: String,
         required: true
     },
@@ -11,17 +15,15 @@ const shippingsSchema = new Schema({
         type: String,
         required: true
     },
-    address: {
+  
+    zipCode: {
         type: String,
         required: true
     },
-    postalCode: {
+    _state: {
         type: String,
         required: true
     },
-    country: {
-        type: String,
-        required: true
-    }
+  
 }, {timestamps: true});
-export default shippingsSchema
+export default shippingSchema

@@ -25,7 +25,7 @@ const Register = ({location,history}) => {
     const userRegister = useSelector(state => state.userRegister)
     const {isRegistering,error,userInfo} = userRegister
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
+    const redirect = location?.search?.split('=')[1] ?? '/'
     
     useEffect(() => {
         if(userInfo && userInfo._id){

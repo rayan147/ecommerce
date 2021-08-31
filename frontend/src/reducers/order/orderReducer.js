@@ -1,5 +1,5 @@
 
-import ORDER_STATUS from "../../constants/orderContants";
+import ORDER_STATUS from "../../constants/orderConstants";
 
 const {
     ORDER_CREATE_FAILURE,

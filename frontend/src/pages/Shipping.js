@@ -1,4 +1,4 @@
-import {lazy,useReducer} from 'react'
+import {useReducer,useCallback} from 'react'
 
 
 
@@ -12,27 +12,32 @@ import INTERNAL_STATE from '../constants/internalState'
 import shippingReducer from '../reducers/internal/shippingReducer'
 import saveShippingAddress from '../actions/shipping/shipping'
 
+
 const {ADDRESS,CITY,STATE,ZIP_CODE,COUNTRY} =INTERNAL_STATE
 const Shipping = ({history}) => {
   const dispatch = useDispatch()
-  const cart = useSelector((state) => state.cart)
-  const { userShippingAddress } = cart
-  
-    const initialState = {
-      address:userShippingAddress?.address ?? '',
-      country:userShippingAddress?.country ?? '', 
-      city:userShippingAddress?.city ?? '',
-      zipCode:userShippingAddress?.zipCode ?? '',
-      _state:userShippingAddress?._state ?? ''
-}
-    const [state, dispatchUseReducer] = useReducer(shippingReducer,initialState)
+
+  const shippingAddress = useSelector((state) => state.shippingAddress)
  
-    const {address,country,city,zipCode,_state} = state
-    const submitHandler = (event) => {
+
+  
+  const initialState = {
+      address:shippingAddress?.data?.address ?? '',
+      country:shippingAddress?.data?.country ?? '', 
+      city:shippingAddress?.data?.city ?? '',
+      zipCode:shippingAddress?.data?.zipCode ?? '',
+      _state:shippingAddress?.data?._state ?? ''
+}
+  
+ const [state, dispatchUseReducer] = useReducer(shippingReducer,initialState)
+ const {address,country,city,zipCode,_state} = state
+
+ //HANDLERS
+const submitHandler = useCallback( (event) => {
         event.preventDefault()
        dispatch(saveShippingAddress(state))
        history.push('/payment')
-    }
+    },[state,history,dispatch])
 
 
     return (
@@ -46,7 +51,7 @@ const Shipping = ({history}) => {
           <Form.Label>Address</Form.Label>
           <Form.Control
             type='text'
-            placeholder={userShippingAddress?.address ?? 'Enter address'}
+            placeholder={shippingAddress?.data?.address ?? 'Enter address'}
             value={address}
             required
             onChange={(e) => dispatchUseReducer({type:ADDRESS,payload:e.target.value})}
@@ -57,7 +62,7 @@ const Shipping = ({history}) => {
           <Form.Label>City</Form.Label>
           <Form.Control
             type='text'
-            placeholder={userShippingAddress?.city ??'Enter city'}
+            placeholder={shippingAddress?.data?.city ??'Enter city'}
             value={city}
             required
             onChange={(e) => dispatchUseReducer({type:CITY,payload:e.target.value})}
@@ -67,7 +72,7 @@ const Shipping = ({history}) => {
           <Form.Label>State</Form.Label>
           <Form.Control
             type='text'
-            placeholder={userShippingAddress?._state ??'Enter State'}
+            placeholder={shippingAddress?.data?._state ??'Enter State'}
             value={_state}
             required
             onChange={(e) => dispatchUseReducer({type:STATE,payload:e.target.value})}
@@ -78,7 +83,7 @@ const Shipping = ({history}) => {
           <Form.Label>Zip Code</Form.Label>
           <Form.Control
             type='text'
-            placeholder={userShippingAddress?.zipCode ??'Enter Zip Code'}
+            placeholder={shippingAddress?.data?.zipCode ??'Enter Zip Code'}
             value={zipCode}
             required
             onChange={(e) => dispatchUseReducer({type:ZIP_CODE,payload:e.target.value})}
@@ -89,7 +94,7 @@ const Shipping = ({history}) => {
           <Form.Label>Country</Form.Label>
           <Form.Control
             type='text'
-            placeholder={userShippingAddress?.country ??'Enter country'}
+            placeholder={shippingAddress?.data?.country ??'Enter country'}
             value={country}
             required
             onChange={(e) => dispatchUseReducer({type:COUNTRY,payload:e.target.value})}

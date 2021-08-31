@@ -1,4 +1,4 @@
-import SHIPPING_CONSTANTS from '../../constants/shippingContants'
+import SHIPPING_CONSTANTS from '../../constants/shippingConstants'
 const {CART_SAVE_SHIPPING_ADDRESS} = SHIPPING_CONSTANTS
 
 const shippingReducer = (state = {}, action) => {
@@ -6,7 +6,7 @@ const shippingReducer = (state = {}, action) => {
         case CART_SAVE_SHIPPING_ADDRESS:
             return {
                 ...state,
-                shippingAddress:action.payload
+                data:action.payload
             }
             
         default:

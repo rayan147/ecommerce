@@ -1,4 +1,4 @@
-import {CART_TYPES_CHOICES} from "../../constants/cartContants"
+import {CART_TYPES_CHOICES} from "../../constants/cartConstants"
 const {CART_ADD_TO_CART, CART_REMOVE_FROM_CART} = CART_TYPES_CHOICES
 
  const cartReducer = (state = {cartItems:[]}, action) => {  

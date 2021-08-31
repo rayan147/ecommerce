@@ -1,12 +1,12 @@
 
 import axios from 'axios';
-import {PRODUCT_TYPE_CHOICES} from '../../constants/productContants'
+import PRODUCT_CONSTANTS from '../../constants/productConstants'
 const {
     PRODUCT_LIST_FAILURE,
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
    
-} = PRODUCT_TYPE_CHOICES
+} = PRODUCT_CONSTANTS
 
  const listProducts =() => async (dispatch, getState) => {
    try {
@@ -16,7 +16,7 @@ const {
    } catch (error) {
        dispatch({
            type: PRODUCT_LIST_FAILURE, 
-           payload: error.response && error.response.data.message ? error.response.data.message : error.message
+           payload:  error?.response?.data?.message ?? error.message
         })
    }
 }
