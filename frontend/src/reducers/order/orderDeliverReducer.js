@@ -13,16 +13,16 @@ const {
     switch (action.type) {
       case ORDER_DELIVER_REQUEST:
         return {
-          loading: true,
+          isLoading: true,
         }
       case ORDER_DELIVER_SUCCESS:
         return {
-          loading: false,
-          success: true,
+          isLoading: false,
+          isSucesss: true,
         }
       case ORDER_DELIVER_FAILURE:
         return {
-          loading: false,
+          isLoading: false,
           error: action.payload,
         }
       case ORDER_DELIVER_RESET:

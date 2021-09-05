@@ -14,7 +14,7 @@ import Paginate from '../components/view/Paginate'
   
 import listProducts from '../actions/product/listProducts'
 import deleteProduct from '../actions/product/deleteProduct'
-import createProduct from '../actions/product/listProducts'
+import createProduct from '../actions/product/createProduct'
 
 
 import PRODUCT_CONSTANTS from '../constants/productConstants'
@@ -78,6 +78,7 @@ const ProductList = ({ history, match }) => {
 
   const createProductHandler = () => {
     dispatch(createProduct())
+    dispatch(listProducts('', pageNumber))
   }
 
   return (

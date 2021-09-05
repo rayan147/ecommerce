@@ -3,7 +3,7 @@ import {useCallback, useEffect,useState,useLayoutEffect} from 'react'
 
 import axios from 'axios'
 import {useDispatch,useSelector} from 'react-redux'
-import { Row,Col,ListGroup,Image,Card,Container} from 'react-bootstrap'
+import { Row,Col,ListGroup,Image,Card,Container,Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import { PayPalButton } from 'react-paypal-button-v2'
  
@@ -15,8 +15,9 @@ import Message from '../components/view/Message'
 import getOrderDetails from '../actions/order/getOrderDetails'
 import roundDecimalToTwo from '../helpers/roundDecimalToTwo'
 import payOrder from '../actions/payment/payOrder'
+import deliverOrder from '../actions/order/deliverOrder'
 import ORDER_STATUS from '../constants/orderConstants'
-const {ORDER_PAYMENT_RESET} = ORDER_STATUS
+const {ORDER_PAYMENT_RESET,ORDER_DELIVER_RESET} = ORDER_STATUS
 const Order = ({match,history}) => {
 
 const [sdkReady, setSdkReady] = useState(false)
@@ -33,6 +34,11 @@ const { isLoading: loadingPay, isSuccess: successPay } = orderPay
 const userLogin = useSelector((state) => state.userLogin)
 const { userInfo } = userLogin
 
+
+const orderDeliver = useSelector((state) => state.orderDeliver)
+const { isLoading: loadingDeliver, isSucesss: successDeliver } = orderDeliver
+
+
  if (!isLoading) {
   //   Calculate prices
   order.itemsPrice = roundDecimalToTwo (
@@ -48,7 +54,7 @@ useEffect(() => {
 }, [userInfo,history])
 
 
-useLayoutEffect(() => {
+useEffect(() => {
   const addPayPalScript = async () => {
     const { data: clientId } = await axios.get('/api/config/paypal')
     const script = document.createElement('script')
@@ -73,13 +79,13 @@ useLayoutEffect(() => {
 
 
 useEffect(() => {
-  if(!order || successPay  || order._id !== orderId){
+  if(!order || successPay||successDeliver  || order._id !== orderId){
     dispatch({ type: ORDER_PAYMENT_RESET })
-    // dispatch({ type: ORDER_DELIVER_RESET })
+    dispatch({ type: ORDER_DELIVER_RESET })
     dispatch(getOrderDetails(orderId))
   }
 
-}, [order,successPay,orderId,dispatch])
+}, [order,successPay,orderId,dispatch,successDeliver])
 
 
 
@@ -89,6 +95,10 @@ const successPaymentHandler = useCallback((paymentResult) => {
   console.log(paymentResult)
   dispatch(payOrder(orderId, paymentResult))
 },[orderId,dispatch])
+
+const deliverHandler = useCallback(() => {
+  dispatch(deliverOrder(order))
+},[dispatch,order])
 
     return (
         <>
@@ -225,7 +235,21 @@ const successPaymentHandler = useCallback((paymentResult) => {
                   )}
                </>
               )}
- 
+              {loadingDeliver && <h4>Loading...</h4>}
+                 {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <>
+                    <Button
+                      type='button'
+                      className='btn w-100 mb-3'
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </>
+                )}
         
               </Container>
              

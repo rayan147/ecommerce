@@ -25,6 +25,8 @@ const Order = lazy(()=> import('./pages/Order'));
 const AdminGetUsersList = lazy(()=> import('./pages/AdminGetUsersList'));
 const AdminEditUser = lazy(()=>import('./pages/AdminEditUser'));
 const ProductList = lazy(()=>import('./pages/ProductList'));
+const ProductEdit = lazy(()=>import('./pages/ProductEdit'));
+const OrderList = lazy(()=>import('./pages/OrderList'));
 
 
 const Fallback = () => (
@@ -58,6 +60,8 @@ const  App =()=> {
          <Route path='/login' component={Login}  /> 
         <Route path='/profile' component={Profile}  />
         <Route path='/product/:id' component={Product}  />
+        <Route path='/admin/product/:id/edit' component={ProductEdit} />
+        <Route path='/admin/orderlist' component={OrderList} />
         <Route path='/cart/:id?' component={Cart}  />
         </Switch>
         </Suspense>

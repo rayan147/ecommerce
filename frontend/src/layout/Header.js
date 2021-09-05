@@ -1,10 +1,10 @@
 import {useCallback} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
-import {Navbar,Nav,Container, NavDropdown} from 'react-bootstrap'
+import {Navbar,Nav,Container, NavDropdown,Image} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import {TiShoppingCart} from 'react-icons/ti'
-import {FaUserAstronaut,FaUserNinja} from 'react-icons/fa'
+
 
 
 import logout from  '../actions/user/logout'
@@ -34,7 +34,8 @@ const Header = () => {
                 </Nav.Link>
             </LinkContainer>
             {userInfo ? (
-              
+              <> 
+              <Image src={`https://avatars.dicebear.com/api/human/${userInfo.name}.svg`} roundedCircle className="mr-2" width="30px" height="30px"/>
               <NavDropdown title={userInfo.name} id='username'>
               <LinkContainer to='/profile'>
                 <NavDropdown.Item>Profile</NavDropdown.Item>
@@ -43,6 +44,7 @@ const Header = () => {
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
+            </>
             ):(
               <>
              <LinkContainer to="/login"> 
