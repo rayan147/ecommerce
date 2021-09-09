@@ -8,10 +8,10 @@ const {
    
 } = PRODUCT_CONSTANTS
 
- const listProducts =() => async (dispatch, getState) => {
+ const listProducts =(keyword='',pageNumber= '') => async (dispatch, getState) => {
    try {
        dispatch({type: PRODUCT_LIST_REQUEST})
-       const {data} = await axios('/api/products')
+       const {data} = await axios(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`)
        dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
    } catch (error) {
        dispatch({

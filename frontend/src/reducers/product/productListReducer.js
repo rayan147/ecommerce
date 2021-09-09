@@ -10,7 +10,13 @@ const {
       case  PRODUCT_LIST_REQUEST:
           return { ...state, isLoading: true } 
       case  PRODUCT_LIST_SUCCESS:
-          return { ...state, isLoading: false, products: action.payload }
+          return { 
+            ...state, 
+            isLoading: false, 
+            products: action.payload.products,
+            pages:action.payload.pages,
+            page:action.payload.page
+           }
       case  PRODUCT_LIST_FAILURE:
             return { ...state, isLoading: false, error: action.payload }
       default:

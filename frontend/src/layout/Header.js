@@ -4,9 +4,9 @@ import {useDispatch,useSelector} from 'react-redux'
 import {Navbar,Nav,Container, NavDropdown,Image} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import {TiShoppingCart} from 'react-icons/ti'
+import { Route } from 'react-router-dom'
 
-
-
+import SearchBox from '../components/view/SearchBox'
 import logout from  '../actions/user/logout'
 
 
@@ -17,6 +17,7 @@ const Header = () => {
   const logOutHandler =useCallback (() => {
     dispatch(logout())
   },[dispatch])
+  
     return (
  <header>
    <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
@@ -25,6 +26,7 @@ const Header = () => {
           <Navbar.Brand >Organic Produce </Navbar.Brand>
        </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Route render={({ history }) => <SearchBox history={history} />} />
       <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
               <LinkContainer to="/cart">

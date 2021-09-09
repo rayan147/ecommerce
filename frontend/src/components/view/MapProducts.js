@@ -2,10 +2,11 @@
 import Product from './Product'
 import {Row,Col} from 'react-bootstrap'
 
+import Paginate from './Paginate'
 import PropTypes from 'prop-types'
 
 
-const MapProducts = ({products,history,match }) => {
+const MapProducts = ({products,history,match,keyword,page,pages }) => {
     return (
         <>
            <Row >
@@ -18,6 +19,11 @@ const MapProducts = ({products,history,match }) => {
              ))
             }
           </Row>   
+          <Paginate 
+            keyword={keyword }
+            page={page}
+            pages={pages}
+            />
         </>
     )
 }

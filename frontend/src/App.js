@@ -8,7 +8,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 import Footer from './layout/Footer';
-import Header from './layout/Header';
+// import Header from './layout/Header';
+import SearchAppBar from './layout/AppBar';
 
 // CODE SPLIT
 // ONLY LOADS WHEN REQUESTED
@@ -43,14 +44,17 @@ const  App =()=> {
   return (
   
     <Router>
-    <Header/>
+    {/* <Header/> */}
+    <SearchAppBar/>
+    
     <main className="py-3" >
       <Container>
         <Suspense fallback={<Fallback/>}>
         <Switch>
         <Route path='/' component={Home} exact />
         <Route path='/admin/userlist' component={AdminGetUsersList} />
-        <Route path='/admin/productlist' component={ProductList} />
+        <Route path='/admin/productlist' component={ProductList} exact />
+        <Route path='/admin/productlist/:pageNumber' component={ProductList} exact/>
         <Route path='/admin/user/:id/edit' component={AdminEditUser} />
         <Route path='/order/:id' component={Order}  />
         <Route path='/shipping' component={Shipping}  />
@@ -62,6 +66,9 @@ const  App =()=> {
         <Route path='/product/:id' component={Product}  />
         <Route path='/admin/product/:id/edit' component={ProductEdit} />
         <Route path='/admin/orderlist' component={OrderList} />
+        <Route path='/search/:keyword' component={Home} exact/>
+        <Route path='/page/:pageNumber' component={Home} exact />
+        <Route path='/search/:keyword/page/:pageNumber' component={Home} exact/>
         <Route path='/cart/:id?' component={Cart}  />
         </Switch>
         </Suspense>
