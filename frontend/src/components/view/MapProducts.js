@@ -5,20 +5,48 @@ import {Row,Col} from 'react-bootstrap'
 import Paginate from './Paginate'
 import PropTypes from 'prop-types'
 
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import Paper from '@material-ui/core/Paper';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    height: 140,
+    width: 100,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+}));
+
 
 const MapProducts = ({products,history,match,keyword,page,pages }) => {
+  const classes = useStyles();
     return (
         <>
-           <Row >
+          <Grid container className={classes.root} spacing={3}>
+          <Grid item xs={12}>
+           <Grid container justifyContent="center" spacing={3}>
              { products.map( product => (
                  <>
-                 <Col className="container  mt-2 " key={product._id} sm={6} md={4} lg={3} xs={8}>
+                 <Grid  key={product._id} item>
                     <Product key={product._id} product={product} history={history} match={match}/>
-                 </Col>
+                 </Grid>
                  </>
              ))
             }
-          </Row>   
+         
+         </Grid>
+         </Grid>
+         </Grid> 
           <Paginate 
             keyword={keyword }
             page={page}

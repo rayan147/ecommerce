@@ -15,7 +15,7 @@ const Message = lazy(() => import('../components/view/Message'))
 const Cart = ({match,location,history}) => {
     const dispatch = useDispatch()
     const productId = match.params.id
-    const qty =  location?.search?.split('=')[1] ?? 1
+    const qty =  +location?.search?.split('=')[1] ?? 1
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
 

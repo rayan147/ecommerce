@@ -44,7 +44,6 @@ const  App =()=> {
   return (
   
     <Router>
-    {/* <Header/> */}
     <SearchAppBar/>
     
     <main className="py-3" >

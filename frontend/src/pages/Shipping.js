@@ -6,7 +6,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import {Button, Form} from 'react-bootstrap'
 
 
-import FormContainer from '../components/view/FormContainer'
+
 import CheckoutSteps from '../components/view/CheckoutSteps'
 import INTERNAL_STATE from '../constants/internalState'
 import shippingReducer from '../reducers/internal/shippingReducer'
@@ -43,7 +43,7 @@ const submitHandler = useCallback( (event) => {
     return (
       <> 
       <CheckoutSteps step1 step2 />
-      <FormContainer>
+     
      
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
@@ -105,7 +105,7 @@ const submitHandler = useCallback( (event) => {
           Continue
         </Button>
       </Form>
-    </FormContainer>
+    
     </>
     )
 }
