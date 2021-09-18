@@ -6,7 +6,7 @@ const shippingReducer = (state = {}, action) => {
         case CART_SAVE_SHIPPING_ADDRESS:
             return {
                 ...state,
-                data:action.payload
+                shippingAddress:action.payload
             }
             
         default:

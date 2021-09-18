@@ -15,9 +15,9 @@ import savePaymentMethod from '../actions/payment/payment.js'
 const Payment = ({history}) => {
   const dispatch = useDispatch()
  
-    const userShippingAdress = useSelector(state => state.shippingAdress)
-    console.log(userShippingAdress)
-    // if(shippingAdress?.shippingAddress === undefined || shippingAdress === null || shippingAdress.length === 0){
+    const usershippingAddress = useSelector(state => state.shippingAddress)
+    console.log(usershippingAddress)
+    // if(shippingAddress?.shippingAddress === undefined || shippingAddress === null || shippingAddress.length === 0){
     //   history.push('/shipping')
     // }
   

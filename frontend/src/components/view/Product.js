@@ -14,7 +14,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/lab/Skeleton';
+
 
 
 
@@ -39,9 +39,8 @@ const Product = ({product }) => {
    
       
     return (
-<>
-      { product ?( 
-        <>
+           <>
+
       <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
             <Card  className={classes.root} >
             <CardActionArea>
@@ -68,13 +67,10 @@ const Product = ({product }) => {
        </Card> 
        </Link>
        </>
-  ): (
-
-    <Skeleton variant="rect" width={210} height={310} />
-    )
+  
     
-}
-      </>
+
+   
   
        
   

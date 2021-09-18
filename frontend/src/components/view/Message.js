@@ -1,20 +1,31 @@
-import {Alert} from 'react-bootstrap'
+
 import {memo,useRef} from 'react'
 
 import PropTypes from 'prop-types'
 
+import { makeStyles } from '@material-ui/core/styles';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
-const Message = ({variant ='info',children}) => {
-    const renders = useRef(0)
-    console.log('Message renders:',renders.current++)
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     width: '100%',
+//     '& > * + *': {
+//       marginTop: theme.spacing(2),
+//     },
+//   },
+// }));
+
+const Message = ({severity ,children}) => {
+    //  const classes = useStyles()
+  
     return (
-        <Alert variant={`${variant} rounded my-2 text-center fs-5` }>
-            {children}
+        <Alert severity={severity} >
+           {children}
         </Alert>
     )
 }
 
-Message.propTypes = {
-    variant:PropTypes.string
-}
-export default memo(Message)
+// Message.propTypes = {
+//     variant:PropTypes.string
+// }
+export default Message

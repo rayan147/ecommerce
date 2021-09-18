@@ -21,7 +21,7 @@ const Rating = ({value,text,color}) => {
                      value >= index + 0.5 ? <StarHalfIcon style={{color:yellow[500]}}/>  
                      : <StarOutlineIcon style={{color:yellow[500]}}/>}
                      </span>        )) }
-           <span> ({text && text}) </span>
+           <span> {text && text} </span>
         </>
     )
 }

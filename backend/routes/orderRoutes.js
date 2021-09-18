@@ -20,7 +20,7 @@ const router = express.Router();
 
 // POST  
 router.route('/')
-.post(authenticateUserToken,isAdmin,addOrderItems)
+.post(authenticateUserToken,addOrderItems)
 .get(authenticateUserToken,getAllOrders) 
 
 // GET

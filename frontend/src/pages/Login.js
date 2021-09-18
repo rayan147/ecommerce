@@ -20,6 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -52,13 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const  Message = lazy(() => {
-    return Promise.all([
-      import('../components/view/Message'),
-      new Promise(resolve => setTimeout(resolve, 5000))
-    ])
-    .then(([moduleExports]) => moduleExports);
-  });
+
 
 
 
@@ -86,34 +81,10 @@ const Login = ({location,history}) => {
      
       <Card className={classes.root} boxShadow={3}>
             <CardContent>
-    
-            {error && <Message variant="danger">{error}</Message>}
-            {error === null &&  isLoading &&  <Message variant="info">Loging in...</Message>}
-           {/* <Form onSubmit={submitHandler}> 
-               <Form.Group controlId='email' className="m-3 border-rouned">
-                   <Form.Label>Email</Form.Label>
-                   <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)}>
-                   </Form.Control>
-               </Form.Group>
-               <Form.Group controlId='password' className="m-3 border ">
-                   <Form.Label>Password</Form.Label>
-                   <Form.Control type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}>        
-                   </Form.Control>
-                   <div classNameName="d-flex justify-content-center align-items-center">
-<Button classNameName='btn w-100 my-2 rounded ' type='submit' variant='primary'>Login</Button>
-                   </div>
-                   
-                   <Row >
-                        <Col  xs={12}>
-                            <Link to={redirect ? `/register?=redirect=${redirect}` : '/register'}>
-                              <p>New Customer? Register</p> 
-                            </Link>
-                        </Col>
-                    </Row>
-                   
-               </Form.Group>
-               
-           </Form> */}
+              
+            {error && <Alert   severity="error"><AlertTitle>{error}</AlertTitle></Alert>}
+            {error === null &&  isLoading &&  <Alert severity="info"><AlertTitle>Loging in...</AlertTitle></Alert>}
+          
              <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -165,12 +136,12 @@ const Login = ({location,history}) => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="/register" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

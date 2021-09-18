@@ -4,7 +4,8 @@ import ORDER_STATUS from "../../constants/orderConstants";
 const {
     ORDER_CREATE_FAILURE,
     ORDER_CREATE_SUCCESS,
-    ORDER_CREATE_REQUEST
+    ORDER_CREATE_REQUEST,
+    ORDER_CREATE_RESET
     
 } = ORDER_STATUS;
 
@@ -40,7 +41,17 @@ const orderCreateReducer = (state = {}, action) => {
                     isFetchingRequestStart: false,
                     order: action.payload
                 };
-            
+            case  ORDER_CREATE_RESET:
+                return {
+                    ...state,
+                    isFetching: false,
+                    isFetchingRequest: false,
+                    isFetchingRequestSuccess: false,
+                    isFetchingRequestFailure: false,
+                    isFetchingRequestStart: false,
+                    error: null,
+                    order: null
+                };
             default:
                 return state;
             

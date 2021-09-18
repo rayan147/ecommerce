@@ -3,7 +3,7 @@ import {useReducer,useCallback} from 'react'
 
 
 import {useDispatch,useSelector} from 'react-redux'
-import {Button, Form} from 'react-bootstrap'
+
 
 
 
@@ -13,20 +13,57 @@ import shippingReducer from '../reducers/internal/shippingReducer'
 import saveShippingAddress from '../actions/shipping/shipping'
 
 
+
+
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+
+
 const {ADDRESS,CITY,STATE,ZIP_CODE,COUNTRY} =INTERNAL_STATE
+const useStyles = makeStyles((theme) => ({
+    root:{
+        display:'flex',
+        justifyContent:'center',
+        width:'100%',
+        height:'100%',
+        maxWidth:350,
+        margin:'0 auto'
+       
+    },
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  }));
 const Shipping = ({history}) => {
+  const classes = useStyles()
   const dispatch = useDispatch()
 
-  const shippingAddress = useSelector((state) => state.shippingAddress)
+  const cart = useSelector((state) => state.cart)
+  const { shippingAddress } = cart
  
 
   
   const initialState = {
-      address:shippingAddress?.data?.address ?? '',
-      country:shippingAddress?.data?.country ?? '', 
-      city:shippingAddress?.data?.city ?? '',
-      zipCode:shippingAddress?.data?.zipCode ?? '',
-      _state:shippingAddress?.data?._state ?? ''
+      address:shippingAddress?.address ?? '',
+      country:shippingAddress?.country ?? '', 
+      city:shippingAddress?.city ?? '',
+      zipCode:shippingAddress?.zipCode ?? '',
+      _state:shippingAddress?._state ?? ''
 }
   
  const [state, dispatchUseReducer] = useReducer(shippingReducer,initialState)
@@ -43,69 +80,86 @@ const submitHandler = useCallback( (event) => {
     return (
       <> 
       <CheckoutSteps step1 step2 />
-     
-     
+      <div className={classes.root}>
+      <div className={classes.paper}>
       <h1>Shipping</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId='address'>
-          <Form.Label>Address</Form.Label>
-          <Form.Control
+      <form onSubmit={submitHandler} className={classes.form} noValidate>
+        <TextField  
+            label="Address"
             type='text'
-            placeholder={shippingAddress?.data?.address ?? 'Enter address'}
+            fullWidth
+            id="address"
+            name="address"
+            autoComplete="address"
+            autoFocus
+            placeholder={shippingAddress?.address ?? 'Enter address'}
             value={address}
             required
             onChange={(e) => dispatchUseReducer({type:ADDRESS,payload:e.target.value})}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId='city'>
-          <Form.Label>City</Form.Label>
-          <Form.Control
+          />
+        <TextField  
+            label="City"
             type='text'
-            placeholder={shippingAddress?.data?.city ??'Enter city'}
+            fullWidth
+            id="city"
+            name="city"
+            autoComplete="city"
+            autoFocus
+            placeholder={shippingAddress?.city ?? 'Enter City'}
             value={city}
             required
             onChange={(e) => dispatchUseReducer({type:CITY,payload:e.target.value})}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group controlId='_state'>
-          <Form.Label>State</Form.Label>
-          <Form.Control
+          />
+        <TextField  
+            label="State"
             type='text'
-            placeholder={shippingAddress?.data?._state ??'Enter State'}
+            fullWidth
+            id="state"
+            name="state"
+            autoComplete="state"
+            autoFocus
+            placeholder={shippingAddress?._state ?? 'Enter state'}
             value={_state}
             required
             onChange={(e) => dispatchUseReducer({type:STATE,payload:e.target.value})}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId='zipCode'>
-          <Form.Label>Zip Code</Form.Label>
-          <Form.Control
+          />
+        <TextField  
+            label="Zip code"
             type='text'
-            placeholder={shippingAddress?.data?.zipCode ??'Enter Zip Code'}
+            fullWidth
+            id="zipCode"
+            name="zipCode"
+            autoComplete="zipCode"
+            autoFocus
+            placeholder={shippingAddress?.zipCode ?? 'Enter Zip code'}
             value={zipCode}
             required
             onChange={(e) => dispatchUseReducer({type:ZIP_CODE,payload:e.target.value})}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId='country'>
-          <Form.Label>Country</Form.Label>
-          <Form.Control
+          />
+       
+        <TextField  
+            label="Country"
             type='text'
-            placeholder={shippingAddress?.data?.country ??'Enter country'}
+            fullWidth
+            id="country"
+            name="country"
+            autoComplete="country"
+            autoFocus
+            placeholder={shippingAddress?.country ??'Enter country'}
             value={country}
             required
             onChange={(e) => dispatchUseReducer({type:COUNTRY,payload:e.target.value})}
-          ></Form.Control>
-        </Form.Group>
+          />
+       
         
-        <Button type='submit' variant='primary' className="w-50 my-2 rounded ">
+
+        
+        <Button type='submit' variant='contained' color="primary" className={classes.submit} >
           Continue
         </Button>
-      </Form>
-    
+      </form>
+    </div>
+    </div>
     </>
     )
 }
