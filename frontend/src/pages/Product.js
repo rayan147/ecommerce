@@ -12,7 +12,7 @@ import createProductReview  from '../actions/product/createProductReview'
 import { Alert, AlertTitle } from '@material-ui/lab';
 import PRODUCT_CONSTANTS from '../constants/productConstants'
 import ProductReview from '../components/view/ProductReview'
-import AddToCart from '../components/view/AddToCart'
+import ProductCard from '../components/view/ProductCard'
 
 
 
@@ -37,7 +37,7 @@ const Product = ({history,match}) => {
       error: errorProductReview,
     } = productReviewCreate
 
-    const {countInStock,image,name,numReviews,price,description } = product
+    
 
     useEffect(() => {
         if (successProductReview) {
@@ -81,7 +81,8 @@ const Product = ({history,match}) => {
          
           {isLoading ? <h1>Almost  There ...</h1> : error ? <Alert   severity="error"><AlertTitle>{error}</AlertTitle></Alert> :(
               <>
-<Row className="d-flex align-items-center justify-content-center " >
+              <ProductCard product={product} qty={qty} setQty={setQty} addToCartHandler={addToCartHandler}/>
+{/* <Row className="d-flex align-items-center justify-content-center " >
              <Col md={6}>
                <Image src={image} alt={name} fluid className="shadow-sm p-3 mb-5  rounded"/>
              </Col>
@@ -156,11 +157,11 @@ const Product = ({history,match}) => {
                </Card>   
             </Col>  
            
-        </Row >
- <AddToCart product={product}/>
+        </Row > */}
+
         <Row>
             <Col md={6}>
-              <h2>Reviews</h2>
+          
               {product.reviews.length === 0 && <Alert   severity="error"><AlertTitle>No Reviews</AlertTitle></Alert>}
               <ListGroup variant='flush'>
                 <ProductReview product={product}/> 

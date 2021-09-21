@@ -84,7 +84,7 @@ const FormSubmintReview = ({
         <Grid  item xs className={classes.item}>
         <TextField
           id="outlined-multiline-static"
-          label="Review"
+          label="Customer reviews"
           multiline
           fullWidth
           rows={4}

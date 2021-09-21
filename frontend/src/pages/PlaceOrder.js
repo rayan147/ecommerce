@@ -1,30 +1,44 @@
 import {useEffect} from 'react'
 
 
-
+import Grid from '@material-ui/core/Grid';
 import {useDispatch,useSelector} from 'react-redux'
 import {Button, Row,Col,ListGroup,Image,Card,} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
 
-import Message from '../components/view/Message'
+
+
 import CheckoutSteps from '../components/view/CheckoutSteps'
 import createOrder from '../actions/order/createOrder'
 import roundDecimalToTwo from '../helpers/roundDecimalToTwo'
- 
+import PlaceOrderIn from '../components/view/PlaceOrderIn.js'
+import OrderSummary from '../components/view/OrderSummary'
+
+
 import ORDER_STATUS from '../constants/orderConstants'
 import {USER_CONSTANTS} from '../constants/userConstants'
 
 const {ORDER_CREATE_RESET} = ORDER_STATUS
 const {USER_DETAILS_RESET } = USER_CONSTANTS
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px'
   
+  },
+ 
+})); 
 
 const PlaceOrder = ({history}) => {
   const dispatch = useDispatch()
-
+  const classes = useStyles();
 
     const cart = useSelector(state => state.cart)
     const { shippingAddress } = cart
+    const user = useSelector(state => state.userLogin)
+    const { userInfo } = user
 
 
     const payment = useSelector(state => state.payment)
@@ -63,12 +77,38 @@ const PlaceOrder = ({history}) => {
     )
   }
     return (
-        <>
-          <CheckoutSteps step1 step2 step3 step4/>
-          <Row>
+      <div className={classes.root}>
+        <Grid  
+       container  
+  direction="row"
+  justifyContent="center"
+  alignItems="center"
+         >
+         <CheckoutSteps step1 step2 step3 step4/>
+         <Grid item xs={12} sm={8}>
+        <PlaceOrderIn 
+        shippingAddress={shippingAddress} 
+        title="SHIPPING"
+        userInfo={userInfo}
+        />
+        <PlaceOrderIn 
+        shippingAddress={shippingAddress} 
+        title="BILLING"
+        payment={payment}
+        userInfo={userInfo}
+        />
+        </Grid>
+        <Grid item xs={12} sm={4} >
+        <OrderSummary 
+        cart={cart} 
+        placeOrderHandler={placeOrderHandler} 
+        error={error}/>
+        </Grid>
+        </Grid>
+          {/* <Row>
             <Col md={8}>
-              <ListGroup variant="flush">
-                  <ol className="shadow-sm rounded p-3 my-2">
+              <ListGroup variant="flush"> */}
+                  {/* <ol className="shadow-sm rounded p-3 my-2">
                       <h2 className="fs-2">SHIPPING</h2>
                       <span>
                         <strong>Adress:</strong>
@@ -86,8 +126,8 @@ const PlaceOrder = ({history}) => {
                         <ul>{shippingAddress.city}, {shippingAddress._state}{""}{shippingAddress.zipCode}</ul>
                         <ul>{shippingAddress.country}</ul> 
                       </span>
-                  </ol>
-                  <ol className="shadow-sm rounded p-3 my-2">
+                  </ol> */}
+                  {/* <ol className="shadow-sm rounded p-3 my-2">
                       <h2 className="fs-2">PAYMENT</h2>
                       <span>
                         <strong>Payment Method:</strong>
@@ -171,9 +211,9 @@ const PlaceOrder = ({history}) => {
             </ListGroup>
           </Card>
         </Col>
-          </Row>
+          </Row> */}
             
-        </>
+        </div>
     )
 }
 

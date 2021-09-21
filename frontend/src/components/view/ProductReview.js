@@ -15,11 +15,17 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: '36ch',
+    marginTop: theme.spacing(9),
+    marginBottom: theme.spacing(9),
     backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: 'inline',
   },
+  ListItemMargin: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  }
 }));
 const ProductReview = ({product}) => {
     const classes = useStyles();
@@ -27,12 +33,34 @@ const ProductReview = ({product}) => {
     return (
         <>
             <List className={classes.root}>
-                <Typography component='span'  variant="h5" gutterBottom>
-                    Reviews
-                </Typography>
+              <ListItem alignItems="flex-start">
+                <ListItemText primary={
+                  <Typography component='span'  variant="h5" gutterBottom>
+                <strong> Customer reviews </strong>
+                </Typography> 
+              } 
+              secondary={
+                  <>
+
+                <Rating value={product.rating} 
+                text={
+                  `${product.rating} out of 5`}
+                  />
+            
+                   <ListItemText primary='Total ratings' secondary={
+                     <>
+                      <Typography component='span'  variant="h5" gutterBottom>
+                    <strong> {`${product.rating} out of 5`} </strong>
+                    </Typography>
+                    </>
+                     } />
+                </>
+                } />
+              </ListItem>
+          
                 {reviews.map((review)=>
                 <>
-      <ListItem alignItems="flex-start" key={review._id}>
+      <ListItem alignItems="flex-start" key={review._id} className={classes.ListItemMargin}>
         <ListItemAvatar>
           <Avatar alt={review.name}  />
         </ListItemAvatar>
