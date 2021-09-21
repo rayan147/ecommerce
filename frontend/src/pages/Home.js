@@ -1,10 +1,10 @@
 import React,{lazy, useEffect,Suspense} from 'react'
 import listProducts from "../actions/product/listProducts"
 import {useDispatch,useSelector} from 'react-redux'
-
+import Typography from '@material-ui/core/Typography';
 
 import MapProducts from '../components/view/MapProducts'
-const Message  = lazy(() => import('../components/view/Message'))
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const Home = ({history,match}) => {
   const keyword = match.params.keyword
@@ -23,9 +23,12 @@ const Home = ({history,match}) => {
 
     return (
         <>
-          <h1>Latest Produce</h1>
-          <Suspense fallback={ isLoading && <Message>loading...</Message>}>
-            {error ? <Message variant='danger'>{error}</Message> : <MapProducts 
+          <Typography style={{marginTop:'5rem',marginBottom:'5rem'}} variant="h3" gutterBottom >Latest Produce</Typography>
+          <Suspense fallback={ isLoading && <h3 className="text-center">Almost There..</h3>}>
+            {error ? <Alert severity="error">
+  <AlertTitle>Error</AlertTitle>
+   <strong>{error}</strong>
+</Alert>: <MapProducts 
             products={products} 
             history={history} 
             match={match} 

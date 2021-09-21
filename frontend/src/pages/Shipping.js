@@ -18,7 +18,7 @@ import saveShippingAddress from '../actions/shipping/shipping'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Typography from '@material-ui/core/Typography';
 
 const {ADDRESS,CITY,STATE,ZIP_CODE,COUNTRY} =INTERNAL_STATE
 const useStyles = makeStyles((theme) => ({
@@ -82,7 +82,8 @@ const submitHandler = useCallback( (event) => {
       <CheckoutSteps step1 step2 />
       <div className={classes.root}>
       <div className={classes.paper}>
-      <h1>Shipping</h1>
+        
+      <Typography component='span' variant='h4' gutterBottom>SHIPPING</Typography>
       <form onSubmit={submitHandler} className={classes.form} noValidate>
         <TextField  
             label="Address"

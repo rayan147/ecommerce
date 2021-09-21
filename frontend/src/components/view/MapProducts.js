@@ -12,7 +12,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
-
+import { MemoryRouter, Route } from 'react-router';
+import { Link } from 'react-router-dom';
+import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from '@material-ui/lab/PaginationItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const MapProducts = ({products,history,match,keyword,page,pages }) => {
+const MapProducts = ({products,history,match,keyword,page,pages,isAdmin=false }) => {
   const classes = useStyles();
     return (
         <>
@@ -47,11 +50,29 @@ const MapProducts = ({products,history,match,keyword,page,pages }) => {
          </Grid>
          </Grid>
          </Grid> 
-          <Paginate 
+          {/* <Paginate 
             keyword={keyword }
             page={page}
             pages={pages}
-            />
+            /> */}
+     
+            <Pagination
+              page={page}
+              count={pages}
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  to={
+                    !isAdmin
+                ? keyword
+                  ? `/search/${keyword}/page/${item.page + 1}`
+                  : `/page/${item.page}`
+                : `/admin/productlist/${item.page + 1}`}
+                  {...item}
+                />
+              )}
+            />
+  
         </>
     )
 }

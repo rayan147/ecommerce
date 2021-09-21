@@ -31,13 +31,7 @@ const useStyles = makeStyles({
 
 
 const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
-    // const shippingAddressList = Object.keys(shippingAddress).map((key,index) => {
-    //     return (
-    //       <ListItem key={index}>
-    //         <ListItemText secondary={`${shippingAddress[key]}`} />
-    //       </ListItem>
-    //     );
-    //   });
+
 
    
     const { address, city, _state, zipCode, country} = shippingAddress;
@@ -80,7 +74,7 @@ const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
             } />
             
             </ListItem>
-            <ListItem>  
+            {title === 'BILLING' && (<ListItem>  
                <ListItemText primary={<strong>Payment Method</strong>} secondary={
                 <React.Fragment>
                 <Typography component="span" variant="body2" color="textPrimary" className={classes.pos}>
@@ -88,7 +82,8 @@ const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
                 </Typography>
                 </React.Fragment>
             } />
-            </ListItem>
+            </ListItem>)}
+            
          </List>
           </Typography>
         </CardContent>

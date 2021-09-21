@@ -2,17 +2,16 @@ import React,{useState,useEffect} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Row,Col,Image,ListGroup,Card,Button,Form,Container} from 'react-bootstrap'
-import {IoArrowBackOutline} from 'react-icons/io5'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import FormSubmintReview from '../components/view/FormSubmintReview'
-import Rating from '../components/view/Rating'
 import listProductDetails from "../actions/product/listProductDetails"
 import createProductReview  from '../actions/product/createProductReview'
 import { Alert, AlertTitle } from '@material-ui/lab';
 import PRODUCT_CONSTANTS from '../constants/productConstants'
 import ProductReview from '../components/view/ProductReview'
 import ProductCard from '../components/view/ProductCard'
+import Container from '@material-ui/core/Container';
 
 
 
@@ -76,94 +75,18 @@ const Product = ({history,match}) => {
     return (
         <Container className="">
            <Link  to='/'>
-                    <IoArrowBackOutline  size="2.5rem" color="black"/>
+                    <ArrowBackIcon  size="large"/>
            </Link>
          
           {isLoading ? <h1>Almost  There ...</h1> : error ? <Alert   severity="error"><AlertTitle>{error}</AlertTitle></Alert> :(
               <>
               <ProductCard product={product} qty={qty} setQty={setQty} addToCartHandler={addToCartHandler}/>
-{/* <Row className="d-flex align-items-center justify-content-center " >
-             <Col md={6}>
-               <Image src={image} alt={name} fluid className="shadow-sm p-3 mb-5  rounded"/>
-             </Col>
-             <Col md={6} >
-               <ListGroup variant="flush">
-                   <ol>
-                       <strong className='fs-3'>{name}</strong>
-                   </ol>               
-                   <ol>
-                      <Rating value={product.rating} text={`${numReviews}`}/>
-                   </ol>               
-                   <ol>
-                     Price: ${price}
-                   </ol>               
-                   <ol>
-                     Description: {description}
-                   </ol>               
-               </ListGroup>
-             </Col>
-            <Col>
-                
-               <Card>
-                   <ListGroup variant="flush">
-                       <ol>
-                           <Row>
-                               <Col>
-                               Price:
-                               </Col>
-                               <Col>
-                               <strong>{price}</strong>
-                               </Col>
-                           </Row>
-                       </ol>
-                       <ol>
-                           <Row>
-                               <Col>
-                               Status:
-                               </Col>
-                               <Col>
-                               {countInStock > 0 ? 'In stock' : 'Out of stock'}
-                               </Col>
-                           </Row>
-                       </ol>
-                       {countInStock > 0 && (
-                           <ol>
-                               <Row>
-                                   <Col>
-                                   Quantity:
-                                   </Col>
-                                   <Col>
-                                   <Form.Control 
-                                   as="select"
-                                   value={qty}
-                                   onChange={(e)=>setQty(e.target.value)}
-                                   >
-                                     {
-                                         [...Array(countInStock).keys()].map((i)=>{
-                                             return <option key={i + 1} value={i + 1 }>{i + 1}</option>
-                                            })
-                                     }  
-                                   </Form.Control>
-                                   </Col>
-                               </Row>
-                           </ol>
-                       )}
-                       <ol>
-                           <Button onClick={addToCartHandler} className="rounded" type="button" disabled={countInStock === 0}>
-                               Add to cart
-                           </Button>
-                       </ol>
-                   </ListGroup>        
-               </Card>   
-            </Col>  
-           
-        </Row > */}
 
-        <Row>
-            <Col md={6}>
+
+       
           
               {product.reviews.length === 0 && <Alert   severity="error"><AlertTitle>No Reviews</AlertTitle></Alert>}
-              <ListGroup variant='flush'>
+            
                 <ProductReview product={product}/> 
                 <>
                   <h2>Write a Customer Review</h2>
@@ -199,9 +122,7 @@ const Product = ({history,match}) => {
                   
                   )}
                 </>
-              </ListGroup>
-            </Col>
-          </Row>
+           
               </>
           )}
           

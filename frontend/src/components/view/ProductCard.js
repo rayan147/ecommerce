@@ -45,7 +45,7 @@ const ProductCard = ({product,addToCartHandler,qty,setQty}) => {
     return (
         <Grid container spacing={5} justifyContent="center">
            <Card className={classes.root}>
-           <Grid item xs >
+           <Grid item xs={5} md={7}>
            <CardMedia
         className={classes.cover}
         image={image}
@@ -63,7 +63,7 @@ const ProductCard = ({product,addToCartHandler,qty,setQty}) => {
           <Typography gutterBottom >
           <strong>  {name}</strong>
           </Typography>
-        
+           
           <Typography variant="body2" color="textSecondary"  gutterBottom>
   
            {description}

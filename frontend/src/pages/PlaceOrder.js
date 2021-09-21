@@ -25,7 +25,7 @@ const {USER_DETAILS_RESET } = USER_CONSTANTS
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px'
+    
   
   },
  

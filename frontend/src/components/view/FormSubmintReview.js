@@ -11,14 +11,18 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1
+      flexGrow: 1,
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
+     
       
     },
     item: {
       margin: theme.spacing(2),
     },
     card:{
-        width:'100%'
+        width:'100%',
+        boxShadow: 'rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset'
     }
   }));
   
@@ -68,7 +72,7 @@ const FormSubmintReview = ({
           <TextField
           id="options"
           select
-          fullWidth
+         
           label="Select"
           value={rating}
           onChange={handleChangeValue}
@@ -86,7 +90,6 @@ const FormSubmintReview = ({
           id="outlined-multiline-static"
           label="Customer reviews"
           multiline
-          fullWidth
           rows={4}
           variant="outlined"
           value={comment}

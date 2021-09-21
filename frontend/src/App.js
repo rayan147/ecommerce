@@ -4,7 +4,7 @@ import { Suspense, lazy } from 'react';
 
 import {Container} from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 import Footer from './layout/Footer';
@@ -29,10 +29,10 @@ const ProductList = lazy(()=>import('./pages/ProductList'));
 const ProductEdit = lazy(()=>import('./pages/ProductEdit'));
 const OrderList = lazy(()=>import('./pages/OrderList'));
 
-
 const Fallback = () => (
-<div className="d-flex align-items-center justify-content-center mt-10">
-  <h2 className="text-center">Loading...</h2>
+<div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'2rem'}}>
+<CircularProgress size='7rem' thickness={4}
+/>
   </div>
 
 )
@@ -46,7 +46,7 @@ const  App =()=> {
     <Router>
     <SearchAppBar/>
     
-    <main className="py-3" >
+    <main  >
       <Container>
         <Suspense fallback={<Fallback/>}>
         <Switch>

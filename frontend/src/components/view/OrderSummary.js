@@ -20,6 +20,7 @@ const useStyles = makeStyles({
       minWidth: 205,
       marginTop: '20px',
       boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+      minHeight: '650px'
       
     },
     title: {
