@@ -1,53 +1,129 @@
-import {Row,Col,Image,ListGroup,Form} from 'react-bootstrap'
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import  Grid  from '@material-ui/core/Grid';
+
+
 import {Link} from 'react-router-dom'
-import {BiTrash} from 'react-icons/bi'
+import { CardActions } from '@material-ui/core';
+
+
+
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap', 
+      height: '100%',
+      width: '100%',
+      marginBottom: '2rem',
+      marginTop: '3rem',
+      boxShadow: 'none',
+      [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+        marginBottom: '1rem',
+        marginTop: '1rem',
+      },
+
+    
+    },
+  
+   
+    cover: {
+      width: 150,
+      height: 100,
+      minWidth: 120,
+      minHeight: 100,
+      boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px'
+      
+    },
+    content:{
+        padding: '1rem',
+        marginLeft: '2rem',
+    },
+   
+  }));
+  
+
+
+
+
 const MapCart = ({cartItems,dispatch,addToCart,removeFromCartHandler}) => {
+    const classes = useStyles();
     return (
-        <>
+        <Grid  spacing={1} justifyContent="center">
      
-         <ListGroup > 
-              {cartItems.map(item => (
-                  <ol key={item.product_id} className="shadow-sm rounded p-3 my-2">
-                      <Row>
-                          <Col md={2}>
-                            <Image src={item.image} alt={item.name} fluid rounded/>
-                          </Col>
-                          <Col md={3}>
-                              <Link to={`/product/${item.product_id}`} style={{ textDecoration:'none'}}>{item.name} </Link>
-                          </Col>
-                          <Col md={2}>
-                              Price: {item.price}
-                          </Col>
-                          <Col md={2}>
-                             <Form.Control 
-                                   as="select"
-                                   value={item.quantity}
-                                   onChange={(e)=>dispatch(addToCart(item.product_id,Number(e.target.value)))}
-                                   >
-                                     {
-                                         [...Array(item.countInStock).keys()].map((i)=>{
-                                             return <option key={i + 1} value={i + 1 }>{i + 1}</option>
-                                            })
-                                     }  
- 
-                             </Form.Control>
-                          </Col>
-                          <Col md={2}>
-                              <BiTrash
-                               type='button'
-                               size="1.5rem"
-                               color='red'
-                               onClick={() => removeFromCartHandler(item.product_id)}>
+         <Card className={classes.root}> 
+              {cartItems.map(item => ( 
+                  <>
+                  <Grid item lg={3} md={3} >
+                    <CardMedia
+                        className={classes.cover}
+                        image={item.image}
+                        title={item.name}/>
+                        </Grid>
+                        <Grid item lg={8} md={7}>
+                  <CardContent key={item.product_id}  >
+                     
+                           
+                       
+                             
+                              <Typography component="h5" variant="subtitle2" color="textSecondary"> 
+                              <Link to={`/product/${item.product_id}`} style={{ textDecoration:'none',color:'black'}}>
+                             <strong> {item.name} </strong>
+                             </Link>
+                             </Typography>
+                                 
                                   
-                             </BiTrash>
-                          </Col>
-                      </Row> 
-                </ol>
-                
+                         
+                          <Typography gutterBottom color="secondary">
+                             ${item.price}
+                          </Typography>
+                          
+                            
+                             <TextField
+          id="countInStockId"
+          select
+          label={'Quantity'}
+          value={item.quantity}
+          onChange={(e)=>dispatch(addToCart(item.product_id,+(e.target.value)))}
+        
+        >
+          {[...Array(item.countInStock).keys()].map((x)=>(
+            <MenuItem key={x+1} value={x+1}>{x+1}</MenuItem>
+          ))}
+        </TextField>
+                         
+                          
+                           
+                            
+                         
+                   
+                </CardContent>
+                </Grid>
+              
+                 <Grid item lg={1} md={1}> 
+                  <CardActions >
+                <Button 
+                size="small"
+                 startIcon={ <DeleteIcon color="secondary"/>} 
+                 onClick={() => removeFromCartHandler(item.product_id)}/>
+                </CardActions>
+                </Grid>
+                </>
               ))}
-        </ListGroup>  
+        </Card>  
        
-        </>
+        </Grid>
     )
 }
 

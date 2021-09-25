@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     marginTop: '20px',
     marginLeft: 'auto',
     paddingBottom: '2rem',
-    boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+    boxShadow: 'none',
 
     
  

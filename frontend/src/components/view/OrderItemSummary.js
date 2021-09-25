@@ -9,9 +9,12 @@ import {Link} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    maxHeight: 200,
-    maxWidth: 400,
-    width: 400
+    minHeight:90,
+    minWidth: 250,
+    height:90,
+    boxShadow: 'none',
+  
+
 
 
   },
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 //   },
   cover: {
     width:152,
-    height: 138,
+    height: 90,
     padding: theme.spacing(2),
   },
 

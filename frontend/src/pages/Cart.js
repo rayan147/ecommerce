@@ -2,17 +2,40 @@ import React,{useEffect,lazy,useCallback} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Row,Col,ListGroup,Button} from 'react-bootstrap'
-
+import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 import addToCart from "../actions/cart/addToCart"
 import removeFromCart from "../actions/cart/removeFromCart"
 import MapCart from '../components/view/MapCart'
 
-// ONLY LOADS WHEN REQUESTED
-const Message = lazy(() => import('../components/view/Message'))
+
+
+
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    title: {
+      marginTop: theme.spacing(4),
+      marginBottom: theme.spacing(4),
+    },
+    subTotalItem: {
+        boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+        marginTop: '3.3rem',
+        
+    },
+  }));
 
 const Cart = ({match,location,history}) => {
+    const classes = useStyles();
     const dispatch = useDispatch()
     const productId = match.params.id
     const qty =  +location?.search?.split('=')[1] ?? 1
@@ -41,13 +64,22 @@ const checkoutHandler = useCallback(() => {
   },[history])
 
     return (
-        <Row>
-          <Col md={8}>
-          <h3 className="p-2 mb-5">SHOPPING CART</h3>
+        <Grid container className={classes.root} spacing={2}>
+          <Grid item xs={12}>
+          <Grid container spacing={1}>
+          <Grid  item lg={7}>
+          <Typography 
+          component="div" 
+          variant="h5" 
+          className={classes.title}
+          
+          color="textSecondary">SHOPPING CART</Typography>
           {cartItems.length === 0 ? (
-              <Message>
-                  You have no items in your cart. <Link to="/">Add something to cart</Link>
-              </Message>
+               <Alert severity="info">
+               <AlertTitle>Info</AlertTitle>
+               You have no items in your cart. <Link to="/">Add something to cart</Link>
+             </Alert>
+        
           ):(
            <MapCart 
            cartItems= {cartItems}
@@ -55,26 +87,39 @@ const checkoutHandler = useCallback(() => {
            addToCart= {addToCart}
            removeFromCartHandler ={removeFromCartHandler} />
           )}
-          </Col>
-          <Col md={4}>
-              <ListGroup className="shadow-sm rounded p-3 my-2">
+          </Grid>
+          
+          <Grid  item lg={4} md={8} sm={12} xs={12}>
+          <Card className={classes.subTotalItem}>
+            <CardContent>
+              <ul  >
                   <ol >
-                      <h3> Subtotal {subTotalItem()} items</h3>
-                  ${totalPrice()}
+                      <Typography 
+                      component="div" 
+                      gutterBottom
+                       variant="h5" > Subtotal {subTotalItem()} items</Typography>
+                      <Typography color="secondary" gutterBottom>  ${totalPrice()} </Typography>
                   </ol>
                   <ol>
                       <Button 
-                      className="btn btn-primary btn-block w-100 rounded"
+                      variant="contained"
                       type='button'
+                      fullWidth
+                      color="primary"
                       disabled ={cartItems.length === 0}
                       onClick={checkoutHandler}
                       >
                       Proceed to Checkout
                       </Button>
                   </ol>
-              </ListGroup>
-          </Col>
-        </Row>
+              </ul>
+            </CardContent>
+            
+              </Card>
+          </Grid>
+          </Grid>
+        </Grid>
+        </Grid>
     )
 }
 

@@ -1,4 +1,4 @@
-import React,{lazy, useEffect,Suspense} from 'react'
+import React,{useEffect,Suspense} from 'react'
 import listProducts from "../actions/product/listProducts"
 import {useDispatch,useSelector} from 'react-redux'
 import Typography from '@material-ui/core/Typography';

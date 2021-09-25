@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { Alert, AlertTitle } from '@material-ui/lab';
 
-import Message from '../components/view/Message'
-import Loader from '../components/view/Loader'
+
+
 import FormContainer from '../components/view/FormContainer'
 import  adminGetUserDetails from '../actions/admin/adminGetUserDetails'
 import adminUpdatedUser from "../actions/admin/adminUpdatedUser"
@@ -60,12 +61,18 @@ const AdminEditUser = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Edit User</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+        {loadingUpdate && <h2>loading....</h2>}
+        {errorUpdate && <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+          {errorUpdate}
+          </Alert>}
         {isLoading ? (
           <h1>loading....</h1>
         ) : error ? (
-          <Message variant='danger'>{error}</Message>
+          <Alert severity="error">
+            <AlertTitle>Error</AlertTitle>
+            {error}
+            </Alert>
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='name'>

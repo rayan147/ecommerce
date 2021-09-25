@@ -80,9 +80,8 @@ const PlaceOrder = ({history}) => {
       <div className={classes.root}>
         <Grid  
        container  
-  direction="row"
-  justifyContent="center"
-  alignItems="center"
+
+
          >
          <CheckoutSteps step1 step2 step3 step4/>
          <Grid item xs={12} sm={8}>

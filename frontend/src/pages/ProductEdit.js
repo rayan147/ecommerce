@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import Message from '../components/view/Message'
-import Loader from '../components/view/Loader'
+
 import FormContainer from '../components/view/FormContainer'
 import listProductDetails from '../actions/product/listProductDetails'
 import updateProduct from '../actions/product/updateProduct'
@@ -106,10 +106,10 @@ const ProductEdit = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Edit Product</h1>
-        {loadingUpdate && <Loader />}
+        {loadingUpdate && <h2>Loading..</h2>}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
-          <Loader />
+          <h2>Loading..</h2>
         ) : error ? (
           <Message variant='danger'>{error}</Message>
         ) : (
@@ -148,7 +148,7 @@ const ProductEdit = ({ match, history }) => {
                 custom
                 onChange={uploadFileHandler}
               ></Form.File>
-              {uploading && <Loader />}
+              {uploading && <h2>Loading..</h2>}
             </Form.Group>
 
             <Form.Group controlId='brand'>

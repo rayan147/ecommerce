@@ -1,4 +1,4 @@
-import {memo} from 'react'
+
 
 
 import PropTypes from 'prop-types'
@@ -17,11 +17,11 @@ const Rating = ({value,text,color}) => {
         <>
         { [...Array(5)].map((_,index) => (         
                  <span key={index}>
-                     {value >= index + 1 ? <StarIcon style={{color:yellow[500]}} /> : 
-                     value >= index + 0.5 ? <StarHalfIcon style={{color:yellow[500]}}/>  
-                     : <StarOutlineIcon style={{color:yellow[500]}}/>}
+                     {value >= index + 1 ? <StarIcon fontSize="small" style={{color:yellow[500]}} /> : 
+                     value >= index + 0.5 ? <StarHalfIcon fontSize="small" style={{color:yellow[500]}}/>  
+                     : <StarOutlineIcon fontSize="small" style={{color:yellow[500]}}/>}
                      </span>        )) }
-           <span> {text && text} </span>
+           <small> {text && text} </small>
         </>
     )
 }

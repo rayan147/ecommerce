@@ -17,7 +17,7 @@ import roundDecimalToTwo from '../helpers/roundDecimalToTwo'
 import payOrder from '../actions/payment/payOrder'
 import deliverOrder from '../actions/order/deliverOrder'
 import ORDER_STATUS from '../constants/orderConstants'
-const {ORDER_PAYMENT_RESET,ORDER_DELIVER_RESET} = ORDER_STATUS
+const {ORDER_PAYMENT_RESET,ORDER_DELIVER_RESET,ORDER_PAYMENT_SUCCESS} = ORDER_STATUS
 const Order = ({match,history}) => {
 
 const [sdkReady, setSdkReady] = useState(false)
@@ -69,7 +69,11 @@ useEffect(() => {
     }
     document.body.appendChild(script)
   }
-    if (!order?.isPaid) {
+  if (!order || successPay || successDeliver || order._id !== orderId) {
+    dispatch({ type: ORDER_PAYMENT_SUCCESS })
+    dispatch({ type: ORDER_DELIVER_RESET })
+    dispatch(getOrderDetails(orderId))
+  } else  if (!order?.isPaid) {
     if (!window.paypal) {
       addPayPalScript()
     } else {
@@ -77,7 +81,7 @@ useEffect(() => {
     }
   }
   
-}, [dispatch, orderId, successPay, order,history,userInfo])
+}, [dispatch, orderId, successPay, order,history,userInfo,successDeliver])
 
 
 

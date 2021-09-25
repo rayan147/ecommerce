@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {FaTimes} from 'react-icons/fa'
 
 import Message from '../components/view/Message'
-import Loader from '../components/view/Loader'
+
 import listOrders from '../actions/order/listOrders'
 
 
@@ -34,7 +34,7 @@ const OrderList = ({ history }) => {
     <>
       <h1>Orders</h1>
       {loading ? (
-        <Loader />
+        <h2>Loading..</h2>
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (

@@ -9,7 +9,7 @@ import {FaTrashAlt} from 'react-icons/fa'
 
 
 import Message from '../components/view/Message'
-import Loader from '../components/view/Loader'
+
 import Paginate from '../components/view/Paginate'
   
 import listProducts from '../actions/product/listProducts'
@@ -95,12 +95,12 @@ const ProductList = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
-      {loadingDelete && <Loader />}
+      {loadingDelete && <h2>Loading..</h2>}
       {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
-      {loadingCreate && <Loader />}
+      {loadingCreate && <h2>Loading..</h2>}
       {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
       {loading ? (
-        <Loader />
+        <h2>Loading..</h2>
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
