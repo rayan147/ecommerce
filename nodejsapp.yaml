@@ -1,0 +1,37 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nodejs_ecommerce
+  namespace: default
+  labels:
+    app: nodejs_ecommerce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs_ecommerce
+  template:
+    metadata:
+      labels:
+        app: nodejs_ecommerce
+    spec:
+      containers:
+      - name: nodejs_ecommerce
+        image: "rayan147/ecommerce:latest"
+        ports:
+          - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs_ecommerce
+  namespace: default
+spec:
+  selector:
+    app: nodejs_ecommerce
+  type: NodePort
+  ports:
+  - name: http
+    targetPort: 5000
+    port: 81

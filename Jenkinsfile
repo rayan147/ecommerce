@@ -19,5 +19,22 @@ pipeline{
                 }
             }
         }
+        stage('Deploy docker image'){
+            steps{
+                  script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                        dockerImage.push('latest')
+                    }
+                } 
+            }
+        }
+        stage('Deploy to kubernetes'){
+            steps{
+                script {
+                   sh 'sudo kubectl apply -f nodejsapp.yaml'
+                }
+            }
+            }
     }
 }
