@@ -12,5 +12,12 @@ pipeline{
                 git 'https://github.com/rayan147/ecommerce.git'
             }
         }
+        stage('Build docker image'){
+            steps{
+              script {
+                    dockerImage = docker.build(registry)
+                }
+            }
+        }
     }
 }
