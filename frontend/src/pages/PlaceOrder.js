@@ -3,7 +3,7 @@ import {useEffect} from 'react'
 
 import Grid from '@material-ui/core/Grid';
 import {useDispatch,useSelector} from 'react-redux'
-import {Button, Row,Col,ListGroup,Image,Card,} from 'react-bootstrap'
+
 import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -104,114 +104,7 @@ const PlaceOrder = ({history}) => {
         error={error}/>
         </Grid>
         </Grid>
-          {/* <Row>
-            <Col md={8}>
-              <ListGroup variant="flush"> */}
-                  {/* <ol className="shadow-sm rounded p-3 my-2">
-                      <h2 className="fs-2">SHIPPING</h2>
-                      <span>
-                        <strong>Adress:</strong>
-                       <ul> {shippingAddress.address},</ul>
-                        <ul>{shippingAddress.city}, {shippingAddress._state}{""}{shippingAddress.zipCode}</ul>
-                        <ul>{shippingAddress.country}</ul>
-                        
-                      </span>
-                  </ol>
-                  <ol className="shadow-sm rounded p-3 my-2">
-                      <h2 className="fs-2">BILLING</h2>
-                      <span>
-                        <strong>Adress:</strong>
-                        <ul> {shippingAddress.address},</ul>
-                        <ul>{shippingAddress.city}, {shippingAddress._state}{""}{shippingAddress.zipCode}</ul>
-                        <ul>{shippingAddress.country}</ul> 
-                      </span>
-                  </ol> */}
-                  {/* <ol className="shadow-sm rounded p-3 my-2">
-                      <h2 className="fs-2">PAYMENT</h2>
-                      <span>
-                        <strong>Payment Method:</strong>
-                        <ul>{payment?.paymentMethod ?? 'PayPal'}</ul>
-                      </span>
-                  </ol>
-                  <ol >
-                      <h2 className="fs-2 my-5 text-center">ORDER DETAILS</h2>
-                      <span>
-                        <strong>Items:</strong>
-                        {cart.cartItems.legth === 0 && <Message>Your cart is empty</Message>}
-                        <ListGroup variant="flush">
-                          {cart.cartItems.map(item =>(
-                            <ul key={item.product_id} className="shadow-sm rounded p-3 my-2">
-                              <Row>
-                                <Col md={2}>
-                                    <Image src={item.image} alt={item.name} fluid rounded/>
-                                 </Col>
-                                <Col >
-                                  <Link to={`/product/${item.product_id}`} style={{ textDecoration:'none'}}>
-                                    <h5>{item.name}</h5>
-                                  </Link>
-                                </Col>
-                                <Col md={4}>
-                                 {item.price} * {item.quantity} =  {item.price} * {item.quantity}
-                                </Col>
-                                  
-                                 
-                               
-                              </Row>
-                           </ul>
-                          ))}
-                        </ListGroup>
-                      </span>
-                  </ol>
-              </ListGroup>
-            </Col>
-            <Col md={4}>
-          <Card>
-            <ListGroup  >
-              <ol>
-                <h2>Order Summary</h2>
-              </ol>
-              <ul>
-                <Row>
-                  <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
-                </Row>
-              </ul>
-              <ul>
-                <Row>
-                  <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
-                </Row>
-              </ul>
-              <ul>
-                <Row>
-                  <Col>Tax</Col>
-                  <Col>${+cart.taxPrice}</Col>
-                </Row>
-              </ul>
-              <ul>
-                <Row>
-                  <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
-                </Row>
-              </ul>
-              <ul>
-                {error && <Message variant='danger'>{error}</Message>}
-              </ul>
-              <ul>
-                <Button
-                  type='button'
-                  className='btn-block'
-                  disabled={cart.cartItems === 0}
-                  onClick={placeOrderHandler}
-                >
-                  Place Order
-                </Button>
-              </ul>
-            </ListGroup>
-          </Card>
-        </Col>
-          </Row> */}
-            
+      
         </div>
     )
 }

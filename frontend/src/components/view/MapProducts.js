@@ -45,11 +45,7 @@ const MapProducts = ({products,history,match,keyword,page,pages,isAdmin=false })
          </Grid>
          </Grid>
          </Grid> 
-          {/* <Paginate 
-            keyword={keyword }
-            page={page}
-            pages={pages}
-            /> */}
+    
      
             <Pagination
               page={page}
