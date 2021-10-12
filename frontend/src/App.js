@@ -29,6 +29,8 @@ const ProductList = lazy(()=>import('./pages/ProductList'));
 const ProductEdit = lazy(()=>import('./pages/ProductEdit'));
 const OrderList = lazy(()=>import('./pages/OrderList'));
 
+
+
 const Fallback = () => (
 <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'2rem'}}>
 <CircularProgress size='7rem' thickness={4}
@@ -51,6 +53,9 @@ const  App =()=> {
         <Suspense fallback={<Fallback/>}>
         <Switch>
         <Route path='/' component={Home} exact />
+        
+        
+        
         <Route path='/admin/userlist' component={AdminGetUsersList} />
         <Route path='/admin/productlist' component={ProductList} exact />
         <Route path='/admin/productlist/:pageNumber' component={ProductList} exact/>

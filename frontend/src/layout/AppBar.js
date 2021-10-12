@@ -109,9 +109,7 @@ import useStyles from './useStyles';
       <MenuItem onClick={handleMenuClose}>
       <ListItemLink to="/profile" primary="Profile" />
           </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-      <ListItemLink to="/profile" primary="My account" />
-          </MenuItem>
+  
       <MenuItem onClick={logOutHandler}>
       <ListItemLink to="/login" primary="LogOut" />
           </MenuItem>
@@ -129,16 +127,17 @@ import useStyles from './useStyles';
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={subTotalItem()} color={subTotalItem < 0 ? "inherit":"secondary"}>
-          <ShoppingCartIcon/>
-          </Badge>
-        </IconButton>
-        <p>Items</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+         <ListItemLink to="/cart">
+             <IconButton aria-label="new notifications" color="inherit" >
+              <Badge badgeContent={subTotalItem()} color={ subTotalItem < 0 ? "inherit":"secondary"}>
+              <ShoppingCartIcon /> 
+              </Badge>
+            </IconButton>
+            </ListItemLink>
+            </MenuItem>
+            {userInfo ?(
+          <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -149,7 +148,20 @@ import useStyles from './useStyles';
         </IconButton>
         <p>Profile</p>
       </MenuItem>
-      <MenuItem onClick={handleAdminMenuOpen}   
+            ):(
+              <>
+               
+                <ListItemLink to="/login" >
+               <Button color="inherit"  variant="outlined" style={{marginTop:'.5rem',marginLeft:'.5rem'}} >Login</Button>
+                </ListItemLink>
+                
+                <ListItemLink to="/register" >
+                   <Button color="inherit" variant="outlined" style={{marginTop:'.5rem',marginLeft:'.5rem'}}>Register</Button>
+                </ListItemLink>
+                    </> 
+            )}
+         {userInfo && userInfo.isAdmin && (
+           <MenuItem onClick={handleAdminMenuOpen}   
           aria-label="account of admin user"
           aria-controls={menuAdminId}
           aria-haspopup="true"
@@ -161,6 +173,8 @@ import useStyles from './useStyles';
         </IconButton>
         <p>Admin</p>
       </MenuItem>
+         )}
+    
     </Menu>
   );
   
@@ -168,23 +182,23 @@ import useStyles from './useStyles';
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
-          <ListItemLink to="/" primary="Produce Market" />
+          <ListItemLink to="/" primary="ProduceX" />
           </Typography>
          
           <Route render={({ history }) => <Search history={history} />} />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <ListItemLink to="/cart">
-             <IconButton aria-label="show 17 new notifications" color="inherit" >
+             <IconButton aria-label="new notifications" color="inherit" >
               <Badge badgeContent={subTotalItem()} color={ subTotalItem < 0 ? "inherit":"secondary"}>
               <ShoppingCartIcon /> 
               </Badge>

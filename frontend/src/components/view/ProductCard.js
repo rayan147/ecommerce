@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 
 import Rating from './Rating'
+import Meta from './Meta';
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -44,6 +45,7 @@ const ProductCard = ({product,addToCartHandler,qty,setQty}) => {
     const classes = useStyles();
     return (
         <Grid container spacing={5} justifyContent="center">
+           <Meta title={name} description={description} keywords={description}/>
            <Card className={classes.root}>
            <Grid item xs={5} md={7}>
            <CardMedia

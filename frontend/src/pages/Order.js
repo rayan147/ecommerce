@@ -4,7 +4,7 @@ import {useCallback, useEffect,useState,useLayoutEffect} from 'react'
 import axios from 'axios'
 
 import {useDispatch,useSelector} from 'react-redux'
-import { Row,Col,ListGroup,Image,Container,Button} from 'react-bootstrap'
+import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Alert,AlertTitle } from '@material-ui/lab';
@@ -303,8 +303,9 @@ const deliverHandler = useCallback(() => {
                 !order.isDelivered && (
                   <>
                     <Button
-                      type='button'
-                      className='btn w-100 mb-3'
+                      fullWidth
+                      variant="contained"
+                      color="primary"
                       onClick={deliverHandler}
                     >
                       Mark As Delivered

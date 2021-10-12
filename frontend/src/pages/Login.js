@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
         margin:'auto',
         maxWidth:410,
         borderRadius:'10px',
+        marginTop:theme.spacing(5),
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px'
     },
     paper: {
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
       width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
     },
     submit: {
       margin: theme.spacing(3, 0, 2),

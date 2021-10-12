@@ -1,18 +1,52 @@
 import{ useEffect } from 'react'
 
 
-import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {FaTimes} from 'react-icons/fa'
 
-import Message from '../components/view/Message'
+
+import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import ClearIcon from '@material-ui/icons/Clear';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+import EditIcon from '@material-ui/icons/Edit';
+import { Alert, AlertTitle } from '@material-ui/lab';
+
+
+
 
 import listOrders from '../actions/order/listOrders'
 
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
+  },
+  subTotalItem: {
+      boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+      marginTop: '3.3rem',
+      
+  },
+  table: {
+    minWidth: 650,
+  },
+}));
 
 const OrderList = ({ history }) => {
+  const classes = useStyles();
+
   const dispatch = useDispatch()
 
   const orderList = useSelector((state) => state.orderList)
@@ -32,56 +66,67 @@ const OrderList = ({ history }) => {
 
   return (
     <>
-      <h1>Orders</h1>
+          <Typography 
+          component="div" 
+          variant="h5" 
+          className={classes.title}
+          
+          color="textSecondary">Users' Orders</Typography>
+  
       {loading ? (
-        <h2>Loading..</h2>
+        <Typography>Loading..</Typography>
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Alert severity='error'>
+        <AlertTitle>Error</AlertTitle>
+          {error}
+          </Alert>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>USER</th>
-              <th>DATE</th>
-              <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
+        <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="order's list">
+        <TableHead>
+             <TableRow>
+              <TableCell  >ID</TableCell>
+              <TableCell align="right">USER</TableCell>
+              <TableCell align="right">DATE</TableCell>
+              <TableCell align="right">TOTAL</TableCell>
+              <TableCell align="right">PAID</TableCell>
+              <TableCell align="right">DELIVERED</TableCell>
+              <TableCell align="right"></TableCell>
+              </TableRow>
+                 </TableHead>
+                 <TableBody>
             {orders.map((order) => (
-              <tr key={order._id}>
-                <td>{order._id}</td>
-                <td>{order.user && order.user.name}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
-                <td>
+              <TableRow key={order._id}>
+                <TableCell >{order._id}</TableCell>
+                <TableCell align="right">{order.user && order.user.name}</TableCell>
+                <TableCell align="right">{order.createdAt.substring(0, 10)}</TableCell>
+                <TableCell align="right">${order.totalPrice}</TableCell>
+                <TableCell align="right">
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <FaTimes style={{ color: 'red' }}></FaTimes>
+                    <ClearIcon color="secondary"></ClearIcon>
                   )}
-                </td>
-                <td>
+                </TableCell>
+                <TableCell align="right">
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
-                    <FaTimes style={{ color: 'red' }}></FaTimes>
+                    <ClearIcon color="secondary"></ClearIcon>
                   )}
-                </td>
-                <td>
-                  <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant='light' className='btn-sm'>
+                </TableCell>
+                <TableCell align="right">
+                  <Link to={`/order/${order._id}`}>
+                    <Button variant="inherit">
                       Details
                     </Button>
-                  </LinkContainer>
-                </td>
-              </tr>
+                  </Link>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
+           </TableBody>
         </Table>
+        </TableContainer>
       )}
     </>
   )

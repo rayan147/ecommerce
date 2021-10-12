@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler"
 
 /**
  * @description - Create a new order
- * @route POST /api/order/create
+ * @route POST /api/order/
  * @access Private
  * @return {Array} - the order object
  * 
@@ -20,7 +20,6 @@ import asyncHandler from "express-async-handler"
         shippingPrice,
         totalPrice,
       } = req.body
-        console.log(req.body)
         console.log(req.user)
     if(orderItems && orderItems.length === 0){
         res.status(400)

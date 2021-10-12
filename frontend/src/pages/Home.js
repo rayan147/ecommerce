@@ -2,9 +2,15 @@ import React,{useEffect,Suspense} from 'react'
 import listProducts from "../actions/product/listProducts"
 import {useDispatch,useSelector} from 'react-redux'
 import Typography from '@material-ui/core/Typography';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom'
 
 import MapProducts from '../components/view/MapProducts'
-import { Alert, AlertTitle } from '@material-ui/lab';
+import ProductCarousel from '../components/view/ProductCarousel'
+import Meta from '../components/view/Meta';
+
+
 
 const Home = ({history,match}) => {
   const keyword = match.params.keyword
@@ -23,12 +29,25 @@ const Home = ({history,match}) => {
 
     return (
         <>
-          <Typography style={{marginTop:'5rem',marginBottom:'5rem'}} variant="h3" gutterBottom >Latest Produce</Typography>
+        
+         
+           <Meta/>
           <Suspense fallback={ isLoading && <h3 className="text-center">Almost There..</h3>}>
+           {!keyword ? <ProductCarousel />: (
+             <>
+           <Link style={{textDecoration:'none',marginTop:'3rem'}}to="/">
+           <Button >Back to Home</Button>  
+             </Link>
+             </>
+             )
+             }
             {error ? <Alert severity="error">
   <AlertTitle>Error</AlertTitle>
    <strong>{error}</strong>
-</Alert>: <MapProducts 
+</Alert>: (
+  <>
+  <Typography style={{marginTop:'5rem',marginBottom:'2rem'}} variant="h6" gutterBottom >LATEST PRODUCTS</Typography>
+<MapProducts 
             products={products} 
             history={history} 
             match={match} 
@@ -36,7 +55,10 @@ const Home = ({history,match}) => {
             page={page}
             pages={pages}
 
-            />}
+            />
+            </>)
+            
+            }
           </Suspense>
         
         </>

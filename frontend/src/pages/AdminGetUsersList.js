@@ -1,18 +1,60 @@
 import React, { useEffect } from 'react'
 
 
-import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import {AiOutlineCheck,AiFillEdit} from 'react-icons/ai'
-import {FaTimes }from 'react-icons/fa'
-import {BiTrash} from 'react-icons/bi'
 
-import Message from '../components/view/Message'
+import {Link} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import ClearIcon from '@material-ui/icons/Clear';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+import EditIcon from '@material-ui/icons/Edit';
+import { Alert, AlertTitle } from '@material-ui/lab';
+
+
+
+
 import listUsers from '../actions/admin/listUsers'
 import deleteUser from '../actions/admin/deleteUser'
 
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
+  },
+  subTotalItem: {
+      boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+      marginTop: '3.3rem',
+      
+  },
+  table: {
+    minWidth: 650,
+  },
+}));
+
+
+
+
 const AdminGetUsersList = ({ history }) => {
+
+  const classes = useStyles();
+
+
   const dispatch = useDispatch()
 
   const adminGetUsersList = useSelector((state) => state.adminGetUsersList)
@@ -38,59 +80,70 @@ const AdminGetUsersList = ({ history }) => {
       dispatch(deleteUser(id))
     }
   }
-console.log(users)
+
   return (
     <>
-      <h1>Users</h1>
+
+      <Typography 
+          component="div" 
+          variant="h5" 
+          className={classes.title}
+          
+          color="textSecondary">Users' Profile</Typography>
       {isLoading ? (
         <h2>Loading...</h2>
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Alert severity='error'>
+      <AlertTitle>Error</AlertTitle>
+        {error}
+        </Alert>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>EMAIL</th>
-              <th>ADMIN</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
+        <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="user's list">
+         <TableHead>
+             <TableRow>
+             <TableCell >ID</TableCell>
+              <TableCell align="right">NAME</TableCell>
+              <TableCell align="right">EMAIL</TableCell>
+              <TableCell align="right">ADMIN</TableCell>
+              <TableCell align="right">EDIT/DELETE</TableCell>
+              </TableRow>
+                 </TableHead>
+                 <TableBody>
             {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
-                <td>
+              <TableRow key={user._id}>
+                <TableCell >{user._id}</TableCell>
+                <TableCell align="right">{user.name}</TableCell>
+                <TableCell align="right">
                   <a href={`mailto:${user.email}`}>{user.email}</a>
-                </td>
-                <td>
+                </TableCell>
+                <TableCell align="right">
                   {user.isAdmin ? (
-                    <AiOutlineCheck style={{ color: 'green' }}></AiOutlineCheck>
+                    <CheckIcon style={{ color: 'green' }}></CheckIcon>
                   ) : (
-                    <FaTimes style={{ color: 'red' }}></FaTimes>
+                    <ClearIcon color="secondary"></ClearIcon>
                   )}
-                </td>
-                <td>
-                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                    <Button variant='light' className='btn-sm'>
-                      <AiFillEdit ></AiFillEdit>
+                </TableCell>
+                <TableCell align="right">
+                  <Link to={`/admin/user/${user._id}/edit`}>
+                    <Button variant='secondary' startIcon={<EditIcon/>}>
+                      
                     </Button>
-                  </LinkContainer>
-                  <BiTrash
-                               type='button'
-                               size="1.5rem"
-                               color='red'
-                               onClick={() => deleteHandler(user._id)}>
+                  </Link>
+                  <Button 
+                  endIcon={<DeleteIcon color="secondary" />}
+                  variant='light'
+                   onClick={() => deleteHandler(user._id)}>
+                        
                                   
-                             </BiTrash>
+                             </Button>
                  
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
+          </TableBody>
         </Table>
+      </TableContainer>
       )}
     </>
   )

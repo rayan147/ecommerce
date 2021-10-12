@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 
+
  const useStyles = makeStyles({
         root: {
           width:'100%',
@@ -46,7 +47,7 @@ const Product = ({product }) => {
       
     return (
            <>
-
+         
       <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
             <Card  className={classes.root} >
             <CardActionArea>

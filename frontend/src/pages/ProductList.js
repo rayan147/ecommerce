@@ -2,15 +2,28 @@ import React, { useEffect } from 'react'
 
 
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button, Row, Col } from 'react-bootstrap'
+import {  Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {AiOutlinePlus,AiFillEdit} from 'react-icons/ai'
 import {FaTrashAlt} from 'react-icons/fa'
-
-
-import Message from '../components/view/Message'
-
-import Paginate from '../components/view/Paginate'
+import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import ClearIcon from '@material-ui/icons/Clear';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+import EditIcon from '@material-ui/icons/Edit';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from '@material-ui/lab/PaginationItem';
+import {Link} from 'react-router-dom'
   
 import listProducts from '../actions/product/listProducts'
 import deleteProduct from '../actions/product/deleteProduct'
@@ -22,7 +35,28 @@ import PRODUCT_CONSTANTS from '../constants/productConstants'
 const {
     PRODUCT_CREATE_RESET
 } = PRODUCT_CONSTANTS
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
+  },
+  subTotalItem: {
+      boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+      marginTop: '3.3rem',
+      
+  },
+  table: {
+    minWidth: 650,
+  },
+}));
+
 const ProductList = ({ history, match }) => {
+  const classes = useStyles();
   const pageNumber = match.params.pageNumber || 1
 
   const dispatch = useDispatch()
@@ -96,53 +130,74 @@ const ProductList = ({ history, match }) => {
         </Col>
       </Row>
       {loadingDelete && <h2>Loading..</h2>}
-      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+      {errorDelete &&   <Alert severity='error'>
+        <AlertTitle>Error</AlertTitle>
+          {errorDelete}
+          </Alert>}
       {loadingCreate && <h2>Loading..</h2>}
-      {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+      {errorCreate &&   <Alert severity='error'>
+        <AlertTitle>Error</AlertTitle>
+          {errorCreate}
+          </Alert>}
       {loading ? (
         <h2>Loading..</h2>
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Alert severity='error'>
+        <AlertTitle>Error</AlertTitle>
+          {error}
+          </Alert>
       ) : (
         <>
-          <Table striped bordered hover responsive className='table-sm'>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>BRAND</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
+        <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="products' list">
+        <TableHead>
+             <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="right">NAME</TableCell>
+                <TableCell align="right">PRICE</TableCell>
+                <TableCell align="right">CATEGORY</TableCell>
+                <TableCell align="right">BRAND</TableCell>
+                <TableCell align="right"></TableCell>
+                </TableRow>
+                 </TableHead>
+                 <TableBody>
               {products.map((product) => (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>${product.price}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
-                  <td>
+                <TableRow key={product._id}>
+                  <TableCell>{product._id}</TableCell>
+                  <TableCell align="right">{product.name}</TableCell>
+                  <TableCell align="right">${product.price}</TableCell>
+                  <TableCell align="right">{product.category}</TableCell>
+                  <TableCell align="right">{product.brand}</TableCell>
+                  <TableCell align="right">
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
                       <Button variant='light' className='btn-sm'>
                       <AiFillEdit/>
                       </Button>
                     </LinkContainer>
                     <Button
-                      variant='danger'
-                      className='btn-sm'
+                  
+                      endIcon={ <DeleteIcon color="secondary"/>}
                       onClick={() => deleteHandler(product._id)}
                     >
-                     <FaTrashAlt/>
+                    
                     </Button>
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
+           </TableBody>
           </Table>
-          <Paginate pages={pages} page={page} isAdmin={true} />
+          </TableContainer>
+          <Pagination
+              page={page}
+              count={pages}
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  to={ `/admin/productlist/${item.page}`}
+                  {...item}
+                />
+              )}
+            />
         </>
       )}
     </>

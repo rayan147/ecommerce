@@ -6,7 +6,7 @@ import asyncHandler from "express-async-handler"
 // @route   GET /api/products/top
 // @access  Public
 const getTopProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+    const products = await Product.find({}).sort({ rating: -1 }).limit(15)
   
     res.json(products)
   })
