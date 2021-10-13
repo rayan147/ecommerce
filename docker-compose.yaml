@@ -26,7 +26,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
     build:
       dockerfile: Dockerfile
-      context: ./fronted
+      context: ./frontend
     volumes:
       - /app/node_modules
       - ./client:/app
