@@ -9,6 +9,26 @@ Use the package manager [npm](https://www.npmjs.com/) to install ProduceX.
 ```bash
 npm i
 ```
+
+## Features 
+ User | Admin
+ -----|------
+ login| update user to admin
+ logout| delete user
+ register| delete order
+ perisitent add to cart| view users
+ pay with paypal| confirm order
+ search products|
+ delete orders|
+ view order | 
+ update profile|
+
+## Working on Features
+ User | Admin
+ -----|------
+ forgotpassword| reset user
+ confirm registration|
+
 ## Dependecies
 ```
 # create a .env in the root dir and add the following vars 
