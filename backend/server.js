@@ -5,8 +5,6 @@ import dotenv from 'dotenv';
 import _ from 'colors';    
 import cors from 'cors';
 import morgan from 'morgan';
-import swaggerJsDoc from 'swagger-jsdoc';
-import swaggerUI from 'swagger-ui-express';
 import hpp from 'hpp';
 import helmet from 'helmet';
 
@@ -18,7 +16,7 @@ import adminRoutes from './routes/adminRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import  notFound  from './middleware/notFound.js';
 import  errorHandler from './middleware/errorHandler.js';
-import options from './swaggerOptions.js';
+
 
 
 // Load environment variables
@@ -38,9 +36,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(hpp());
 // Set security headers
 app.use(helmet());
-
-const specs = swaggerJsDoc(options);
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 
 
