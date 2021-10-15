@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json package.json
 COPY package-lock.json package-lock.json
 
-Run npm install
+RUN npm install
 
 RUN npm ci --production
 
