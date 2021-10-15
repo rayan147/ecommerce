@@ -11,7 +11,7 @@ COPY . .
 CMD ["npm", "run", "start"]
 
 # NGNINX Web Server
-FROM nginx as prod
-COPY --from=api /app/backend/default.conf /etc/nginx/conf.d/
-EXPOSE 80
-CMD ["nginx","-g","daemon off;"]
+# FROM nginx as prod
+# COPY --from=api /app/backend/default.conf /etc/nginx/conf.d/
+# EXPOSE 80
+# CMD ["nginx","-g","daemon off;"]
