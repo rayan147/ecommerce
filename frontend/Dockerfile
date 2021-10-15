@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build 
 
 # NGNINX Web Server
-FROM nginx:1.12-alpine as prod
+FROM nginx as prod
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx","-g","daemon off;"]
