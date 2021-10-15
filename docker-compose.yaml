@@ -1,18 +1,18 @@
 version: '3.3'
 
 services:
-  frontend:
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    volumes: 
-        - ./frontend:/app/frontend
-    image: fronted:v1.0.0
-    ports:
-      - "80:80"
-    depends_on:
-      - api
+  # frontend:
+  #   build: 
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   restart: unless-stopped
+  #   volumes: 
+  #       - ./frontend:/app/frontend
+  #   image: fronted:v1.0.0
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - api
   api:
     build: 
       context: ./backend
