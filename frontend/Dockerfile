@@ -1,9 +1,18 @@
-FROM node:16-alpine3.11
-WORKDIR /app
-COPY package*.json ./
-COPY ./ ./
-EXPOSE 3000
-RUN npm i 
-RUN npm run build --prod
-CMD ["npm", "run", "start"]
+FROM node:16-alpine3.11 as build
 
+WORKDIR /app
+
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+
+RUN npm ci --production
+
+COPY . .
+
+RUN npm run build 
+
+# NGNINX Web Server
+FROM nginx:1.12-alpine as prod
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx","-g","daemon off;"]

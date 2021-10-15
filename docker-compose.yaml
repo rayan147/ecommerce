@@ -1,33 +1,17 @@
 version: '3.3'
 
 services:
-  nginx:
-    depends_on:
-      - api
-      - client
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - "3050:80"
-
-  api:
-    build:
-      dockerfile: Dockerfile
-      context: "./backend"
-    volumes:
-      - /app/node_modules
-      - ./server:/app
-
-  client:
-    stdin_open: true
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    build:
-      dockerfile: Dockerfile
+  frontend:
+    build: 
       context: ./frontend
-    volumes:
-      - /app/node_modules
-      - ./client:/app
+      dockerfile: Dockerfile
+      restart: unless-stopped
+      volumes: 
+       - ./frontend:/app/frontend
+    image: fronted:v1.0.0
+    ports:
+      - "3000:80"
+ 
+      
+  
 
