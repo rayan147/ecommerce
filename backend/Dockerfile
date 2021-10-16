@@ -9,4 +9,9 @@ RUN npm i
 COPY . .
 CMD ["npm", "run", "start"]
 
+# NGNINX Web Server
+FROM nginx as prod
+COPY --from=api /backend/nginx/nginx.conf /etc/nginx/conf.d
+EXPOSE 80
+CMD ["nginx","-g","daemon off;"]
 
