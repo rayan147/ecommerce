@@ -11,6 +11,7 @@ const connectMongo = async () => {
             );
             console.log(`Connected to MongoDB ${conn.connection.host}`.yellow.bold);
     }
+    
     catch (err) {
         console.error(`Err :${err.message}`.red.underline);
         process.exit(1);
