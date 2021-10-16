@@ -1,5 +1,5 @@
 FROM node:14.17.3-buster as api
-WORKDIR /backend
+WORKDIR /app
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
@@ -11,7 +11,7 @@ CMD ["npm", "run", "start"]
 
 # NGNINX Web Server
 FROM nginx as prod
-COPY --from=api ./nginx/nginx.conf /etc/nginx/conf.d
+COPY --from=api /app/nginx/ /etc/nginx/conf.d
 EXPOSE 80
 CMD ["nginx","-g","daemon off;"]
 
