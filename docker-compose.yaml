@@ -24,10 +24,10 @@ services:
       - "5000:5000"
     network:
       - app-network
-      
-  networks:
-  app-network:
-    driver: bridge
+
+    networks:
+     app-network:
+       driver: bridge
 
  
       
