@@ -13,16 +13,21 @@ services:
   #     - "80:80"
   #   depends_on:
   #     - api
-  api:
-    build: 
+  nodejs:
+    build:
       context: ./backend
       dockerfile: Dockerfile
+    image: nodejs:v1.0.0
+    container_name: nodejs
     restart: unless-stopped
-    volumes: 
-        - ./backend:/app/backend
-    image: backend:v1.0.0
     ports:
-      - "5000:80"
+      - "5000:5000"
+    network:
+      - app-network
+      
+  networks:
+  app-network:
+    driver: bridge
 
  
       
