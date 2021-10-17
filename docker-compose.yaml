@@ -11,7 +11,7 @@ services:
     image: fronted:v1.0.0
     ports:
       - "80:80"
-    network:
+    networks:
       - app-network
     depends_on:
       - api
