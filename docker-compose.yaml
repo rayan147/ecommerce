@@ -1,20 +1,22 @@
 version: '3.3'
 
 services:
-  frontend:
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    volumes: 
-        - ./frontend:/app/frontend
-    image: fronted:v1.0.0
-    ports:
-      - "80:80"
-    networks:
-      - fronted-network
-    depends_on:
-      - api
+  # REACT APP
+  # frontend:
+  #   build: 
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   restart: unless-stopped
+  #   volumes: 
+  #       - ./frontend:/app/frontend
+  #   image: fronted:v1.0.0
+  #   ports:
+  #     - "80:80"
+  #   networks:
+  #     - fronted-network
+  #   depends_on:
+  #     - api
+   # PROXY   
   nginx_proxy:
     restart: always
     build:
@@ -30,7 +32,7 @@ services:
       - "5000:9080"
     depends_on:
       - api
-
+# RESTFUL API
   api:
     environment:
     -  NODE_ENV=development
