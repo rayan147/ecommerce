@@ -18,22 +18,22 @@ RUN npm run start
 # EXPOSE 80
 # CMD ["nginx","-g","daemon off;"]
 
-FROM node:14.17.3-buster as build
+# FROM node:14.17.3-buster as build
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY package.json package.json
-COPY package-lock.json package-lock.json
+# COPY package.json package.json
+# COPY package-lock.json package-lock.json
 
 
-RUN npm ci --production
+# RUN npm ci --production
 
-COPY . .
+# COPY . .
 
-RUN npm run build 
+# RUN npm run build 
 
-# NGNINX Web Server
-FROM nginx as prod_proxy
-COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx","-g","daemon off;"]
+# # NGNINX Web Server
+# FROM nginx as prod_proxy
+# COPY --from=build /app/build /usr/share/nginx/html
+# EXPOSE 80
+# CMD ["nginx","-g","daemon off;"]
