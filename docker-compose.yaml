@@ -1,7 +1,6 @@
 version: '3.3'
 
 services:
-  # REACT APP
   # frontend:
   #   build: 
   #     context: ./frontend
@@ -13,10 +12,9 @@ services:
   #   ports:
   #     - "80:80"
   #   networks:
-  #     - fronted-network
+  #     - app-network
   #   depends_on:
   #     - api
-   # PROXY   
   nginx_proxy:
     restart: always
     build:
@@ -27,12 +25,12 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - backend-network
+      - app-network
     ports:
       - "5000:9080"
     depends_on:
       - api
-# RESTFUL API
+      
   api:
     environment:
     -  NODE_ENV=development
@@ -49,11 +47,10 @@ services:
     volumes:
     - ./backend:/app/backend
     networks:
-      - backend-network
+      - app-network
 
 networks:
-  fronted-network:
-  backend-network:
+  app-network:
      driver: bridge
 
  
