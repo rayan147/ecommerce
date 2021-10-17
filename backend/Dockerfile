@@ -1,4 +1,4 @@
-FROM node:16.17.3-buster as api
+FROM node:16.0.0-buster as api
 WORKDIR /app
 
 COPY package.json package.json
