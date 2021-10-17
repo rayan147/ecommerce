@@ -27,6 +27,8 @@ services:
     depends_on:
       - api
   api:
+    env_file: 
+      - .env
     build:
       context: ./backend
       dockerfile: Dockerfile
