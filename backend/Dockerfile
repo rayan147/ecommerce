@@ -5,6 +5,7 @@ COPY package.json package.json
 COPY package-lock.json package-lock.json
 
 RUN npm i 
+RUN sudo docker run --env-file /.env
 
 COPY . .
 EXPOSE 5000

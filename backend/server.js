@@ -37,7 +37,7 @@ app.use(hpp());
 // Set security headers
 app.use(helmet());
 
-console.log('process.env.MONGO_URL'.green,process.env.MONGO_URL)
+console.log('process.env.MONGO_URL'.green,process.env)
 
 app.get('/', (req, res) => {
    return res.send('Hello World!');
