@@ -23,7 +23,7 @@ services:
     image: proxy:v1.0.0
     container_name: nginx_proxy
     ports:
-      - "80:80"
+      - "80:5000"
   api:
     build:
       context: ./backend
