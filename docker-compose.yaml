@@ -5,6 +5,7 @@ services:
     build: 
       context: ./frontend
       dockerfile: Dockerfile
+      target: dev
     restart: unless-stopped
     volumes: 
         - ./frontend:/app/frontend
