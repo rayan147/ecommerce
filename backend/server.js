@@ -8,7 +8,7 @@ import morgan from 'morgan';
 import hpp from 'hpp';
 import helmet from 'helmet';
 
-import connectMongo from '../backend/config/db.js'
+import connectMongo from './config/db.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
@@ -37,7 +37,7 @@ app.use(hpp());
 // Set security headers
 app.use(helmet());
 
-console.log('process.env.MONGO_URL'.green,process.env)
+console.log(process.env.MONGO_URL)
 
 app.get('/', (req, res) => {
    return res.send('Hello World!');
