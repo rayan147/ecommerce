@@ -1,18 +1,27 @@
 version: '3.3'
 
 services:
-  # frontend:
-  #   build: 
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   restart: unless-stopped
-  #   volumes: 
-  #       - ./frontend:/app/frontend
-  #   image: fronted:v1.0.0
-  #   ports:
-  #     - "80:80"
-  #   depends_on:
-  #     - api
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes: 
+        - ./frontend:/app/frontend
+    image: fronted:v1.0.0
+    ports:
+      - "80:80"
+    network:
+      - app-network
+    depends_on:
+      - api
+  nginx_proxy:
+    restart: always
+    build:
+      context:./nginx
+      dockerfile: Dockerfile
+      ports:
+        - "80:80"
   api:
     build:
       context: ./backend
@@ -21,7 +30,7 @@ services:
     container_name: api
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "5000:5000"
     networks:
       - app-network
 

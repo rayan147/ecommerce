@@ -7,11 +7,7 @@ COPY package-lock.json package-lock.json
 RUN npm i 
 
 COPY . .
+EXPOSE 5000
 CMD ["npm", "run", "start"]
 
-# NGNINX Web Server
-FROM nginx as prod
-COPY --from=api /app/nginx/ /etc/nginx/conf.d
-EXPOSE 80
-CMD ["nginx","-g","daemon off;"]
 
