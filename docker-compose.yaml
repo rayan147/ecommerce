@@ -18,10 +18,12 @@ services:
   nginx_proxy:
     restart: always
     build:
-      context:./nginx
+      context: ./nginx
       dockerfile: Dockerfile
-      ports:
-        - "80:80"
+    image: proxy:v1.0.0
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
   api:
     build:
       context: ./backend
