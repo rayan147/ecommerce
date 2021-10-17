@@ -31,8 +31,6 @@ services:
     image: api:v1.0.0
     container_name: api
     restart: unless-stopped
-    ports:
-      - "5000:5000"
     networks:
       - app-network
 
