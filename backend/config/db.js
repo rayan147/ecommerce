@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const connectMongo = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URL,{
+        const conn = await mongoose.connect(process.env?.MONGO_URL ?? 'mongodb+srv://produce:produce@produce.yiddo.mongodb.net/products?retryWrites=true',{
             useNewUrlParser: true,
             useCreateIndex: true,
             useFindAndModify: false,
