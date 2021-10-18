@@ -14,7 +14,7 @@ services:
         - ./frontend:/app/frontend
     image: fronted:v1.0.0
     ports:
-      - 3000:3000
+      - $REACT_PORT:$REACT_DOCKER_PORT
     networks:
       - app-network
     depends_on:
