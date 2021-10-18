@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   frontend:
-    env_file: ../dev.env
+    env_file: ./dev.env
     build: 
       context: ./frontend
       dockerfile: Dockerfile
@@ -20,7 +20,7 @@ services:
     depends_on:
       - api
   nginx_proxy:
-    env_file: ../dev.env
+    env_file: ./dev.env
     restart: always
     build:
       context: ./nginx
