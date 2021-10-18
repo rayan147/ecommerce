@@ -10,8 +10,6 @@ services:
     restart: unless-stopped
     environment:
       - CHOKIDAR_USEPOLLING=true
-      - $REACT_PORT=$REACT_PORT
-      - $REACT_DOCKER_PORT:$REACT_DOCKER_PORT
     volumes: 
         - ./frontend:/app/frontend
     image: fronted:v1.0.0
