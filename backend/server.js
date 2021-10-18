@@ -24,7 +24,7 @@ const PORT = process.env?.PORT ?? 5000;
 const NODE_ENV = process.env?.NODE_ENV ?? 'development';
 
 //CONFIG
-dotenv.config();
+dotenv.config({path:'../.env'});
 
 //DB
 connectMongo()
