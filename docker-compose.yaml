@@ -5,6 +5,8 @@ services:
     env_file: ./.env
     build: 
       context: ./frontend
+      args:
+        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
       dockerfile: Dockerfile
       target: dev
     restart: unless-stopped
@@ -15,8 +17,7 @@ services:
     image: fronted:v1.0.0
     ports:
       - $REACT_PORT:$REACT_DOCKER_PORT
-    args:
-        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
+    
     networks:
       - app-network
     depends_on:
