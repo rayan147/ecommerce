@@ -10,6 +10,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json package.json
 COPY package-lock.json package-lock.json
 
+ARG REACT_APP_API_BASE_URL
+ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
 RUN npm i 
 EXPOSE 3000
