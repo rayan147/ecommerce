@@ -16,10 +16,6 @@ const Payment = ({history}) => {
   const dispatch = useDispatch()
  
     const usershippingAddress = useSelector(state => state.shippingAddress)
-    console.log(usershippingAddress)
-    // if(shippingAddress?.shippingAddress === undefined || shippingAddress === null || shippingAddress.length === 0){
-    //   history.push('/shipping')
-    // }
   
     const [paymentMethod,setPaymentMethod] = useState('Paypal')
  

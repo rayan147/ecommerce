@@ -1,4 +1,4 @@
-import {useEffect,lazy,useReducer} from 'react'
+import {useEffect,useReducer} from 'react'
 
 
 import {Link} from 'react-router-dom'

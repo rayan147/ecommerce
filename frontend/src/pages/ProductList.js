@@ -5,8 +5,6 @@ import { LinkContainer } from 'react-router-bootstrap'
 import {  Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {AiOutlinePlus,AiFillEdit} from 'react-icons/ai'
-import {FaTrashAlt} from 'react-icons/fa'
-import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,12 +12,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import ClearIcon from '@material-ui/icons/Clear';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import CheckIcon from '@material-ui/icons/Check';
-import EditIcon from '@material-ui/icons/Edit';
+
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
@@ -169,11 +165,11 @@ const ProductList = ({ history, match }) => {
                   <TableCell align="right">{product.category}</TableCell>
                   <TableCell align="right">{product.brand}</TableCell>
                   <TableCell align="right">
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                    <Link to={`/admin/product/${product._id}/edit`}>
                       <Button variant='light' className='btn-sm'>
                       <AiFillEdit/>
                       </Button>
-                    </LinkContainer>
+                    </Link>
                     <Button
                   
                       endIcon={ <DeleteIcon color="secondary"/>}
