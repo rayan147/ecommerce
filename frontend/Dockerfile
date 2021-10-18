@@ -12,7 +12,7 @@ COPY package-lock.json package-lock.json
 
 
 RUN npm i 
-
+EXPOSE 3000
 COPY . .
 # start app
 CMD ["npm", "start"]
