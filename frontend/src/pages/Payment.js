@@ -15,10 +15,13 @@ import savePaymentMethod from '../actions/payment/payment.js'
 const Payment = ({history}) => {
   const dispatch = useDispatch()
  
-    const usershippingAddress = useSelector(state => state.shippingAddress)
+    const cart = useSelector(state => state.cart)
+    const {shippingAddress } = cart
   
     const [paymentMethod,setPaymentMethod] = useState('Paypal')
- 
+      if(!shippingAddress.address){
+        history.push('/shipping')
+      }
     
     const submitHandler = (event) => {
         event.preventDefault()

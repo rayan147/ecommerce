@@ -59,11 +59,11 @@ const Shipping = ({history}) => {
 
   
   const initialState = {
-      address:shippingAddress?.address ?? '',
-      country:shippingAddress?.country ?? '', 
-      city:shippingAddress?.city ?? '',
-      zipCode:shippingAddress?.zipCode ?? '',
-      _state:shippingAddress?._state ?? ''
+      address:shippingAddress.address ?? '',
+      country:shippingAddress.country ?? '', 
+      city:shippingAddress.city ?? '',
+      zipCode:shippingAddress.zipCode ?? '',
+      _state:shippingAddress._state ?? ''
 }
   
  const [state, dispatchUseReducer] = useReducer(shippingReducer,initialState)

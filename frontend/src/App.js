@@ -8,7 +8,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 import Footer from './layout/Footer';
-// import Header from './layout/Header';
 import SearchAppBar from './layout/AppBar';
 
 // CODE SPLIT

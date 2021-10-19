@@ -6,7 +6,6 @@ const  {
     USER_UPDATE_PROFILE_FAILURE,
     USER_UPDATE_PROFILE_SUCCESS,
     USER_LOGIN_SUCCESS,
-    USER_UPDATE_PROFILE_RESTORE_REQUEST
     } = USER_CONSTANTS
     const updateUserProfile = (user) => async (dispatch,getState) => {
         try {

@@ -1,11 +1,11 @@
 import {useEffect} from 'react'
 
-import {Link} from 'react-router-dom'
-import { Alert, AlertTitle } from '@material-ui/lab';
+
+import { Alert } from '@material-ui/lab';
 import Carousel from 'react-material-ui-carousel'
-import { makeStyles } from '@material-ui/core/styles';
+
 import {useDispatch,useSelector} from 'react-redux'
-import { Paper, Button, Box ,Typography} from '@material-ui/core'
+import { Box ,Typography} from '@material-ui/core'
 
 import listTopProducts from '../../actions/product/listTopProducts'
 import Product from './Product';

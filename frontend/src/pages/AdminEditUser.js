@@ -2,18 +2,22 @@ import React, { useState, useEffect } from 'react'
 
 
 import { Link } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import Checkbox from '@material-ui/core/Checkbox';
 import { useDispatch, useSelector } from 'react-redux'
 import { Alert, AlertTitle } from '@material-ui/lab';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
+import Grid from '@material-ui/core/Grid';
 
-
-import FormContainer from '../components/view/FormContainer'
 import  adminGetUserDetails from '../actions/admin/adminGetUserDetails'
 import adminUpdatedUser from "../actions/admin/adminUpdatedUser"
 import ADMIN_CONSTANTS from '../constants/adminConstants'
 
 const {ADMIN_USER_UPDATE_RESET} =ADMIN_CONSTANTS
+
+
 
 const AdminEditUser = ({ match, history }) => {
   const userId = match.params.id
@@ -53,14 +57,29 @@ const AdminEditUser = ({ match, history }) => {
     e.preventDefault()
     dispatch(adminUpdatedUser({ _id: userId, name, email, isAdmin }))
   }
+  const handleChange = (event) => {
+    setIsAdmin(event.target.checked);
+  };
 
   return (
     <>
-      <Link to='/admin/userlist' className='btn btn-light my-3'>
+    <Link to='/admin/userlist' style={{textDecoration:'none'}} >
+        <Button>
+
         Go Back
+        </Button>
       </Link>
-      <FormContainer>
-        <h1>Edit User</h1>
+    <Grid container  
+    direction="column"
+    justifyContent="center"
+    alignItems="center">
+      <Grid item >
+      
+      <Typography 
+                      component="div" 
+                      gutterBottom
+                       variant="h5" >Edit User </Typography>
+         </Grid>
         {loadingUpdate && <h2>loading....</h2>}
         {errorUpdate && <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
@@ -74,42 +93,50 @@ const AdminEditUser = ({ match, history }) => {
             {error}
             </Alert>
         ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Enter name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='email'>
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
-                type='email'
-                placeholder='Enter email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='isadmin'>
-              <Form.Check
-                type='checkbox'
-                label='Is Admin'
-                checked={isAdmin}
-                onChange={(e) => setIsAdmin(e.target.checked)}
-              ></Form.Check>
-            </Form.Group>
+          <Grid item >
+          <form onSubmit={submitHandler}>
+            <TextField
+            variant="outlined"
+            margin="normal"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+            autoFocus
+          />
+  
+            <TextField
+            variant="outlined"
+            margin="normal"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+            <Checkbox
+        checked={isAdmin}
+        onChange={handleChange}
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+      />
+          
 
             <Button type='submit' variant='primary'>
               Update
             </Button>
-          </Form>
+          </form>
+         </Grid>
         )}
-      </FormContainer>
+
+    </Grid>
     </>
   )
 }
