@@ -53,7 +53,7 @@ npm run data:import
 # to destroy data 
 data:destroy
 ```
-Mondays and Fridays 10 am. to 5pm
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
