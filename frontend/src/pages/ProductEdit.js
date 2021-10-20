@@ -173,9 +173,9 @@ const ProductEdit = ({ match, history }) => {
             autoFocus
           />
         {uploading && <h2>Loading..</h2>}
-              {/* <DropzoneArea
+             {/* <DropzoneArea
                 onChange={uploadFileHandler}
-              /> */}
+              />  */}
               
            
               <TextField

@@ -16,16 +16,17 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 
+import trancateString from '../../helpers/trancateString'
 
 
 
  const useStyles = makeStyles({
         root: {
-          width:'100%',
-          heigh:'100%',
           margin:'auto',
-          maxHeight:310,
-          maxWidth: 140,
+          maxHeight:230,
+          maxWidth: 150,
+          minHeight: 230,
+          minWidth:170,
           borderRadius:'9px',
           boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px',
           '&:hover': {
@@ -37,9 +38,9 @@ import Typography from '@material-ui/core/Typography';
         },
         cover: {
           width: 180,
-          height: 120,
+          height: 110,
           minWidth: 180,
-          minHeight: 120,
+          minHeight: 110,
           
           
         },
@@ -51,7 +52,7 @@ const Product = ({product }) => {
     const classes = useStyles();
     const {_id,image,name,description,rating,price } = product
 
-   
+    const truncatedDescription = trancateString(description)
       
     return (
            <>
@@ -68,15 +69,16 @@ const Product = ({product }) => {
                }
             <CardContent>
            
-              <Typography   display="block" gutterBottom >{`${name}`.substr(0,15)}
+              <Typography   display="block" >{`${name}`.substr(0,15)}
               </Typography>
-              <Typography variant="caption" display="block" gutterBottom >
-                {`${description}`}
-              </Typography>
-         
-            <Typography>
+              <Typography>
                 <Rating value={rating}   />
             </Typography>
+              <Typography variant="caption" display="block" gutterBottom >
+               { truncatedDescription }
+              </Typography>
+         
+           
             <Typography variant="overline" display="block" gutterBottom >
              ${price} <small>lb</small> 
             </Typography>  

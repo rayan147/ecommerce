@@ -15,6 +15,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Avatar from '@material-ui/core/Avatar';
 
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Pagination from '@material-ui/lab/Pagination';
@@ -48,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 650,
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
   },
 }));
 
@@ -149,6 +154,7 @@ const ProductList = ({ history, match }) => {
         <TableHead>
              <TableRow>
                 <TableCell>ID</TableCell>
+                <TableCell align="right">IMAGE</TableCell>
                 <TableCell align="right">NAME</TableCell>
                 <TableCell align="right">PRICE</TableCell>
                 <TableCell align="right">CATEGORY</TableCell>
@@ -160,6 +166,7 @@ const ProductList = ({ history, match }) => {
               {products.map((product) => (
                 <TableRow key={product._id}>
                   <TableCell>{product._id}</TableCell>
+                  <TableCell align="right"><Avatar src={product.image} alt={product.description} className={classes.large}></Avatar></TableCell>
                   <TableCell align="right">{product.name}</TableCell>
                   <TableCell align="right">${product.price}</TableCell>
                   <TableCell align="right">{product.category}</TableCell>

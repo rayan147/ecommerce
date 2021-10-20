@@ -11,7 +11,7 @@ import asyncHandler from "express-async-handler"
 
 
 const getAllProducts = asyncHandler(  async(req, res) => {
-    const pageSize = 4
+    const pageSize = 9
     const page = +req.query.pageNumber || 1
   
     const keyword = req.query.keyword
