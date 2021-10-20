@@ -21,7 +21,7 @@ const updateProduct = asyncHandler( async(req, res) => {
         category,
         countInStock,
       } = req.body
-    const updatedProduct = await Product.findOneAndUpdate(req.params.id,{ name,
+    const updatedProduct = await Product.findByIdAndUpdate(req.params.id,{ name,
         price,
         description,
         image,

@@ -3,13 +3,17 @@ import React, { useState, useEffect } from 'react'
 
 
 import axios from 'axios'
-import { Form, Button } from 'react-bootstrap'
+import {DropzoneArea} from 'material-ui-dropzone'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import Message from '../components/view/Message'
 
-import FormContainer from '../components/view/FormContainer'
+
+import { Alert, AlertTitle } from '@material-ui/lab';
 import listProductDetails from '../actions/product/listProductDetails'
 import updateProduct from '../actions/product/updateProduct'
 import PRODUCT_CONSTANTS from '../constants/productConstants'
@@ -104,99 +108,136 @@ const ProductEdit = ({ match, history }) => {
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
-      <FormContainer>
-        <h1>Edit Product</h1>
+      <Grid container  
+    direction="column"
+    justifyContent="center"
+    alignItems="center">
+         <Typography 
+                      component="div" 
+                      gutterBottom
+                       variant="h5" >Edit Product </Typography>
         {loadingUpdate && <h2>Loading..</h2>}
-        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+        {errorUpdate && <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+          {errorUpdate}
+          </Alert>}
         {loading ? (
           <h2>Loading..</h2>
         ) : error ? (
-          <Message variant='danger'>{error}</Message>
+          <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          {error}
+          </Alert>
         ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Enter name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+          <Grid item >
+          <form onSubmit={submitHandler}>
+                <TextField
+            variant="outlined"
+            margin="normal"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+            autoFocus
+          />
 
-            <Form.Group controlId='price'>
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type='number'
-                placeholder='Enter price'
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='image'>
-              <Form.Label>Image</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter image url'
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              ></Form.Control>
-              <Form.File
-                id='image-file'
-                label='Choose File'
-                custom
+           <TextField
+            variant="outlined"
+            margin="normal"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+            fullWidth
+            id="price"
+            label="Price"
+            name="price"
+            type='number'
+            autoComplete="price"
+            autoFocus
+          />
+           <TextField
+            variant="outlined"
+            margin="normal"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+            required
+            fullWidth
+            id="image"
+            label="Image"
+            name="image"
+            autoComplete="image"
+            autoFocus
+          />
+        {uploading && <h2>Loading..</h2>}
+              {/* <DropzoneArea
                 onChange={uploadFileHandler}
-              ></Form.File>
-              {uploading && <h2>Loading..</h2>}
-            </Form.Group>
+              /> */}
+              
+           
+              <TextField
+            variant="outlined"
+            margin="normal"
+            value={brand}
+            onChange={(e) => setBrand(e.target.value)}
+            required
+            fullWidth
+            id="brand"
+            label="brand"
+            name="brand"
+            autoComplete="brand"
+            autoFocus
+          />
+              <TextField
+            variant="outlined"
+            margin="normal"
+            value={countInStock}
+            onChange={(e) => setCountInStock(e.target.value)}
+            required
+            fullWidth
+            id="countInStock"
+            label="Count In Stock"
+            name="countInStock"
+            autoComplete="countInStock"
+            autoFocus
+          />
+              <TextField
+            variant="outlined"
+            margin="normal"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+            fullWidth
+            id="category"
+            label="Category"
+            name="category"
+            autoComplete="category"
+            autoFocus
+          />
+              <TextField
+            variant="outlined"
+            margin="normal"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            fullWidth
+            id="description"
+            label="Description"
+            name="description"
+            autoComplete="description"
+            autoFocus
+          />
 
-            <Form.Group controlId='brand'>
-              <Form.Label>Brand</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter brand'
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='countInStock'>
-              <Form.Label>Count In Stock</Form.Label>
-              <Form.Control
-                type='number'
-                placeholder='Enter countInStock'
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='category'>
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter category'
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='description'>
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter description'
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Button type='submit' variant='primary'>
+            <Button type='submit' variant="contained" color="primary" fullWidth>
               Update
             </Button>
-          </Form>
+          </form>
+          </Grid>
         )}
-      </FormContainer>
+      </Grid>
     </>
   )
 }

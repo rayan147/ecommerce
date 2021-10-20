@@ -35,13 +35,21 @@ import Typography from '@material-ui/core/Typography';
 
           },
         },
+        cover: {
+          width: 180,
+          height: 120,
+          minWidth: 180,
+          minHeight: 120,
+          
+          
+        },
       });
 
 
 
 const Product = ({product }) => {
     const classes = useStyles();
-    const {_id,image,name,numReviews,rating,price } = product
+    const {_id,image,name,description,rating,price } = product
 
    
       
@@ -53,20 +61,24 @@ const Product = ({product }) => {
             <CardActionArea>
           
                { <CardMedia 
+               className={classes.cover}
                 image={image} 
                 alt={name} 
                 component="img"  />
                }
             <CardContent>
            
-              <Typography gutterBottom >{`${name}`.substr(0,15)}
+              <Typography   display="block" gutterBottom >{`${name}`.substr(0,15)}
+              </Typography>
+              <Typography variant="caption" display="block" gutterBottom >
+                {`${description}`}
               </Typography>
          
             <Typography>
-                <Rating value={rating} text={`${numReviews} reviews`}  />
+                <Rating value={rating}   />
             </Typography>
-            <Typography color="secondary">
-                ${price}
+            <Typography variant="overline" display="block" gutterBottom >
+             ${price} <small>lb</small> 
             </Typography>  
          
             </CardContent>
