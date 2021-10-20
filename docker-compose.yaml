@@ -22,6 +22,18 @@ services:
   #     - app-network
   #   depends_on:
   #     - api
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_URL=redis://cache
+    volumes:
+      - ./redis:/bitnami/redis/data
+    networks:
+      - app-network 
+    expose:
+    - 6379
+    
   nginx_proxy:
     env_file: ./.env
     restart: always
@@ -38,17 +50,7 @@ services:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_NGINX_PORT
     depends_on:
       - api
-  redis:
-    image: 'bitnami/redis:latest'
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - REDIS_URL=redis://cache
-    volumes:
-      - ./redis:/bitnami/redis/data
-    networks:
-      - app-network 
-    depends_on:
-      - api
+  
      
   api:
     env_file: ./.env
