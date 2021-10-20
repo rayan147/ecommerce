@@ -45,7 +45,10 @@ services:
     volumes:
       - ./redis:/bitnami/redis/data
     networks:
-      - app-network    
+      - app-network 
+    depends_on:
+      - api
+     
   api:
     env_file: ./.env
     environment:
