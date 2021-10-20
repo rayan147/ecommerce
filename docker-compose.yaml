@@ -28,7 +28,7 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
       - REDIS_URL=redis://cache
     volumes:
-      - ./redis:/bitnami/redis/data
+      - ./redis/redis-data:/bitnami/redis/data
     networks:
       - app-network 
 
@@ -57,6 +57,7 @@ services:
     -  MONGO_URL=$MONGO_URL
     -  JWT_TOKEN_SECRET=$JWT_TOKEN_SECRET
     -  PAYPAL_CLIENT_ID=$PAYPAL_CLIENT_ID
+    - REDIS_SERVER_IP=redis
     build:
       context: ./backend
       dockerfile: Dockerfile

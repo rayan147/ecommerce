@@ -18,9 +18,7 @@ import  notFound  from './middleware/notFound.js';
 import  errorHandler from './middleware/errorHandler.js';
 import  Redis from 'redis'
 
-const redisClient = Redis.createClient({
-   host: 'redis'
-   })
+const redisClient = redis.createClient('6379', process.env.REDIS_SERVER_IP)
 
 
 // Load environment variables
