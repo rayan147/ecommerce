@@ -25,7 +25,7 @@ useEffect(()=>{
     dispatch(listTopProducts())
 },[dispatch])
 
-const sliderItems = products.length > 7 ? 7 : products.length
+const sliderItems = products.length > 5 ? 5 : products.length
 const items = []
 
 for (let i = 0; i < products.length; i+= sliderItems) {

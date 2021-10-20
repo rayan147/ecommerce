@@ -16,7 +16,9 @@ import adminRoutes from './routes/adminRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import  notFound  from './middleware/notFound.js';
 import  errorHandler from './middleware/errorHandler.js';
+import  Redis from 'redis'
 
+const client = Redis.createClient({url:'http://redis'})
 
 
 // Load environment variables
