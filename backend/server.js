@@ -19,9 +19,7 @@ import  errorHandler from './middleware/errorHandler.js';
 import  Redis from 'redis'
 
 const redisClient = Redis.createClient({
-  host: 'redis',
-   port: 6379
-
+   host: 'redis'
    })
 
 
