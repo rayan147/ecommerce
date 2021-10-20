@@ -31,8 +31,7 @@ services:
       - ./redis/redis-data:/bitnami/redis/data
     networks:
       - app-network 
-    expose:
-      - 6379
+ 
 
   nginx_proxy:
     env_file: ./.env

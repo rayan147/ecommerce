@@ -22,7 +22,7 @@ import {promisify} from 'util'
 // Create and configure a Redis client.
 const redisClient = Redis.createClient({
   port:6379, 
-  host:'htpp://192.168.0.11'})
+  host:process.env.REDIS_SERVER_IP})
 redisClient.on('error', error =>  console.error(error))
 const redisSet = promisify(redisClient.set).bind(redisClient)
 const redisGet = promisify(redisClient.get).bind(redisClient)
