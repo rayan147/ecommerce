@@ -42,6 +42,7 @@ services:
     image: 'bitnami/redis:latest'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_URL=redis://cache
     volumes:
       - ./redis:/bitnami/redis/data
     networks:
