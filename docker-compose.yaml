@@ -43,7 +43,7 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      ./redis:/bitnami/redis/data
+      - ./redis:/bitnami/redis/data
     networks:
       - app-network    
   api:
