@@ -8,8 +8,8 @@ const redisClient = redis.createClient({
     host:REDIS_SERVER_IP
 })
 
-const setAsyncEx = promisify(client.setex).bind(client);
-const getAsync = promisify(client.get).bind(client);
+const setAsyncEx = promisify(redisClient.setex).bind(redisClient);
+const getAsync = promisify(redisClient.get).bind(redisClient);
 
 redisClient.on('error', err => {
     console.log(`'Error ${err}`);
