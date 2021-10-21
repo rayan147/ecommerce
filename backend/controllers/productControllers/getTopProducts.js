@@ -1,7 +1,7 @@
 import Product from '../../models/productModel.js';
 import asyncHandler from "express-async-handler"
 
-import {get,saveWithTtl} from '../../cache'
+import {get,saveWithTtl} from '../../redis/cache'
 
 
 // @desc    Get top rated products
