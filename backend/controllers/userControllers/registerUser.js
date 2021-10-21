@@ -2,6 +2,8 @@ import User from '../../models/userModel.js';
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
 
+import mongoMethods from '../../config/mongoMethods.js';
+const {createUser} = mongoMethods();
 
 
 /**
@@ -12,7 +14,7 @@ import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFro
  * */
  const registerUser = asyncHandler(  async(req, res) => {
     const { email, password,name } = req.body;
-    const userExits = await User.findOne({ email });
+    const userExits = await findUserByEmail(email);
 
     switch (true) {
         case userExits !== null ?? userExits !== undefined:
@@ -20,7 +22,8 @@ import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFro
              throw new Error('User already exists');
             break;
         case userExits === null ?? userExits === undefined:
-            const user = await User.create({
+
+            const user = await createUser({
                 email,
                 password,
                 name

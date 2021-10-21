@@ -20,11 +20,15 @@ const mongoMethods = () =>{
             runValidators: true
           })
     }
+    const createUser = async(data) => {
+        return await User.create(data)
+    }
     return{
         findUserByEmailWidthPasswordReturn,
         findUserByEmail,
         findUserById,
-        findUserByIdAndUpdate
+        findUserByIdAndUpdate,
+        createUser
     }
 }
 
