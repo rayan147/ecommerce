@@ -1,7 +1,7 @@
 
 import asyncHandler from "express-async-handler"
 import mongoMethods from '../../config/mongoMethods.js';
-const {createProduct} = mongoMethods();
+const {createProductAndAddItToMongodb} = mongoMethods();
 
 /**
  * @description - gets the current user profile
@@ -11,7 +11,7 @@ const {createProduct} = mongoMethods();
  * */
 
 const createProduct = asyncHandler( async(req, res) => {
-    const createdProduct = await createProduct({
+    const createdProduct = await createProductAndAddItToMongodb({
         name:'Name',
         price:0,
         user:req.user._id,

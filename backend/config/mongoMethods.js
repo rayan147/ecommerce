@@ -25,7 +25,7 @@ const mongoMethods = () =>{
     const createUser = async(data) => {
         return await User.create(data)
     }
-    const createProduct = async(data) => {
+    const createProductAndAddItToMongodb = async(data) => {
         return await Product.create(data)
     }
     const findProductById = async(id) => {
@@ -43,7 +43,7 @@ const mongoMethods = () =>{
         findUserById,
         findUserByIdAndUpdate,
         createUser,
-        createProduct,
+        createProductAndAddItToMongodb,
         findProductById,
         deleteProductBy_Id,
         findProductByName
