@@ -33,7 +33,7 @@ const mongoFactoryMethods = () =>{
         return await Product.findByIdAndDelete(id)
     }
     const findProductByName = async(name) => {
-        const p = await Product.findOne({name})
+        const p = await Product.findOne(name)
         return p
     }
     return{
