@@ -1,8 +1,8 @@
 
 import asyncHandler from "express-async-handler"
 
-import mongoMethods from '../../config/mongoMethods.js';
-const {findProductById} = mongoMethods();
+import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
+const {findProductById} = mongoFactoryMethods();
 
 
 // @desc    Create new review

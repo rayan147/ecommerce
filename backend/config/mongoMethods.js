@@ -3,7 +3,7 @@ import Order from '../models/orderModel.js'
 import Product from '../models/productModel.js'
 
 
-const mongoMethods = () =>{
+const mongoFactoryMethods = () =>{
     const findUserByEmailWidthPasswordReturn = async(email) => {
         return await User.findOne({email}).select('+password')
     }
@@ -48,4 +48,4 @@ const mongoMethods = () =>{
     }
 }
 
-export default mongoMethods
+export default mongoFactoryMethods

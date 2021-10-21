@@ -1,8 +1,8 @@
 
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
-import mongoMethods from '../../config/mongoMethods.js';
-const {findUserByEmailWidthPasswordReturn} = mongoMethods();
+import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
+const {findUserByEmailWidthPasswordReturn} = mongoFactoryMethods();
 
 /**
  * @description - Authenticate a user and return a token

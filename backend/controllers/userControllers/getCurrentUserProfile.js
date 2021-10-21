@@ -1,7 +1,7 @@
 
 import asyncHandler from "express-async-handler"
-import mongoMethods from '../../config/mongoMethods.js';
-const {findUserById} = mongoMethods();
+import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
+const {findUserById} = mongoFactoryMethods();
 /**
  * @description - gets the current user profile
  * @route GET /api/users/profile

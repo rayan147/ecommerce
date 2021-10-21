@@ -1,8 +1,8 @@
 
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
-import mongoMethods from '../../config/mongoMethods.js';
-const {findUserByIdAndUpdate} = mongoMethods();
+import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
+const {findUserByIdAndUpdate} = mongoFactoryMethods();
 
 /**
  * @description - Update the current user profile

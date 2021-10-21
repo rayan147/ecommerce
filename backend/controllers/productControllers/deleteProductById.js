@@ -1,8 +1,8 @@
 import Product from '../../models/productModel.js';
 import asyncHandler from "express-async-handler"
 
-import mongoMethods from '../../config/mongoMethods.js';
-const {deleteProductBy_Id} = mongoMethods();
+import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
+const {deleteProductBy_Id} = mongoFactoryMethods();
 /**
  * @description - gets the current user profile
  * @route   DELETE /api/auth/users/:id
