@@ -1,6 +1,9 @@
 import User from '../../models/userModel.js';
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
+
+const {findUserByIdAndUpdate} = mongoMethods();
+
 /**
  * @description - Update the current user profile
  * @route PUT /api/users/profile
@@ -11,10 +14,7 @@ const updateCurrentUserProfile = asyncHandler(async(req, res) => {
   
   const {user_id,email,name,password} =req.body
 
-  const user = await User.findByIdAndUpdate(user_id,{email,name,password} ,{
-    new: true,
-    runValidators: true
-  });
+  const user = await findUserByIdAndUpdate(user_id,{email,name,password});
 
     const updatedUser ={
       _id: user._id,

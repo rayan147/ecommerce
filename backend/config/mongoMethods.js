@@ -14,6 +14,12 @@ const mongoMethods = () =>{
     const findUserById = async(id) => {
         return await User.findById(id)
     }
+    const findUserByIdAndUpdate = async(id, data) => {
+        return await User.findByIdAndUpdate(id, data,{
+            new: true,
+            runValidators: true
+          })
+    }
     return{
         findUserByEmailWidthPasswordReturn,
         findUserByEmail,
