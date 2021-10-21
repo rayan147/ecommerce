@@ -18,7 +18,7 @@ const updateCurrentUserProfile = asyncHandler(async(req, res) => {
   console.log("req.user",req.user)
   console.log("req.user._id",req.user._id)
 
-  const user = await findUserByIdAndUpdate(user_id,{email,name,password});
+  const user = await findUserByIdAndUpdate(userId,{email,name,password});
 
     const updatedUser ={
       _id: user._id,
