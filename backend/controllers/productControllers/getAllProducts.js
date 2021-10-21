@@ -1,8 +1,7 @@
 import Product from '../../models/productModel.js';
 import asyncHandler from "express-async-handler"
 
-import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
-const {findProductByName} = mongoFactoryMethods();
+
 
 /**
  * @description - Get all products

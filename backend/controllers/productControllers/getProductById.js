@@ -1,8 +1,11 @@
 import Product from '../../models/productModel.js';
 import asyncHandler from "express-async-handler"
 
+import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
+const {findProductById} = mongoFactoryMethods();
+
 const getProductById = asyncHandler( async(req, res) => {
-    const product = await Product.findById(req.params.id);
+    const product = await findProductById(req.params.id);
 
     if(product) {
         res.json(product);
