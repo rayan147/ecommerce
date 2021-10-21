@@ -1,6 +1,7 @@
-import Product from '../../models/productModel.js';
-import asyncHandler from "express-async-handler"
 
+import asyncHandler from "express-async-handler"
+import mongoMethods from '../../config/mongoMethods.js';
+const {createProduct} = mongoMethods();
 
 /**
  * @description - gets the current user profile
@@ -10,7 +11,7 @@ import asyncHandler from "express-async-handler"
  * */
 
 const createProduct = asyncHandler( async(req, res) => {
-    const createdProduct = await Product.create({
+    const createdProduct = await createProduct({
         name:'Name',
         price:0,
         user:req.user._id,

@@ -1,7 +1,8 @@
 import Product from '../../models/productModel.js';
 import asyncHandler from "express-async-handler"
 
-
+import mongoMethods from '../../config/mongoMethods.js';
+const {deleteProductBy_Id} = mongoMethods();
 /**
  * @description - gets the current user profile
  * @route   DELETE /api/auth/users/:id
@@ -10,7 +11,7 @@ import asyncHandler from "express-async-handler"
  * */
 
 const deleteProductById = asyncHandler( async(req, res) => {
-    const product = await Product.findByIdAndDelete(req.params.id);
+    const product = await deleteProductBy_Id(req.params.id);
     if (!product) {
         return res.status(404).json({
           message: 'User not found'

@@ -1,6 +1,9 @@
 import Product from '../../models/productModel.js';
 import asyncHandler from "express-async-handler"
 
+import mongoMethods from '../../config/mongoMethods.js';
+const {findProductByName} = mongoMethods();
+
 /**
  * @description - Get all products
  * @route /api/products
@@ -24,7 +27,7 @@ const getAllProducts = asyncHandler(  async(req, res) => {
       : {}
   
     const count = await Product.countDocuments({ ...keyword })
-    const products = await Product.find({ ...keyword })
+    const products = await findProductByName({ ...keyword })
       .limit(pageSize)
       .skip(pageSize * (page - 1))
   

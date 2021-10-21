@@ -1,4 +1,4 @@
-import User from '../../models/userModel.js';
+
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
 
@@ -40,7 +40,7 @@ const {createUser,findUserByEmail} = mongoMethods();
         default: 
             res.status(400)
             throw new Error('invalid user input data');
-            break;
+      
     }
   
  })
