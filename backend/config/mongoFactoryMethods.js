@@ -7,6 +7,9 @@ const mongoFactoryMethods = () =>{
     const findUserByEmailWidthPasswordReturn = async(email) => {
         return await User.findOne({email}).select('+password')
     }
+   const findUserByEmailWidthOutPasswordReturn = async(email) => {
+        return await User.findOne({email}).select('-password')
+    }
     const findUserByEmail = async(email) => {
         return await User.findOne({email})
     }
@@ -47,6 +50,7 @@ const mongoFactoryMethods = () =>{
         }
     return{
         findUserByEmailWidthPasswordReturn,
+        findUserByEmailWidthOutPasswordReturn,
         findUserByEmail,
         findUserById,
         findUserByIdAndUpdate,

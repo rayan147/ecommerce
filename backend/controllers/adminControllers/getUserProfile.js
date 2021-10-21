@@ -1,6 +1,7 @@
 import User from '../../models/userModel.js';
 import asyncHandler from "express-async-handler"
 
+const {findUserById} = mongoFactoryMethods()
 /**
  * @description - gets the current user profile
  * @route GET /api/users/profile
@@ -9,7 +10,7 @@ import asyncHandler from "express-async-handler"
  * */
 const getUserProfile = asyncHandler(async(req, res) => {
 
-  const user = await User.findById(req.params.id);
+  const user = await findUserById(req.params.id);
 
   if(!user) {
      res.status(404)

@@ -1,6 +1,9 @@
-import User from '../../models/userModel.js';
+
 import asyncHandler from "express-async-handler"
 
+import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
+
+const {findUserByEmailWidthOutPasswordReturnUser} = mongoFactoryMethods()
 /**
  * @description - gets users by id
  * @route GET /api/auth/user/:id
@@ -8,7 +11,7 @@ import asyncHandler from "express-async-handler"
  * @return  user object
  * */
 const getUserById = asyncHandler(async(req, res) => {
-  const user = await User.findById(req.params.id).select('-password')
+  const user = await findUserByEmailWidthOutPasswordReturnUser(req.params.id);
   if(user){
     return res.status(200).json(user);
    }
