@@ -24,6 +24,7 @@ const mongoMethods = () =>{
         findUserByEmailWidthPasswordReturn,
         findUserByEmail,
         findUserById,
+        findUserByIdAndUpdate
     }
 }
 
