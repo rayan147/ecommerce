@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
 
 import mongoMethods from '../../config/mongoMethods.js';
-const {createUser} = mongoMethods();
+const {createUser,findUserByEmail} = mongoMethods();
 
 
 /**
