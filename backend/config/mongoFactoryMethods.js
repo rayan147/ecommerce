@@ -23,7 +23,9 @@ const mongoFactoryMethods = () =>{
     const findUserByIdAndDelete = async(id) => {
         return await User.findByIdAndDelete(id)
     }
-   
+    const findAllUsers = async() => {
+        return await User.find({})
+    }
     const createUser = async(data) => {
         return await User.create(data)
     }
@@ -54,7 +56,8 @@ const mongoFactoryMethods = () =>{
         deleteProductBy_Id,
         findProductById,
         findProductByIdAndUpdate,
-        findUserByIdAndDelete
+        findUserByIdAndDelete,
+        findAllUsers
        
     }
 }
