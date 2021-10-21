@@ -12,7 +12,7 @@ const getTopProducts = asyncHandler(async (req, res) => {
   const cachedData = await get(cacheKey)
   
   if(cachedData){
-    console.log('data from cached data')
+    console.log('data from cached data'.green.bgWhite)
     res.json(cachedData)
   }
 
