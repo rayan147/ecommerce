@@ -33,7 +33,7 @@ const mongoFactoryMethods = () =>{
         return await Product.findByIdAndDelete(id)
     }
     const findProductByName = async(name) => {
-        return await Product.find({name})
+        return await Product.find(name)
     }
     return{
         findUserByEmailWidthPasswordReturn,
