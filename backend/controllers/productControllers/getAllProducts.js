@@ -28,10 +28,10 @@ const getAllProducts = asyncHandler(  async(req, res) => {
   
     const count = await Product.countDocuments({ ...keyword })
     const products = await findProductByName({ ...keyword })
-      .limit(pageSize)
-      .skip(pageSize * (page - 1))
-  
-    res.json({ products, page, pages: Math.ceil(count / pageSize) })
+      // .limit(pageSize)
+      // .skip(pageSize * (page - 1))
+    const limitProducts = products.limit(pageSize).skip(pageSize * (page - 1)) 
+    res.json({ limitProducts, page, pages: Math.ceil(count / pageSize) })
 })
 
 export default getAllProducts;
