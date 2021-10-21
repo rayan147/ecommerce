@@ -24,6 +24,7 @@ services:
   #     - api
   redis:
     image: 'redis'
+    user: root
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
