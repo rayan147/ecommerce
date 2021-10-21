@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler"
 
 import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
 
-const { findUserByIdAndDelete } = mongoFactoryMethods;
+const { findUserByIdAndDelete } = mongoFactoryMethods()
 /**
  * @description - gets the current user profile
  * @route   DELETE /api/auth/users/:id

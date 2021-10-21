@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler"
 
 import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
 
-const { findAllUsers } = mongoFactoryMethods;  
+const { findAllUsers } = mongoFactoryMethods()  
 /**
  * @description - gets all users
  * @route GET /api/auth/uers
