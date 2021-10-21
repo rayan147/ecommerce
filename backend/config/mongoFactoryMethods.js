@@ -20,6 +20,10 @@ const mongoFactoryMethods = () =>{
             runValidators: true
           })
     }
+    const findUserByIdAndDelete = async(id) => {
+        return await User.findByIdAndDelete(id)
+    }
+   
     const createUser = async(data) => {
         return await User.create(data)
     }
@@ -33,6 +37,12 @@ const mongoFactoryMethods = () =>{
         return await Product.findByIdAndDelete(id)
     }
 
+    const findProductByIdAndUpdate = async(id, data) => {
+        return await Product.findByIdAndUpdate(id, data,{
+            new: true,
+            runValidators: true
+            })
+        }
     return{
         findUserByEmailWidthPasswordReturn,
         findUserByEmail,
@@ -42,7 +52,9 @@ const mongoFactoryMethods = () =>{
         createProductAndAddItToMongodb,
         findProductById,
         deleteProductBy_Id,
-        findProductById
+        findProductById,
+        findProductByIdAndUpdate,
+        findUserByIdAndDelete
        
     }
 }
