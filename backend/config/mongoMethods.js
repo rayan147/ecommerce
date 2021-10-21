@@ -4,11 +4,20 @@ import Product from '../models/productModel.js'
 
 
 const mongoMethods = () =>{
-    const findUserByEmail = async(email) => {
+    const findUserByEmailWidthPasswordReturn = async(email) => {
         return await User.findOne({email}).select('+password')
     }
+    const findUserByEmail = async(email) => {
+        return await User.findOne({email})
+    }
+
+    const findUserById = async(id) => {
+        return await User.findById(id)
+    }
     return{
-       findUserByEmail 
+        findUserByEmailWidthPasswordReturn,
+        findUserByEmail,
+        findUserById,
     }
 }
 

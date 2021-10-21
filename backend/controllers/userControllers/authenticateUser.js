@@ -25,7 +25,6 @@ const authenticateUser = asyncHandler(  async(req, res) => {
  
   }
   const isValidPassword = await user.comparePassword(password) 
-  console.log('isValidPassword', isValidPassword)
   if(!isValidPassword){
     res.status(401)
     throw new Error('Incorrect password')

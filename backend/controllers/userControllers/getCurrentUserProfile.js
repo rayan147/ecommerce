@@ -1,6 +1,7 @@
-import User from '../../models/userModel.js';
-import asyncHandler from "express-async-handler"
 
+import asyncHandler from "express-async-handler"
+import mongoMethods from '../../config/mongoMethods.js';
+const {findUserById} = mongoMethods();
 /**
  * @description - gets the current user profile
  * @route GET /api/users/profile
@@ -8,8 +9,7 @@ import asyncHandler from "express-async-handler"
  * @return  user object
  * */
 const getCurrentUserProfile = asyncHandler(async(req, res) => {
-   console.log(req.user)
-  const user = await User.findById(req.user._id);
+  const user = await findUserById(req.user._id);
 
   if(!user) {
      res.status(404)
