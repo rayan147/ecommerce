@@ -2,8 +2,6 @@ import User from '../models/userModel.js'
 import Order from '../models/orderModel.js'
 import Product from '../models/productModel.js'
 
-import mongoMethods from '../../config/mongoMethods.js';
-const {createProduct} = mongoMethods();
 
 const mongoMethods = () =>{
     const findUserByEmailWidthPasswordReturn = async(email) => {
