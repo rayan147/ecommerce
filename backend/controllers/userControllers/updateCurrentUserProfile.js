@@ -1,7 +1,7 @@
 import User from '../../models/userModel.js';
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
-
+import mongoMethods from '../../config/mongoMethods.js';
 const {findUserByIdAndUpdate} = mongoMethods();
 
 /**
