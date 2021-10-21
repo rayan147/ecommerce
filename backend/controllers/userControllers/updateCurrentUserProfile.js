@@ -12,10 +12,11 @@ const {findUserByIdAndUpdate} = mongoMethods();
  * */
 const updateCurrentUserProfile = asyncHandler(async(req, res) => {
   
-  const {user_id,email,name,password} =req.body
-
+  const {email,name,password} =req.body
+  const userId = req.user._id
   console.log("req.body",req.body)
   console.log("req.user",req.user)
+  console.log("req.user._id",req.user._id)
 
   const user = await findUserByIdAndUpdate(user_id,{email,name,password});
 
