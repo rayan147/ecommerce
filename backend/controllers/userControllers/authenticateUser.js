@@ -2,7 +2,7 @@ import User from '../../models/userModel.js';
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
 import mongoMethods from '../../config/mongoMethods.js';
-const {findUserByEmail} = mongoMethods();
+const {findUserByEmailWidthPasswordReturn} = mongoMethods();
 
 /**
  * @description - Authenticate a user and return a token
@@ -18,8 +18,7 @@ const authenticateUser = asyncHandler(  async(req, res) => {
       
    }
 //   const user = await User.findOne({ email }).select('+password')
-   const user = await findUserByEmail(email)
-   console.log({user})
+   const user = await findUserByEmailWidthPasswordReturn(email)
   if(!user){
     res.status(401)
     throw new Error('User not found')
