@@ -19,6 +19,7 @@ const authenticateUser = asyncHandler(  async(req, res) => {
    }
 //   const user = await User.findOne({ email }).select('+password')
    const user = await findUserByEmail(email)
+   console.log({user})
   if(!user){
     res.status(401)
     throw new Error('User not found')
