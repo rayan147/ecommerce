@@ -48,7 +48,7 @@ const mongoFactoryMethods = () =>{
             runValidators: true
             })
         }
-    return{
+    return Object.freeze({
         findUserByEmailWidthPasswordReturn,
         findUserByEmailWidthOutPasswordReturn,
         findUserByEmail,
@@ -63,7 +63,7 @@ const mongoFactoryMethods = () =>{
         findUserByIdAndDelete,
         findAllUsers
        
-    }
+    })
 }
 
 export default mongoFactoryMethods
