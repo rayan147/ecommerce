@@ -1,8 +1,7 @@
 
 import asyncHandler from "express-async-handler"
 
-import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
-const {findProductById} = mongoFactoryMethods();
+
 
 
 // @desc    Create new review
@@ -11,7 +10,7 @@ const {findProductById} = mongoFactoryMethods();
 const createProductReview = asyncHandler(async (req, res) => {
     const { rating, comment } = req.body
   
-    const product = await findProductById(req.params.id)
+    const product = await req.db.findProductById(req.params.id)
   
     if (product) {
       const alreadyReviewed = product.reviews.find(

@@ -1,7 +1,6 @@
 
 import asyncHandler from "express-async-handler"
-import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
-const {findProductByName} = mongoFactoryMethods();
+
 
 /**
  * @description - gets the current user profile
@@ -11,7 +10,7 @@ const {findProductByName} = mongoFactoryMethods();
  * */
 
 const createProduct = asyncHandler( async(req, res) => {
-    const createdProduct = await createProductAndAddItToMongodb({
+    const createdProduct = await req.db.createProductAndAddItToMongodb({
         name:'Name',
         price:0,
         user:req.user._id,

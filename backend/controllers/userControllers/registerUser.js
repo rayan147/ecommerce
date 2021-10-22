@@ -2,8 +2,6 @@
 import asyncHandler from "express-async-handler"
 import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFromUserId.js'
 
-import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
-const {createUser,findUserByEmail} = mongoFactoryMethods();
 
 
 /**
@@ -14,7 +12,7 @@ const {createUser,findUserByEmail} = mongoFactoryMethods();
  * */
  const registerUser = asyncHandler(  async(req, res) => {
     const { email, password,name } = req.body;
-    const userExits = await findUserByEmail(email);
+    const userExits = await req.db.findUserByEmail(email);
 
     switch (true) {
         case userExits !== null ?? userExits !== undefined:

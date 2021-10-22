@@ -1,8 +1,6 @@
-import Product from '../../models/productModel.js';
+
 import asyncHandler from "express-async-handler"
 
-import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
-const {findProductByIdAndUpdate} = mongoFactoryMethods();
 /**
  * @description - gets the current user profile
  * @route  PUT /api/products/:id
@@ -21,7 +19,7 @@ const updateProduct = asyncHandler( async(req, res) => {
         category,
         countInStock,
       } = req.body
-    const updatedProduct = await findProductByIdAndUpdate(req.params.id,{ name,
+    const updatedProduct = await req.db.findProductByIdAndUpdate(req.params.id,{ name,
         price,
         description,
         image,

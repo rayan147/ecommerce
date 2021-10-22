@@ -1,7 +1,7 @@
 
 import asyncHandler from "express-async-handler"
 import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
-const {findUserById} = mongoFactoryMethods();
+
 /**
  * @description - gets the current user profile
  * @route GET /api/users/profile
@@ -11,7 +11,7 @@ const {findUserById} = mongoFactoryMethods();
 const getCurrentUserProfile = asyncHandler(async(req, res) => {
    
   const user = await req.db.findUserById(req.user._id);
-console.log('req.db', req.db);
+
   if(!user) {
      res.status(404)
      throw new Error('User not found');
