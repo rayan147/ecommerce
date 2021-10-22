@@ -1,7 +1,7 @@
 import makeApp from './test/app.js'
 import mongoFactoryMethods from '../config/mongoFactoryMethods.js';
 
-const app = makeApp(mongoFactoryMethods);
+const app = makeApp(mongoFactoryMethods());
 
  const server = app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT} running in ${process.env.NODE_ENV} mode`.cyan.underline))
  process.on('SIGINT', () => {

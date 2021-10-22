@@ -8,7 +8,7 @@ import morgan from 'morgan';
 import hpp from 'hpp';
 import helmet from 'helmet';
 
-import db from '../config/db.js'
+
 import productRoutes from '../routes/productRoutes.js'
 import userRoutes from '../routes/userRoutes.js'
 import orderRoutes from '../routes/orderRoutes.js'
@@ -32,7 +32,7 @@ const exposeDatabase = (req, res, next) => {
 dotenv.config({path:'./local.env'});
 
 //DB
-db().connectMongo()
+// db().connectMongo()
 
 //INITIALIZE SERVER
 const app = express();

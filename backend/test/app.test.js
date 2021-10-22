@@ -33,7 +33,17 @@ describe('TDD Nodejs API', () => {
      const response = await request(app).get('/')
       expect(response.text).toBe('Nodejs API is running...' )
     });
-  }
+  },
+   describe('POST /api/user',()=>{
+      it('Should save username and password to the database',async ()=>{
+        const response = await request(app).post('/api/user').send({username:'test',password:'test'})
+        expect(response.body.username).toBe('test')
+        expect(response.body.password).toBe('test')
+         
+      })
+      
+      expect(database().createUser.mock.calls.length).toHaveBeenCalled(1)
+   })
   )
 });
 
