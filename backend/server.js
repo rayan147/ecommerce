@@ -1,6 +1,6 @@
 import makeApp from './test/app.js'
 import mongoFactoryMethods from './config/mongoFactoryMethods.js';
-import db from '../config/db.js';
+import db from './config/db.js';
 
 
 db().connectMongo(process.env.MONGO_URL_PROD);
