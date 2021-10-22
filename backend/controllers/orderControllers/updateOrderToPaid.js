@@ -12,7 +12,7 @@ import { response } from 'express';
 
 
  const updateOrderToPaid = asyncHandler(  async(req, res) => {
-    const order = await Order.findById(req.params.id)
+    const order = await req.db.findOrderByIdAndNotPopulate(req.params.id)
 
     if (order) {
       order.isPaid = true

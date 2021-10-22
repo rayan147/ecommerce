@@ -3,7 +3,7 @@ import mongoFactoryMethods from './config/mongoFactoryMethods.js';
 import db from './config/db.js';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({path: '/local.env'});
 
 
 db().connectMongo(process.env.MONGO_URL_PROD);

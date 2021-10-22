@@ -25,7 +25,7 @@ import asyncHandler from "express-async-handler"
         res.status(400)
         throw new Error("No order items")
     }
-    const createdOrder = await Order.create({
+    const createdOrder = await req.db.createOrderAndAddItToMongodb({
         user: req.user._id,
         orderItems,
         shippingAddress,

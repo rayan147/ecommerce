@@ -12,7 +12,7 @@ import { response } from 'express';
 
 
  const getLoggedUsersOrders = asyncHandler(  async(req, res) => {
-      const orders = await Order.find({user: req.user._id});
+      const orders = await req.db.findCurrentUserOrders(req.user._id);
     if(!orders) {
        throw new Error('No orders found')
     }

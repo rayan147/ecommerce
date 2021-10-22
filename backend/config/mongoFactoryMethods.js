@@ -48,6 +48,21 @@ const mongoFactoryMethods = () =>{
             runValidators: true
             })
         }
+    const createOrderAndAddItToMongodb = async(data) => {
+        return await Order.create(data)
+    }
+    const findAllOrders = async() => {
+        return await Order.find({}).populate('user', 'id name')
+    }
+    const findOrderById = async(id) => {
+        return await Order.findById(id).populate('user','name email')
+    }
+    const findOrderByIdAndNotPopulate = async(id) => {
+        return await Order.findById(id)
+    }
+    const findCurrentUserOrders = async(id) => {
+        return await Order.find({user: id})
+    }
     return Object.freeze({
         findUserByEmailWidthPasswordReturn,
         findUserByEmailWidthOutPasswordReturn,
@@ -61,7 +76,11 @@ const mongoFactoryMethods = () =>{
         findProductById,
         findProductByIdAndUpdate,
         findUserByIdAndDelete,
-        findAllUsers
+        findAllUsers,
+        createOrderAndAddItToMongodb,
+        findAllOrders,
+        findOrderById,
+        findCurrentUserOrders
        
     })
 }

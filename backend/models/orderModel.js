@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
-import shippingSchema from './shippingSchema.js';
 import orderItemsSchema from './orderItemsSchema.js';
-import paymentResultsSchema  from './paymentResultsSchema.js';
 const { Schema } = mongoose;
 
 

@@ -9,12 +9,12 @@
   },
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "client": "npm start --prefix ../frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node seeder",
     "data:destroy": "node seeder -d",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll --detectOpenHandles"
   },
   "author": "Rayan Ramirez",
   "license": "MIT",

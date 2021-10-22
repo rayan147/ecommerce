@@ -12,8 +12,8 @@ import { response } from 'express';
 
 
  const getOrderById = asyncHandler(  async(req, res) => {
-   const order = await Order.findById(req.params.id).populate('user','name email');
- console.log(req.params.id)
+   const order = await req.db.findOrderById()
+
    if(order) {
   return  res.json(order);
    

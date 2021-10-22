@@ -7,7 +7,7 @@ import asyncHandler from "express-async-handler"
 // @route   GET /api/orders/:id/deliver
 // @access  Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id)
+    const order = await req.db.findOrderByIdAndNotPopulate(req.params.id)
   
     if (order) {
       order.isDelivered = true
