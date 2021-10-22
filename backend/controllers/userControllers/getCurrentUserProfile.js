@@ -9,7 +9,7 @@ const {findUserById} = mongoFactoryMethods();
  * @return  user object
  * */
 const getCurrentUserProfile = asyncHandler(async(req, res) => {
-  const user = await findUserById(req.user._id);
+  const user = await req.db.findUserById(req.user._id);
 
   if(!user) {
      res.status(404)

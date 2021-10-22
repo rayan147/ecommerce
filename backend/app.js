@@ -19,9 +19,14 @@ import  errorHandler from './middleware/errorHandler.js';
 
 
 
-// Load environment variables
-const PORT = process.env?.PORT ?? 5000;
-const NODE_ENV = process.env?.NODE_ENV ?? 'development';
+
+export default function app(database) {
+
+const exposeDatabase = (req, res, next) => {
+    req.db = database();
+    next();
+}
+
 
 //CONFIG
 dotenv.config({path:'./local.env'});
@@ -52,7 +57,7 @@ app.use(cors());
 // ROUTES
 app.use('/api/products', productRoutes);
 app.use('/api/auth/users', adminRoutes);
-app.use('/api/users',userRoutes); 
+app.use('/api/users',exposeDatabase,userRoutes); 
 app.use('/api/orders',orderRoutes);
 app.use('/api/upload',uploadRoutes);
 app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
@@ -64,5 +69,5 @@ app.use(notFound)
 const __dirname = path.resolve()
 app.use('/uploads',express.static(path.join(__dirname,'/uploads')))
 
-
-export default app
+return app
+}
