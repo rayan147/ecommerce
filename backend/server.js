@@ -1,5 +1,5 @@
-import makeApp from './app.js'
-import mongoFactoryMethods from './config/mongoFactoryMethods.js';
+import makeApp from './test/app.js'
+import mongoFactoryMethods from '../config/mongoFactoryMethods.js';
 
 const app = makeApp(mongoFactoryMethods);
 

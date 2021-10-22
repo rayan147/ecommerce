@@ -8,14 +8,14 @@ import morgan from 'morgan';
 import hpp from 'hpp';
 import helmet from 'helmet';
 
-import connectMongo from './config/db.js'
-import productRoutes from './routes/productRoutes.js'
-import userRoutes from './routes/userRoutes.js'
-import orderRoutes from './routes/orderRoutes.js'
-import adminRoutes from './routes/adminRoutes.js'
-import uploadRoutes from './routes/uploadRoutes.js'
-import  notFound  from './middleware/notFound.js';
-import  errorHandler from './middleware/errorHandler.js';
+import db from '../config/db.js'
+import productRoutes from '../routes/productRoutes.js'
+import userRoutes from '../routes/userRoutes.js'
+import orderRoutes from '../routes/orderRoutes.js'
+import adminRoutes from '../routes/adminRoutes.js'
+import uploadRoutes from '../routes/uploadRoutes.js'
+import  notFound  from '../middleware/notFound.js';
+import  errorHandler from '../middleware/errorHandler.js';
 
 
 
@@ -32,7 +32,7 @@ const exposeDatabase = (req, res, next) => {
 dotenv.config({path:'./local.env'});
 
 //DB
-connectMongo()
+db().connectMongo()
 
 //INITIALIZE SERVER
 const app = express();
