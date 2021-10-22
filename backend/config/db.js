@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 const db = () =>{
-    const connectMongo = async () => {
+    const connectMongo = async (connectionString) => {
         try {
-            const conn = await mongoose.connect(process.env.MONGO_URL ,{
+            const conn = await mongoose.connect(connectionString ,{
                 useNewUrlParser: true,
                 useCreateIndex: true,
                 useFindAndModify: false,

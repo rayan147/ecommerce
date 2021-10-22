@@ -1,9 +1,9 @@
 import makeApp from './test/app.js'
-import mongoFactoryMethods from '../config/mongoFactoryMethods.js';
+import mongoFactoryMethods from './config/mongoFactoryMethods.js';
 import db from '../config/db.js';
 
 
-db().connectMongo()
+db().connectMongo(process.env.MONGO_URL_PROD);
 const app = makeApp(mongoFactoryMethods);
 
  const server = app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT} running in ${process.env.NODE_ENV} mode`.cyan.underline))
