@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 
 import axios from 'axios'
-import {DropzoneArea} from 'material-ui-dropzone'
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 
-
+import { makeStyles } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import listProductDetails from '../actions/product/listProductDetails'
 import updateProduct from '../actions/product/updateProduct'
@@ -21,8 +21,23 @@ import PRODUCT_CONSTANTS from '../constants/productConstants'
 
 const { PRODUCT_UPDATE_RESET } = PRODUCT_CONSTANTS
 
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: 'none',
+  },
+}));
+
 const ProductEdit = ({ match, history }) => {
   const productId = match.params.id
+
+  const classes = useStyles();
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
@@ -173,11 +188,28 @@ const ProductEdit = ({ match, history }) => {
             autoFocus
           />
         {uploading && <h2>Loading..</h2>}
-             {/* <DropzoneArea
-                onChange={uploadFileHandler}
-              />  */}
-              
-           
+        <>
+        <input
+          color="primary"
+          accept="image/*"
+          type="file"
+          onChange={uploadFileHandler}
+          id="icon-button-file"
+          style={{ display: 'none', }}
+        />
+        <label htmlFor="icon-button-file">
+          <Button
+          startIcon={<CloudUploadIcon />}
+            variant="contained"
+            component="span"
+            className={classes.button}
+            size="large"
+            color="primary"
+          >
+            Upload
+          </Button>
+        </label>
+      </>
               <TextField
             variant="outlined"
             margin="normal"

@@ -16,7 +16,7 @@ import adminRoutes from '../routes/adminRoutes.js'
 import uploadRoutes from '../routes/uploadRoutes.js'
 import  notFound  from '../middleware/notFound.js';
 import  errorHandler from '../middleware/errorHandler.js';
-
+import multer from 'multer';
 
 
 
@@ -34,7 +34,7 @@ dotenv.config({path:'./local.env'});
 
 //INITIALIZE SERVER
 const app = express();
-app.use(express.json())
+app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({ extended: false }))
 app.use(hpp());
 // Set security headers
@@ -57,15 +57,29 @@ app.use('/api/products', productRoutes);
 app.use('/api/auth/users', adminRoutes);
 app.use('/api/users',userRoutes); 
 app.use('/api/orders',orderRoutes);
-app.use('/api/upload',uploadRoutes);
+// app.use('/api/upload',uploadRoutes);
 app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
+
+const __dirname = path.resolve()
+const upload = multer({
+    dest: express.static(path.join(__dirname, '../uploads'))
+});
+
 //ERROR HANDLERS
 app.use(errorHandler)
 app.use(notFound)
 
 //STATIC FOLDER
-const __dirname = path.resolve()
-app.use('/uploads',express.static(path.join(__dirname,'/uploads')))
+
+app.post('/api/upload', upload.single('image'), (req, res) => {
+  try {
+    console.log(req.file);
+    res.send(req.file);
+  } catch (error) {
+    console.log(error);
+  }
+    
+});
 
 return app
 }
