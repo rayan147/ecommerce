@@ -1,4 +1,4 @@
-import makeApp from './test/app.js'
+import makeApp from './src/app.js'
 import mongoFactoryMethods from './config/mongoFactoryMethods.js';
 import db from './config/db.js';
 import dotenv from 'dotenv';
