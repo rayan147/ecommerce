@@ -60,15 +60,13 @@ app.use('/api/orders',orderRoutes);
 // app.use('/api/upload',uploadRoutes);
 app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-const upload = multer({
-    dest: express.static(path.join(__dirname, '../uploads/'))
-});
+const __dirname = path.resolve()
+app.use('../uploads', express.static(path.join(__dirname, '../uploads')))
 
-app.post('/api/upload', upload.single('image'), (req, res) => {
-    console.log(req.file);
-    res.send(req.file);
-});
+// app.post('/api/upload', upload.single('image'), (req, res) => {
+//     console.log(req.file);
+//     res.send(req.file);
+// });
 
 //ERROR HANDLERS
 app.use(errorHandler)
