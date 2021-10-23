@@ -36,7 +36,7 @@ services:
  
 
   nginx_proxy:
-    env_file: ./.env
+    env_file: ~/.profile
     restart: always
     build:
       context: ./nginx
@@ -53,7 +53,7 @@ services:
   
      
   api:
-    env_file: ./.env
+    env_file: ~/.profile
     environment:
     -  NODE_ENV=$NODE_ENV
     -  PORT=$PORT
@@ -72,8 +72,9 @@ services:
     - ./backend:/app/backend
     networks:
       - app-network
+
   uploadS3:
-    env_file: ./.env
+    env_file: ~/.profile
     environment:
     -  NODE_ENV=$NODE_ENV
     -  PORT=$PORT
@@ -83,13 +84,13 @@ services:
     -  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
     -  PORT_S3=$PORT_S3
     build:
-      context: ./backend
+      context: ./uploadS3
       dockerfile: Dockerfile
-    image: api:v1.0.0
-    container_name: api
+    image: uploadS3:v1.0.0
+    container_name: uploadS3
     restart: unless-stopped
     volumes:
-    - ./backend:/app/backend
+    - ./uploadS3:/app/uploadS3
     networks:
       - app-network
 
