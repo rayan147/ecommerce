@@ -68,7 +68,7 @@ app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_I
 //     res.send(req.file);
 // });
 const updload = multer({
-    dest: 'upload'
+    dest: 'uploads/'
   });
 app.post('/api/upload', updload.single('image'), (req, res) => {
     console.log(req.file);
