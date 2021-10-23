@@ -53,12 +53,12 @@ if (process.env.NODE_ENV === 'development') {
 app.use(cors());
 
 // ROUTES
-app.use('/api/products', exposeDatabase,productRoutes);
-app.use('/api/auth/users',exposeDatabase, adminRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/auth/users', adminRoutes);
 app.use('/api/users',userRoutes); 
-app.use('/api/orders',exposeDatabase,orderRoutes);
-app.use('/api/upload',exposeDatabase,uploadRoutes);
-app.get('/api/config/paypal',exposeDatabase, (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
+app.use('/api/orders',orderRoutes);
+app.use('/api/upload',uploadRoutes);
+app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
 //ERROR HANDLERS
 app.use(errorHandler)
 app.use(notFound)

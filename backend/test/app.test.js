@@ -9,6 +9,7 @@ import mongoose from 'mongoose'
 
 
 
+
 const database=() =>{
 const createUser = jest.fn()
 const findUserById = jest.fn()
@@ -33,10 +34,15 @@ describe('TDD Nodejs API', () => {
         useUnifiedTopology: true
     
     })
+    console.log('Connected to MongoDB')
 })
-
+afterEach(async () => {
+  console.log('afterEach')
+})
 afterAll(async () => {
+    await mongoose.connection.dropCollection('users')
     await mongoose.connection.close()
+    console.log('afterAll')
 
     
 })
@@ -56,15 +62,63 @@ afterAll(async () => {
       const response = await request(app).post('/api/users/register').send({
         name: 'test',
         email: 'TYAS@gmail.com',
-        password: '123456'
+        password: '123456',
+        isAdmin: true
       })
    
      expect(response.status).toBe(201)
-     console.log(response.body)
-   
-
+     expect(response.body.token).toBeDefined()
+     expect(response.body.name).toBeDefined()
+     expect(response.body.email).toBeDefined()
 
   })
+  it('should return 400 BAD REQUEST with no password', async () => {
+    const response = await request(app).post('/api/users/register').send({
+      name: 'test',
+      email: 'test123@gmail.com',
+
+    })
+    expect(response.status).toBe(500)
+
 })
-});
+})
+describe('POST /api/users/login',()=>{
+  it('should return 200 OK', async () => {
+    const response = await request(app).post('/api/users/login').send({
+      email: 'TYAS@gmail.com',
+      password: '123456'
+    })
+    expect(response.status).toBe(200)
+    expect(response.body.token).toBeDefined()
+    expect(response.body.name).toBeDefined()
+    expect(response.body.email).toBeDefined()
+  })
+  it('should return 400 BAD REQUEST with no password', async () => {
+    const response = await request(app).post('/api/users/login').send({
+      email: 'TYAS@gmail.com',
+    })
+    expect(response.status).toBe(400)
+
+})
+})
+describe('/api/products',()=>{
+  it('should return 200 OK', async () => {
+    const response = await request(app).get('/api/products')
+    expect(response.status).toBe(200)
+  })
+   it('should get top products',async ()=>{
+    const response = await request(app).get('/api/products/top')
+    expect(response.status).toBe(200)
+  })
+
+  it('should return 404 if the product doesnt exits',async ()=>{
+    const response = await request(app).get('/api/products/5f5a5b8c7d8f8c0e7c9c9e1f')
+    expect(response.status).toBe(404)
+  }
+  )
+   })
+
+})
+
+
 
