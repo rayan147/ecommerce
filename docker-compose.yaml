@@ -70,6 +70,7 @@ services:
     restart: unless-stopped
     volumes:
     - ./backend:/app/backend
+    - ./backend/src/uploads:/app/backend/src/uploads
     networks:
       - app-network
 
