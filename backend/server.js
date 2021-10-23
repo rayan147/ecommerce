@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config({path: '/local.env'});
 
 
-db().connectMongo(process.env.MONGO_URL_PROD);
+db().connectMongo(process.env.MONGO_URL_TEST);
 const app = makeApp(mongoFactoryMethods);
 
  const server = app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT} running in ${process.env.NODE_ENV} mode`.cyan.underline))

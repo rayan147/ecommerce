@@ -9,18 +9,21 @@ import updateProduct from '../controllers/productControllers/updateProduct.js';
 import createProduct from '../controllers/productControllers/createProduct.js';
 import createProductReview from '../controllers/productControllers/createProductReviewed.js';
 import getTopProducts from '../controllers/productControllers/getTopProducts.js';
+
+import exposeDatabase from '../middleware/exposeDatabase.js';
+
 const router = express.Router();
 
 
 router.route('/')
-.get(getAllProducts)
-.post(authenticateUserToken,isAdmin,createProduct)
+.get(exposeDatabase,getAllProducts)
+.post(exposeDatabase,authenticateUserToken,isAdmin,createProduct)
 
-router.route('/:id/reviews').post(authenticateUserToken, createProductReview)
+router.route('/:id/reviews').post(exposeDatabase,authenticateUserToken, createProductReview)
 router.get('/top', getTopProducts)
 
 router.route('/:id')
-.get(getProductById)
-.delete(authenticateUserToken,isAdmin, deleteProductById)
-.put(authenticateUserToken,isAdmin,updateProduct)
+.get(exposeDatabase,getProductById)
+.delete(exposeDatabase,authenticateUserToken,isAdmin, deleteProductById)
+.put(exposeDatabase,authenticateUserToken,isAdmin,updateProduct)
 export default router;

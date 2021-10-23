@@ -6,24 +6,21 @@ import deleteUserById from '../controllers/adminControllers/deleteUserById.js';
 import updateUserById from '../controllers/adminControllers/updateUserById.js';
 import getUserById from '../controllers/adminControllers/getUserById.js';
 import getUserProfile from  '../controllers/adminControllers/getUserProfile.js'
+
+import exposeDatabase from '../middleware/exposeDatabase.js';
+
 const router = express.Router();
 
 
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Retrieve a list of JSONPlaceholder users
- *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
-*/
+
 router
 .route('/')
-.get(authenticateUserToken,isAdmin,getAllUsers)
+.get(exposeDatabase,authenticateUserToken,isAdmin,getAllUsers)
 
 router.
 route('/:id')
-.delete(authenticateUserToken,isAdmin,deleteUserById)
-.put(authenticateUserToken,isAdmin,updateUserById)
-.get(authenticateUserToken,isAdmin,getUserById)
-.get(authenticateUserToken,isAdmin,getUserProfile)
+.delete(exposeDatabase,authenticateUserToken,isAdmin,deleteUserById)
+.put(exposeDatabase,authenticateUserToken,isAdmin,updateUserById)
+.get(exposeDatabase,authenticateUserToken,isAdmin,getUserById)
+.get(exposeDatabase,authenticateUserToken,isAdmin,getUserProfile)
 export default router;

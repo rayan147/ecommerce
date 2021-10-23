@@ -7,26 +7,22 @@ import getLoggedUsersOrders from '../controllers/orderControllers/getPaidOrders.
 import getAllOrders from '../controllers/orderControllers/getAllOrders.js';
 import updateOrderToDelivered from '../controllers/orderControllers/updateOrderToDelivered.js'
 import isAdmin from '../middleware/isAdmin.js';
+import exposeDatabase from '../middleware/exposeDatabase.js';
+
+
 const router = express.Router();
 
 
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Retrieve a list of JSONPlaceholder users
- *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
-*/
 
 // POST  
 router.route('/')
-.post(authenticateUserToken,addOrderItems)
+.post(exposeDatabase,authenticateUserToken,addOrderItems)
 .get(authenticateUserToken,getAllOrders) 
 
 // GET
-router.route('/myorders').get(authenticateUserToken,getLoggedUsersOrders)
-router.route('/:id').get(authenticateUserToken,getOrderById)
-router.route('/:id/pay').put(authenticateUserToken,updateOrderToPaid)
-router.route('/:id/deliver').put(authenticateUserToken, isAdmin, updateOrderToDelivered)
+router.route('/myorders').get(exposeDatabase,authenticateUserToken,getLoggedUsersOrders)
+router.route('/:id').get(exposeDatabase,authenticateUserToken,getOrderById)
+router.route('/:id/pay').put(exposeDatabase,authenticateUserToken,updateOrderToPaid)
+router.route('/:id/deliver').put(exposeDatabase,authenticateUserToken, isAdmin, updateOrderToDelivered)
 
 export default router;

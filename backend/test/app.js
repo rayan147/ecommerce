@@ -31,8 +31,6 @@ const exposeDatabase = (req, res, next) => {
 //CONFIG
 dotenv.config({path:'./local.env'});
 
-//DB
-// db().connectMongo()
 
 //INITIALIZE SERVER
 const app = express();
@@ -57,7 +55,7 @@ app.use(cors());
 // ROUTES
 app.use('/api/products', exposeDatabase,productRoutes);
 app.use('/api/auth/users',exposeDatabase, adminRoutes);
-app.use('/api/users',exposeDatabase,userRoutes); 
+app.use('/api/users',userRoutes); 
 app.use('/api/orders',exposeDatabase,orderRoutes);
 app.use('/api/upload',exposeDatabase,uploadRoutes);
 app.get('/api/config/paypal',exposeDatabase, (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));

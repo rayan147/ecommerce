@@ -21,7 +21,7 @@ import  generateJsonWebTokenFromUserId from '../../utlis/generateJsonWebTokenFro
             break;
         case userExits === null ?? userExits === undefined:
 
-            const user = await createUser({
+            const user = await  req.db.createUser({
                 email,
                 password,
                 name
