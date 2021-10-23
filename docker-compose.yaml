@@ -70,7 +70,26 @@ services:
     restart: unless-stopped
     volumes:
     - ./backend:/app/backend
-    - ./backend/src/uploads:/app/backend/src/uploads
+    networks:
+      - app-network
+  uploadS3:
+    env_file: ./.env
+    environment:
+    -  NODE_ENV=$NODE_ENV
+    -  PORT=$PORT
+    -  AWS_BUCKET_IMAGES_NAME=$AWS_BUCKET_IMAGES_NAME
+    -  AWS_BUCKET_REGION=$AWS_BUCKET_REGION
+    -  AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    -  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    -  PORT_S3=$PORT_S3
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: api:v1.0.0
+    container_name: api
+    restart: unless-stopped
+    volumes:
+    - ./backend:/app/backend
     networks:
       - app-network
 
