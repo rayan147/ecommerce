@@ -19,7 +19,7 @@ app.get('/image/:key',(req,res)=>{
     readStream.pipe(res);
 })
 
-app.post('/api/upload', upload.single('image'),async (req, res) => {
+app.post('/image', upload.single('image'),async (req, res) => {
     try {
         const file = req.file;
         console.log({file});
