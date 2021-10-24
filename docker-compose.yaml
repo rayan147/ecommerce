@@ -36,7 +36,7 @@ services:
  
 
   nginx_proxy:
-    # env_file: ~/.profile
+    env_file: ~/.profile
     restart: always
     build:
       context: ./nginx
@@ -53,7 +53,7 @@ services:
   
      
   api:
-    # env_file: ~/.profile
+    env_file:  ./.env
     environment:
     -  NODE_ENV=$NODE_ENV
     -  PORT=$PORT
@@ -74,7 +74,7 @@ services:
       - app-network
 
   uploadS3:
-    # env_file: ~/.profile
+    env_file: ./.env
     environment:
     -  NODE_ENV=$NODE_ENV
     -  PORT=$PORT
