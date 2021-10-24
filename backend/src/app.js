@@ -40,7 +40,7 @@ app.use(helmet());
 
 
 app.get('/', (req, res) => {
-   return res.send('Nodejs API is running...').status(200);
+   return res.send(`Nodejs API is running in ${process.env.NODE_ENV}`).status(200);
 });
 
 // // Dev logging middleware
