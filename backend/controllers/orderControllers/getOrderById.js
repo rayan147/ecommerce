@@ -12,7 +12,8 @@ import { response } from 'express';
 
 
  const getOrderById = asyncHandler(  async(req, res) => {
-   const order = await req.db.findOrderById()
+
+   const order = await req.db.findOrderById(req.params.id);
 
    if(order) {
   return  res.json(order);

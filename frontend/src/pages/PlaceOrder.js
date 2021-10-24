@@ -35,7 +35,6 @@ const PlaceOrder = ({history}) => {
   const classes = useStyles();
 
     const cart = useSelector(state => state.cart)
-    const { shippingAddress } = cart
     const user = useSelector(state => state.userLogin)
     const { userInfo } = user
 
@@ -66,8 +65,8 @@ const PlaceOrder = ({history}) => {
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
-        shippingAddress: shippingAddress,
-        paymentMethod: payment.paymentMethod,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
@@ -85,14 +84,14 @@ const PlaceOrder = ({history}) => {
          <CheckoutSteps step1 step2 step3 step4/>
          <Grid item xs={12} sm={8}>
         <PlaceOrderIn 
-        shippingAddress={shippingAddress} 
+        shippingAddress={cart.shippingAddress} 
         title="SHIPPING"
         userInfo={userInfo}
         />
         <PlaceOrderIn 
-        shippingAddress={shippingAddress} 
+        shippingAddress={cart.shippingAddress} 
         title="BILLING"
-        payment={payment}
+        payment={cart.payment}
         userInfo={userInfo}
         />
         </Grid>

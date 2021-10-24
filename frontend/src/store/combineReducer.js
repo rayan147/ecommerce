@@ -15,8 +15,7 @@ import userLoginReducer from '../reducers/user/userLoginReducer'
 import userRegisterReducer from '../reducers/user/userRegisterReducer'
 import userDetailsReducer from '../reducers/user/userDetailsReducer'
 import userUpdateProfileReducer from '../reducers/user/userUpdateProfileReducer'
-import shippingReducer from '../reducers/shipping/shipping'
-import paymentReducer from '../reducers/payment/payment'
+
 
 
 import orderCreateReducer from '../reducers/order/orderReducer'
@@ -51,8 +50,7 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdatedProfile: userUpdateProfileReducer,
-    shippingAddress: shippingReducer,
-    payment: paymentReducer,
+  
     
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,

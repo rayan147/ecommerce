@@ -1,7 +1,7 @@
 import {CART_TYPES_CHOICES} from "../../constants/cartConstants"
 const {CART_ADD_TO_CART, CART_REMOVE_FROM_CART} = CART_TYPES_CHOICES
 
- const cartReducer = (state = {cartItems:[]}, action) => {  
+ const cartReducer = (state = {cartItems:[]} , action) => {  
       switch (action.type) {
         case CART_ADD_TO_CART:
            const item = action.payload
