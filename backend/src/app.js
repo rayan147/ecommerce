@@ -14,7 +14,7 @@ import orderRoutes from '../routes/orderRoutes.js'
 import adminRoutes from '../routes/adminRoutes.js'
 import  notFound  from '../middleware/notFound.js';
 // import  errorHandler from '../middleware/errorHandler.js';
-import { successHandler,errorHandler} from '../logs/loggerMiddleware'
+import { successHandler,errorHandler} from '../logs/loggerMiddleware.js'
 
 
 
