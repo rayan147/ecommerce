@@ -36,7 +36,6 @@ services:
  
 
   nginx_proxy:
-    env_file: ./.env
     restart: always
     build:
       context: ./nginx
@@ -53,7 +52,6 @@ services:
   
      
   api:
-    env_file:  ./.env
     environment:
     -  NODE_ENV=$NODE_ENV
     -  PORT=$PORT
@@ -74,7 +72,6 @@ services:
       - app-network
 
   uploadS3:
-    env_file: ./.env
     environment:
     -  AWS_BUCKET_IMAGES_NAME=$AWS_BUCKET_IMAGES_NAME
     -  AWS_BUCKET_REGION=$AWS_BUCKET_REGION

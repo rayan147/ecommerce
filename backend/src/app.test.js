@@ -3,7 +3,7 @@
 import request from 'supertest'
 import makeApp from './app.js'
 import {jest} from '@jest/globals'
-import db from '../config/db'
+
 
 import mongoose from 'mongoose'
 
@@ -54,7 +54,7 @@ afterAll(async () => {
     })
     it('should return  ', async () => {
      const response = await request(app).get('/')
-      expect(response.text).toBe('Nodejs API is running...' )
+      expect(response.text).toBe('Nodejs API is running in test' )
     });
   })
   describe('POST /api/users',()=>{
