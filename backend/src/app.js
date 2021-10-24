@@ -4,7 +4,6 @@ import express from 'express';
 import dotenv from 'dotenv';
 import _ from 'colors';    
 import cors from 'cors';
-import morgan from 'morgan';
 import hpp from 'hpp';
 import helmet from 'helmet';
 
@@ -13,10 +12,9 @@ import productRoutes from '../routes/productRoutes.js'
 import userRoutes from '../routes/userRoutes.js'
 import orderRoutes from '../routes/orderRoutes.js'
 import adminRoutes from '../routes/adminRoutes.js'
-import uploadRoutes from '../routes/uploadRoutes.js'
 import  notFound  from '../middleware/notFound.js';
-import  errorHandler from '../middleware/errorHandler.js';
-import multer from 'multer';
+// import  errorHandler from '../middleware/errorHandler.js';
+import { successHandler,errorHandler} from '../logs/loggerMiddleware'
 
 
 
@@ -57,28 +55,14 @@ app.use('/api/products', productRoutes);
 app.use('/api/auth/users', adminRoutes);
 app.use('/api/users',userRoutes); 
 app.use('/api/orders',orderRoutes);
-// app.use('/api/upload',uploadRoutes);
 app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
 
-// const __dirname = path.resolve()
-// app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
-// app.post('/api/upload', upload.single('image'), (req, res) => {
-//     console.log(req.file);
-//     res.send(req.file);
-// });
-const updload = multer({
-    dest: 'uploads/'
-  });
-app.post('/api/upload', updload.single('image'), (req, res) => {
-    console.log(req.file);
-    res.send(req.file);
-});
 //ERROR HANDLERS
 app.use(errorHandler)
 app.use(notFound)
-
-
+//SUCCESS HANDLER
+app.use(successHandler)
 
 return app
 }

@@ -167,7 +167,7 @@ const ProductList = ({ history, match }) => {
                 <TableRow key={product._id}>
                   <TableCell>{product._id}</TableCell>
                   {console.log(product.image)}
-                  <TableCell align="right"><Avatar src={product.image} alt={product.description} className={classes.large}></Avatar></TableCell>
+                  <TableCell align="right"><Avatar src={`http://192.168.0.11:9080/${product.image}`} alt={product.description} className={classes.large}></Avatar></TableCell>
                   <TableCell align="right">{product.name}</TableCell>
                   <TableCell align="right">${product.price}</TableCell>
                   <TableCell align="right">{product.category}</TableCell>

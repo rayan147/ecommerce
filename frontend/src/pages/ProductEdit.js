@@ -92,7 +92,7 @@ const ProductEdit = ({ match, history }) => {
         },
       }
 
-      const { data } = await axios.post('/image', formData, config)
+      const { data } = await axios.post('/images/', formData, config)
        
       setImage(data.imagePath)
       setUploading(false)
