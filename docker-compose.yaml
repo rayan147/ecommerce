@@ -84,7 +84,7 @@ services:
     build:
       context: ./uploadS3
       dockerfile: Dockerfile
-    image: uploadS3:v1.0.0
+    image: v1.0.0
     container_name: uploadS3
     restart: unless-stopped
     volumes:
