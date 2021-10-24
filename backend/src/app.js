@@ -43,10 +43,10 @@ app.get('/', (req, res) => {
    return res.send('Nodejs API is running...').status(200);
 });
 
-// Dev logging middleware
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
-  }
+// // Dev logging middleware
+// if (process.env.NODE_ENV === 'development') {
+//     app.use(morgan('dev'));
+//   }
 //CORS
 app.use(cors());
 
