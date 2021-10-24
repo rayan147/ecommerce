@@ -20,7 +20,7 @@ router.route('/')
 .post(exposeDatabase,authenticateUserToken,isAdmin,createProduct)
 
 router.route('/:id/reviews').post(exposeDatabase,authenticateUserToken, createProductReview)
-router.get('/top', getTopProducts)
+router.get('/top',exposeDatabase, getTopProducts)
 
 router.route('/:id')
 .get(exposeDatabase,getProductById)

@@ -166,6 +166,7 @@ const ProductList = ({ history, match }) => {
               {products.map((product) => (
                 <TableRow key={product._id}>
                   <TableCell>{product._id}</TableCell>
+                  {console.log(product.image)}
                   <TableCell align="right"><Avatar src={product.image} alt={product.description} className={classes.large}></Avatar></TableCell>
                   <TableCell align="right">{product.name}</TableCell>
                   <TableCell align="right">${product.price}</TableCell>
