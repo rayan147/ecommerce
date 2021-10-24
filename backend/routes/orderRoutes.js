@@ -17,7 +17,7 @@ const router = express.Router();
 // POST  
 router.route('/')
 .post(exposeDatabase,authenticateUserToken,addOrderItems)
-.get(authenticateUserToken,getAllOrders) 
+.get(exposeDatabase,authenticateUserToken,getAllOrders) 
 
 // GET
 router.route('/myorders').get(exposeDatabase,authenticateUserToken,getLoggedUsersOrders)
