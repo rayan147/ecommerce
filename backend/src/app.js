@@ -59,10 +59,10 @@ app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_I
 
 
 //ERROR HANDLERS
-app.use(errorHandler)
-app.use(notFound)
+app.use(errorHandler())
+// app.use(notFound())
 //SUCCESS HANDLER
-app.use(successHandler)
+app.use(successHandler())
 
 return app
 }
