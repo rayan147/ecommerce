@@ -11,17 +11,21 @@ npm i
 ```
 
 ## Features 
- User | Admin
+ User | Admin product management
  -----|------
+ Checkout process | user's features
+ Database seeder | Admin user management
  login| update user to admin
  logout| delete user
  register| delete order
- perisitent add to cart| view users
- pay with paypal| confirm order
- search products|
+ rate and review the products| view users
+ pay with paypal| mark orders as delivered option
+ search products| 
  delete orders|
  view order | 
  update profile|
+ shopping cart|
+
 
 ## Working on Features
  User | Admin

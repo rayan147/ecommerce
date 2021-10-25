@@ -30,8 +30,9 @@ import trancateString from '../../helpers/trancateString'
           borderRadius:'9px',
           boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px',
           '&:hover': {
-            transform: 'scale(1.05)',
+            transform: 'scale(1.01)',
             transition: 'all 0.3s ease-in-out',
+            boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
 
 
           },
@@ -80,7 +81,7 @@ const Product = ({product }) => {
          
            
             <Typography variant="overline" display="block" gutterBottom >
-             ${price} <small>lb</small> 
+             ${price}/<small>lb</small> 
             </Typography>  
          
             </CardContent>

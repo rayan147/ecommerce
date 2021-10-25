@@ -4,6 +4,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
+
 import FormSubmintReview from '../components/view/FormSubmintReview'
 import listProductDetails from "../actions/product/listProductDetails"
 import createProductReview  from '../actions/product/createProductReview'
@@ -73,33 +74,42 @@ const Product = ({history,match}) => {
   }   
 
     return (
-        <Container className="">
+        <Container>
            <Link  to='/'>
-                    <ArrowBackIcon  size="large"/>
+                    <ArrowBackIcon  fontSize="large" color="primary" style={{
+                      marginTop: '1.7rem',
+                    }}/>
            </Link>
          
-          {isLoading ? <h1>Almost  There ...</h1> : error ? <Alert   severity="error"><AlertTitle>{error}</AlertTitle></Alert> :(
+          {isLoading ? <h1>Almost  There ...</h1> : error ? <Alert   severity="error">{error}</Alert> :(
               <>
               <ProductCard product={product} qty={qty} setQty={setQty} addToCartHandler={addToCartHandler}/>
 
 
        
           
-              {product.reviews.length === 0 && <Alert   severity="error"><AlertTitle>No Reviews</AlertTitle></Alert>}
+              
             
                 <ProductReview product={product}/> 
                 <>
                   <h2>Write a Customer Review</h2>
+                  {product.reviews.length === 0 && <Alert style={{
+                      width: '40%'
+                    }} severity="warning">No Reviews</Alert>}
                   {successProductReview && (
                     <>
-                      <Alert   severity="success"><AlertTitle>Review submitted successfully</AlertTitle></Alert>
+                      <Alert   severity="success" style={{
+                      width: '40%'
+                    }}><AlertTitle>Review submitted successfully</AlertTitle></Alert>
                    </>
                    
                   )}
                   {loadingProductReview && <h4>Loading...</h4>}
                   {errorProductReview && (
                     <>
-                    <Alert   severity="error"><AlertTitle>{errorProductReview}</AlertTitle></Alert>
+                    <Alert   severity="error"><AlertTitle style={{
+                      width: '40%'
+                    }}>{errorProductReview}</AlertTitle></Alert>
                     </>
                     
                   )}
@@ -115,7 +125,9 @@ const Product = ({history,match}) => {
                     />
                   ) : (
                     <>
-                    <Alert   severity="info"><AlertTitle>
+                    <Alert   severity="info" style={{
+                      width: '40%'
+                    }} ><AlertTitle>
                       Please <Link to='/login'>sign in</Link> to write a review{' '}
                       </AlertTitle></Alert>
                     </>

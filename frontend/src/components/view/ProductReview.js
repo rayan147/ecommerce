@@ -7,14 +7,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-
+import  Grid  from '@material-ui/core/Grid';
 
 import Rating from "./Rating"
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: '36ch',
+   
     marginTop: theme.spacing(9),
     marginBottom: theme.spacing(9),
     backgroundColor: theme.palette.background.paper,
@@ -31,31 +31,55 @@ const ProductReview = ({product}) => {
     const classes = useStyles();
     const {reviews} =product
     return (
-        <>
+        <Grid 
+        container 
+        spacing={1} 
+        alignItems="center"
+        justifyContent="center">
             <List className={classes.root}>
-              <ListItem alignItems="flex-start">
+              <ListItem alignItems="flex-center">
                 <ListItemText primary={
-                  <Typography component='span'  variant="h5" gutterBottom>
+                    <Typography variant="h6" component="h6">
+                        <strong>Customer Reviews</strong>
+                    </Typography>
+                }
+                secondary={
+                  <>
+                    <Rating value={product.rating} 
+                text={
+                  `${product.rating}`}
+                  />
+                  <Typography variant="body2" component="p">
+                    {product.reviews.length} customer reviews
+                  </Typography>
+                  </>
+                }
+                
+                >
+
+                </ListItemText>
+                {/* <ListItemText primary={
+                  <>
+                  <Typography   variant="h6" gutterBottom>
                 <strong> Customer reviews </strong>
                 </Typography> 
+                
+                  </>
               } 
               secondary={
                   <>
-
-                <Rating value={product.rating} 
-                text={
-                  `${product.rating} out of 5`}
-                  />
+             
+                
             
-                   <ListItemText primary='Total ratings' secondary={
+                   <ListItemText primary='Customer reviews' secondary={
                      <>
                       <Typography component='span'  variant="h5" gutterBottom>
-                    <strong> {`${product.rating} out of 5`} </strong>
+                    <strong> {`${product.rating} out of ${reviews.length}`} </strong>
                     </Typography>
                     </>
                      } />
                 </>
-                } />
+                } /> */}
               </ListItem>
           
                 {reviews.map((review)=>
@@ -87,7 +111,7 @@ const ProductReview = ({product}) => {
       </>
                 )}
       </List>
-        </>
+        </Grid>
     )
 }
 

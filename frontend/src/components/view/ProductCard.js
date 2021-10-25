@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       height: '100%',
-      width: '100%',
-      marginBottom: '2rem',
+      width: '71%',
+      marginBottom: '3rem',
       marginTop: '3rem',
-      boxShadow: 'rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset',
-      [theme.breakpoints.down('sm')]: {
+      boxShadow: 'none',
+      [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
         marginBottom: '1rem',
         marginTop: '1rem',
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
       height: 400,
       minWidth: 200,
       minHeight: 200,
-      boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px'
+      borderRadius: '7px',
       
     },
    
@@ -44,17 +44,21 @@ const ProductCard = ({product,addToCartHandler,qty,setQty}) => {
   const {countInStock,image,name,numReviews,price,description } = product
     const classes = useStyles();
     return (
-        <Grid container spacing={5} justifyContent="center">
+        <Grid 
+        container 
+        spacing={1} 
+        alignItems="center"
+        justifyContent="center">
            <Meta title={name} description={description} keywords={description}/>
            <Card className={classes.root}>
-           <Grid item xs={5} md={7}>
+           <Grid item xs>
            <CardMedia
         className={classes.cover}
         image={image}
         title={name}
       />
       </Grid>
-      <Grid item>
+      <Grid item xs>
         <CardContent >
             <Typography variant="subtitle1" color="secondary">
            ${price}
