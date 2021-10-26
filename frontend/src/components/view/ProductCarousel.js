@@ -25,9 +25,11 @@ useEffect(()=>{
     dispatch(listTopProducts())
 },[dispatch])
 
-const sliderItems = products.length > 5 ? 5 : products.length
-const items = []
 
+
+const pushImagesCarouselTosaparateArray = async()=>{
+const sliderItems = products.length > 5 ? 5 : products.length
+const items = [] 
 for (let i = 0; i < products.length; i+= sliderItems) {
     items.push(
         <div key={i}>
@@ -41,7 +43,12 @@ for (let i = 0; i < products.length; i+= sliderItems) {
     )
     
 }
-console.log(items)
+return items
+}
+
+
+
+
 
 
     return (
@@ -53,7 +60,7 @@ console.log(items)
             <>
              <Typography style={{marginTop:'5rem',marginBottom:'2rem'}} variant="h6" gutterBottom >TOP PRODUCTS</Typography>
             <Carousel >
-               {items}
+               {pushImagesCarouselTosaparateArray()}
             </Carousel>
             </>
         )}
