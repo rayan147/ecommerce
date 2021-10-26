@@ -38,7 +38,7 @@ useEffect(()=>{
             sliderItemsArr.push(
                 <div key={i}>
                     <Box display="flex" justifyContent="center"  >
-                        {Array.from(products).slice(i, i + sliderItems).map((product, index) => (
+                        {products && Array.from(products).slice(i, i + sliderItems).map((product, index) => (
         
                             <Product key={index} product={product} />
                         ))}

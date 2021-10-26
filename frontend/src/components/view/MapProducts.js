@@ -33,7 +33,7 @@ const MapProducts = ({products,history,match,keyword,page,pages,isAdmin=false })
           <Grid container className={classes.root} spacing={3}>
           <Grid item xs={12}>
            <Grid container justifyContent="center" spacing={3}>
-             { products.map( product => (
+             {products && products.map( product => (
                  <>
                  <Grid  key={product._id} item>
                     <Product key={product._id} product={product} history={history} match={match}/>
