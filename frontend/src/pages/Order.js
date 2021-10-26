@@ -96,7 +96,7 @@ useEffect(() => {
 
 
   
-} ,[order.paymentMethod])
+} ,[])
 
 useEffect(() => {
 
