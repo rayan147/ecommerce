@@ -64,7 +64,7 @@ const ProductCard = ({product,addToCartHandler,qty,setQty}) => {
            ${price}
           </Typography>
             <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-            <Rating value={product.rating} text={`${numReviews} rating`}/>
+            <Rating value={product.rating} text={`${product.rating}`}/>
           </Typography>
           <Typography gutterBottom >
           <strong>  {name}</strong>

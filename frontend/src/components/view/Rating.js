@@ -16,12 +16,12 @@ const Rating = ({value,text,color}) => {
     return (
         <div style={{ width: '100%' }}>
             <Box display="flex" justifyContent="flex-start"  >
-                <Box >
-        <Typography  gutterBottom>
+                <Box mx={1}  >
+        <Typography variant="h5" >
                 <strong> {text && text} </strong>
                 </Typography> 
                 </Box>
-               <Box   >
+               <Box  mb={1} >
         { [...Array(5)].map((_,index) => (         
                  <span key={index}>
                      {value >= index + 1 ? <StarIcon fontSize="small" style={{color:yellow[500]}} /> : 

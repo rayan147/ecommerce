@@ -10,9 +10,17 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListSubheader from '@material-ui/core/ListSubheader';
+
 import addToCart from "../actions/cart/addToCart"
 import removeFromCart from "../actions/cart/removeFromCart"
 import MapCart from '../components/view/MapCart'
+import { CardActions, ListItemText } from '@material-ui/core';
+import  roundDecimalToTwo from '../helpers/roundDecimalToTwo'
 
 
 
@@ -28,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(4),
     },
     subTotalItem: {
-        boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+        boxShadow: 'rgba(17, 17, 26, 0.1) 0px 1px 0px',
         marginTop: '3.3rem',
         
     },
@@ -57,8 +65,13 @@ const removeFromCartHandler =useCallback( id=>{
 
 const subTotalItem =useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity ,0),[cartItems])
 const totalPrice = useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity * item.price,0).toFixed(2),[cartItems])
+cart.itemsPrice =roundDecimalToTwo( cart.cartItems.reduce((sum, item) => {
+  return sum + item.price * item.quantity
+}, 0))
 
-
+cart.taxPrice =roundDecimalToTwo(cart.itemsPrice > 1 ? (cart.itemsPrice - 1).toFixed(2) * 0.1 : 0)
+cart.totalPrice = roundDecimalToTwo(cart.itemsPrice + cart.shippingPrice + cart.taxPrice)
+cart.shippingPrice = cart.itemsPrice < 35 ? 5 : 0
 const checkoutHandler = useCallback(() => {
     history.push('/login?redirect=shipping')
   },[history])
@@ -92,16 +105,46 @@ const checkoutHandler = useCallback(() => {
           <Grid  item lg={4} md={8} sm={12} xs={12}>
           <Card className={classes.subTotalItem}>
             <CardContent>
-              <ul  >
-                  <ol >
-                      <Typography 
-                      component="div" 
-                      gutterBottom
-                       variant="h5" > Subtotal {subTotalItem()} items</Typography>
-                      <Typography color="secondary" gutterBottom>  ${totalPrice()} </Typography>
-                  </ol>
-                  <ol>
-                      <Button 
+              
+            <List subheader={<ListSubheader><strong>Order Summary</strong></ListSubheader>} className={classes.root}>
+           
+                <ListItem>
+                <ListItemText  secondary={`Total items`} />
+                <ListItemSecondaryAction>
+                <Typography>{subTotalItem()}</Typography>
+                </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem>
+                <ListItemText  secondary={`Subtotal`} />
+                <ListItemSecondaryAction>
+                <Typography>${totalPrice()}</Typography>
+                </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem>
+                <ListItemText  secondary={`Estimated delivery fee`} />
+                <ListItemSecondaryAction>
+                <Typography>{cart.shippingPrice === 0 ? "Free": `$${cart.shippingPrice}` }</Typography>
+                </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem>
+                <ListItemText  secondary={`Estimated taxes`} />
+                <ListItemSecondaryAction>
+                <Typography>${ cart.taxPrice}</Typography>
+                </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem>
+                <ListItemText  primary={<strong>Estimated total </strong>} />
+                <ListItemSecondaryAction>
+                <Typography><strong>${ cart.totalPrice}</strong></Typography>
+                </ListItemSecondaryAction>
+                </ListItem>
+          
+              </List>
+              
+              
+              
+           
+ <Button 
                       variant="contained"
                       type='button'
                       fullWidth
@@ -111,9 +154,11 @@ const checkoutHandler = useCallback(() => {
                       >
                       Proceed to Checkout
                       </Button>
-                  </ol>
-              </ul>
+                     
             </CardContent>
+              <CardActions>
+                 <Typography variant="body2" gutterBottom>Orders over 35 dollars (before taxes) have free shipping</Typography>
+              </CardActions>
             
               </Card>
           </Grid>

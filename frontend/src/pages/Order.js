@@ -129,7 +129,7 @@ const deliverHandler = useCallback(() => {
         <>
         <Grid  
        container >
-        {isLoading && <Alert>Loading order...</Alert> }
+        {isLoading && <Alert >Loading order...</Alert> }
         {!isLoading && error && <Alert severity="error">{error}</Alert>}
         {!isLoading && !error && (
           <>
@@ -137,7 +137,9 @@ const deliverHandler = useCallback(() => {
           <Typography 
           className={classes.title}
           componen="div" variant="h6" > 
-         <Alert severity="info"> Order Number <strong>{`${order._id}`.toUpperCase()} </strong></Alert>
+         <Alert severity="info" style={{
+                      width: '40%'
+                    }}> Order Number <strong>{`${order._id}`.toUpperCase()} </strong></Alert>
           </Typography>
           <List dense  component="nav" aria-label="shipping"> 
           <Typography component="span" variant="h6" color="textPrimary" >
@@ -171,7 +173,11 @@ const deliverHandler = useCallback(() => {
           <ListItem>
           <ListItemText primary="Deliver Status" secondary={
             <>  
-            {order.isDelivered ?   <Alert severity="success"> Delivered on {order.deliveredAt}</Alert> : <Alert severity="warning">Order is not delivered yet</Alert>}
+            {order.isDelivered ?   <Alert severity="success"style={{
+                      width: '40%'
+                    }}> Delivered on {order.deliveredAt}</Alert> : <Alert severity="warning" style={{
+                      width: '40%'
+                    }}>Order is not delivered yet</Alert>}
             <br />
              </>
           } />
@@ -214,7 +220,11 @@ const deliverHandler = useCallback(() => {
           <ListItem>
           <ListItemText primary="Paid Status" secondary={
             <>  
-            {order.isPaid ?   <Alert severity="success"> Paid on {order.paidAt}</Alert> : <Alert severity="warning">Order is not paid yet</Alert>}
+            {order.isPaid ?   <Alert severity="success"style={{
+                      width: '40%'
+                    }}> Paid on {order.paidAt}</Alert> : <Alert severity="warning" style={{
+                      width: '40%'
+                    }}>Order is not paid yet</Alert>}
             <br />
              </>
           } />

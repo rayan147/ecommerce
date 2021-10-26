@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width:152,
     height: 90,
+    borderRadius:'7px',
     padding: theme.spacing(2),
   },
 
@@ -52,7 +53,11 @@ const OrderItemSummary = ({item}) => {
         </Typography>
         <Typography  
         >
-     <strong>   {item.price} * {item.quantity} =  {item.price} * {item.quantity} </strong>
+     <strong>Quantity {item.quantity} </strong>
+        </Typography>
+        <Typography  
+        >
+     <small>lb/${item.price} </small>
         </Typography>
       </CardContent>
         

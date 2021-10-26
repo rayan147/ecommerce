@@ -1,4 +1,4 @@
-import React from 'react'
+import {useCallback} from 'react'
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,7 +7,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     root: {
       minWidth: 205,
       marginTop: '20px',
-      boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+      boxShadow: 'rgba(17, 17, 26, 0.1) 0px 1px 0px',
       minHeight: '650px'
       
     },
@@ -32,6 +32,7 @@ const OrderSummary = ({cart,placeOrderHandler,error}) => {
    
     const {cartItems,itemsPrice,shippingPrice,taxPrice,totalPrice} = cart;
     const classes = useStyles();
+    const subTotalItem =useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity ,0),[cartItems])
     return (
         <Grid container >
         <Card className={classes.root}>
@@ -56,6 +57,12 @@ const OrderSummary = ({cart,placeOrderHandler,error}) => {
           ))} 
          </List>
             <List dense  >
+            <ListItem>
+                <ListItemText  secondary={`Total items`} />
+                <ListItemSecondaryAction>
+                <Typography>{subTotalItem()}</Typography>
+                </ListItemSecondaryAction>
+                </ListItem>
                 <ListItem >  
                     <ListItemText primary="Subtotal"  />
                      ${itemsPrice}
@@ -85,6 +92,8 @@ const OrderSummary = ({cart,placeOrderHandler,error}) => {
           )}
             <Button 
         disabled={cartItems === 0}
+        type='button'
+        fullWidth
         variant="contained" 
         color="primary"
         onClick={placeOrderHandler}

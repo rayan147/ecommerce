@@ -38,6 +38,7 @@ const ProductReview = ({product}) => {
         justifyContent="center">
             <List className={classes.root}>
               <ListItem alignItems="flex-center">
+                
                 <ListItemText primary={
                     <Typography variant="h6" component="h6">
                         <strong>Customer Reviews</strong>
@@ -58,28 +59,7 @@ const ProductReview = ({product}) => {
                 >
 
                 </ListItemText>
-                {/* <ListItemText primary={
-                  <>
-                  <Typography   variant="h6" gutterBottom>
-                <strong> Customer reviews </strong>
-                </Typography> 
                 
-                  </>
-              } 
-              secondary={
-                  <>
-             
-                
-            
-                   <ListItemText primary='Customer reviews' secondary={
-                     <>
-                      <Typography component='span'  variant="h5" gutterBottom>
-                    <strong> {`${product.rating} out of ${reviews.length}`} </strong>
-                    </Typography>
-                    </>
-                     } />
-                </>
-                } /> */}
               </ListItem>
           
                 {reviews.map((review)=>

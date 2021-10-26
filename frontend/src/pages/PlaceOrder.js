@@ -39,7 +39,7 @@ const PlaceOrder = ({history}) => {
     const { userInfo } = user
 
 
-    const payment = useSelector(state => state.payment)
+
     const orderCreate = useSelector((state) => state.orderCreate)
     const { order, isFetchingRequestSuccess, error } = orderCreate
 
@@ -47,8 +47,8 @@ const PlaceOrder = ({history}) => {
      cart.itemsPrice =roundDecimalToTwo( cart.cartItems.reduce((sum, item) => {
         return sum + item.price * item.quantity
     }, 0))
-    cart.shippingPrice = cart.itemsPrice > 100 ? 5 : 0
-    cart.taxPrice =roundDecimalToTwo(cart.itemsPrice > 100 ? (cart.itemsPrice - 100).toFixed(2) * 0.1 : 0)
+    cart.shippingPrice = cart.itemsPrice > 35 ? 0 : 5
+    cart.taxPrice =roundDecimalToTwo(cart.itemsPrice > 1 ? (cart.itemsPrice - 1).toFixed(2) * 0.1 : 0)
     cart.totalPrice = roundDecimalToTwo(cart.itemsPrice + cart.shippingPrice + cart.taxPrice)
    
 

@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       marginBottom: '2rem',
       marginTop: '3rem',
-      boxShadow: 'none',
+      boxShadow: 'rgba(17, 17, 26, 0.1) 0px 1px 0px',
       [theme.breakpoints.down('sm')]: {
         flexDirection: 'column',
         marginBottom: '1rem',
@@ -42,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
       height: 100,
       minWidth: 120,
       minHeight: 100,
-      boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px'
+      borderRadius:'7px'
+
       
     },
     content:{

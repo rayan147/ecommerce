@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   root: {
     minWidth: 375,
     width: '100%',
-    marginTop: '20px',
+    marginTop: '0',
     marginLeft: 'auto',
     paddingBottom: '2rem',
     boxShadow: 'none',
