@@ -38,7 +38,7 @@ useEffect(()=>{
             sliderItemsArr.push(
                 <div key={i}>
                     <Box display="flex" justifyContent="center"  >
-                        {products.slice(i, i + sliderItems).map((product, index) => (
+                        {Array.from(products).slice(i, i + sliderItems).map((product, index) => (
         
                             <Product key={index} product={product} />
                         ))}
@@ -50,10 +50,9 @@ useEffect(()=>{
         setItems(sliderItemsArr)
         return sliderItemsArr
         }
-        if(products.length>0 && !loading){
-            console.log({products})
+       
           pushImagesCarouselTosaparateArray()
-       }
+       
     return ()=> {
         pushImagesCarouselTosaparateArray()
         setItems([])
