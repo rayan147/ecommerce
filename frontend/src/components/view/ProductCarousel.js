@@ -58,7 +58,7 @@ useEffect(()=>{
         pushImagesCarouselTosaparateArray()
         setItems([])
     }
-},[products])
+},[products,loading])
 
 
 
