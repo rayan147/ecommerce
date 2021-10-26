@@ -90,9 +90,9 @@ useEffect(() => {
     }
     document.body.appendChild(script)
   } 
-  if(order.paymentMethod === 'PayPal'){
+  
      addPayPalScript()
-  }
+  
 
 
   
@@ -120,7 +120,7 @@ useEffect(() => {
 
 
 
-console.log(order)
+
 // Handle paypal payment
 const successPaymentHandler = useCallback((paymentResult) => {
   console.log(paymentResult)
