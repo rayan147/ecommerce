@@ -145,7 +145,7 @@ import useStyles from './useStyles';
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <span>Profile</span>
       </MenuItem>
             ):(
               <>
@@ -170,7 +170,7 @@ import useStyles from './useStyles';
           <SupervisorAccountIcon/>
           
         </IconButton>
-        <p>Admin</p>
+        <span>Admin</span>
       </MenuItem>
          )}
     

@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 
 
 import { Alert } from '@material-ui/lab';
@@ -20,32 +20,41 @@ const ProductCarousel = () => {
 const dispatch = useDispatch()
 const productTopRated = useSelector(state => state.productTopRated)
 const {loading,error,products}= productTopRated
-
+const [items,setItems] =useState([])
 useEffect(()=>{
     dispatch(listTopProducts())
 },[dispatch])
 
 
 
-const pushImagesCarouselTosaparateArray = async()=>{
-const sliderItems = products.length > 5 ? 5 : products.length
-const items = [] 
-for (let i = 0; i < products.length; i+= sliderItems) {
-    items.push(
-        <div key={i}>
-            <Box display="flex" justifyContent="center"  >
-                {products.slice(i, i + sliderItems).map((product, index) => (
 
-                    <Product key={index} product={product} />
-                ))}
-            </Box>
-        </div>
-    )
-    
-}
-return items
-}
 
+useEffect(()=>{
+    const pushImagesCarouselTosaparateArray = ()=>{
+        const sliderItems = products.length > 5 ? 5 : products.length
+        const  sliderItemsArr= []
+        for (let i = 0; i < products.length; i+= sliderItems) {
+            sliderItemsArr.push(
+                <div key={i}>
+                    <Box display="flex" justifyContent="center"  >
+                        {products.slice(i, i + sliderItems).map((product, index) => (
+        
+                            <Product key={index} product={product} />
+                        ))}
+                    </Box>
+                </div>
+            )
+            
+        }
+        setItems(sliderItemsArr)
+        return sliderItemsArr
+        }
+    pushImagesCarouselTosaparateArray()
+    return ()=> {
+        pushImagesCarouselTosaparateArray()
+        setItems([])
+    }
+},[products])
 
 
 
@@ -60,7 +69,7 @@ return items
             <>
              <Typography style={{marginTop:'5rem',marginBottom:'2rem'}} variant="h6" gutterBottom >TOP PRODUCTS</Typography>
             <Carousel >
-               {pushImagesCarouselTosaparateArray()}
+               {items}
             </Carousel>
             </>
         )}

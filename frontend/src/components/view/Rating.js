@@ -17,7 +17,7 @@ const Rating = ({value,text,color}) => {
         <div style={{ width: '100%' }}>
             <Box display="flex" justifyContent="flex-start"  >
                 <Box mx={1}  >
-        <Typography variant="h5" >
+        <Typography  >
                 <strong> {text && text} </strong>
                 </Typography> 
                 </Box>
@@ -40,7 +40,7 @@ Rating.defaultProps = {
 }
 Rating.propTypes = {
     value : PropTypes.number.isRequired,
-    text : PropTypes.string.isRequired,
+    text : PropTypes.string,
     color : PropTypes.string
 }
 export default Rating

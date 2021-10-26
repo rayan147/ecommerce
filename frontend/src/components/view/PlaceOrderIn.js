@@ -49,7 +49,7 @@ const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
           <Typography className={classes.title} color="textSecondary" gutterBottom>
           <strong> Email: </strong> {email}
           </Typography>
-          <Typography variant="body2" component="p">
+          <Typography variant="body2" component="span">
           
          <List dense component="nav" aria-label="adress">
            {/* {shippingAddressList} */}

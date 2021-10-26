@@ -50,7 +50,7 @@ const ProductReview = ({product}) => {
                 text={
                   `${product.rating}`}
                   />
-                  <Typography variant="body2" component="p">
+                  <Typography variant="body2" component="span">
                     {product.reviews.length} customer reviews
                   </Typography>
                   </>
