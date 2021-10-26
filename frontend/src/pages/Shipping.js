@@ -73,7 +73,7 @@ const Shipping = ({history}) => {
 const submitHandler = useCallback( (event) => {
         event.preventDefault()
        dispatch(saveShippingAddress(state))
-       history.push('/payment')
+       history.push('/placeOrder')
     },[state,history,dispatch])
 
 

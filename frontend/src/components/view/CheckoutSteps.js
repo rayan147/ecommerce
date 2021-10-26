@@ -67,17 +67,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
         )}
       </Grid>
 
-      <Grid item>
-        {step3 ? (
-          <Card className={classes.card}>
-          <ListItemLink to='/payment'>
-            <Button startIcon={<PaymentIcon/>}> Payment</Button>
-          </ListItemLink>
-           </Card>
-        ) : (
-          <Button disabled startIcon={<PaymentIcon/>}>Payment</Button>
-        )}
-      </Grid>
+    
 
       <Grid item>
         {step4 ? (
@@ -90,6 +80,17 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
           <Button disabled startIcon={<ShopIcon/>}>Place Order</Button>
         )}
       </Grid>
+      {/* <Grid item>
+        {step3 ? (
+          <Card className={classes.card}>
+          <ListItemLink to='/payment'>
+            <Button startIcon={<PaymentIcon/>}> Payment</Button>
+          </ListItemLink>
+           </Card>
+        ) : (
+          <Button disabled startIcon={<PaymentIcon/>}>Payment</Button>
+        )}
+      </Grid> */}
     </Grid>
     </Grid>
   )

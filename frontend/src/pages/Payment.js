@@ -1,24 +1,51 @@
 import { useState} from 'react'
 
 
-
 import {useDispatch,useSelector} from 'react-redux'
-import {Button, Form,Col} from 'react-bootstrap'
+import  Button  from '@material-ui/core/Button'
 
 
-import FormContainer from '../components/view/FormContainer'
 import CheckoutSteps from '../components/view/CheckoutSteps'
 
 import savePaymentMethod from '../actions/payment/payment.js'
 
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Typography from '@material-ui/core/Typography';
+const GreenCheckbox = withStyles({
+  root: {
+    color: green[400],
+    '&$checked': {
+      color: green[600],
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 
 const Payment = ({history}) => {
   const dispatch = useDispatch()
- 
+     
     const cart = useSelector(state => state.cart)
     const {shippingAddress } = cart
-  
-    const [paymentMethod,setPaymentMethod] = useState('')
+    const [state, setState] = useState({
+      PayPal: true,
+   
+    });
+  const [paymentMethod,setPaymentMethod] = useState('')
+    const handleChange = (event) => {
+      setState({ ...state, [event.target.name]: event.target.checked });
+      setPaymentMethod(event.target.name)
+      console.log(event.target.name)
+    };
+  console.log('paymentMethod',paymentMethod)
+    
       if(!shippingAddress.address){
         history.push('/shipping')
       }
@@ -31,62 +58,22 @@ const Payment = ({history}) => {
 
 
     return (
-        <FormContainer>
+        <>
         <CheckoutSteps step1 step2 step3 />
-        <h1>Payment Method</h1>
-        <Form onSubmit={submitHandler}>
-          <Form.Group>
-            <Form.Label as='legend'>Select Method</Form.Label>
-            <Col>
-              <Form.Check
-                type='radio'
-                label='PayPal or Credit Card'
-                id='PayPal'
-                name='paymentMethod'
-                value='PayPal'
-             
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              ></Form.Check>
-              <Form.Check
-                type='radio'
-                label='Stripe'
-                id='Stripe'
-                name='paymentMethod'
-                value='Stripe'
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              ></Form.Check>
-              <Form.Check
-                type='radio'
-                label='Amex'
-                id='Stripe'
-                name='paymentMethod'
-                value='Amex'
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              ></Form.Check>
-              <Form.Check
-                type='radio'
-                label='Visa'
-                id='Stripe'
-                name='paymentMethod'
-                value='Visa'
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              ></Form.Check>
-              <Form.Check
-                type='radio'
-                label='MaterCard'
-                id='Stripe'
-                name='paymentMethod'
-                value='MaterCard'
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              ></Form.Check>
-            </Col>
-          </Form.Group>
+        <Typography variant="h5" gutterBottom >Payment</Typography>
+        <form onSubmit={submitHandler}>
+        <FormGroup column>
+      <FormControlLabel
+        control={<Checkbox checked={state.PayPal} onChange={handleChange} name="PayPal" />}
+        label="PayPal,venmon and credit/debit cards"
+      />
+    </FormGroup>
   
-          <Button type='submit' variant='primary' className="w-30 my-2 rounded">
+          <Button type='submit' variant='contained' color="primary">
             Continue
           </Button>
-        </Form>
-      </FormContainer>
+        </form>
+      </>
     )
 }
 

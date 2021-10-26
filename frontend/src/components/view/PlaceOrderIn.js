@@ -74,7 +74,7 @@ const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
             } />
             
             </ListItem>
-            {title === 'BILLING' && (<ListItem>  
+            {/* {title === 'BILLING' && (<ListItem>  
                <ListItemText primary={<strong>Payment Method</strong>} secondary={
                 <React.Fragment>
                 <Typography component="span" variant="body2" color="textPrimary" className={classes.pos}>
@@ -82,7 +82,7 @@ const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
                 </Typography>
                 </React.Fragment>
             } />
-            </ListItem>)}
+            </ListItem>)} */}
             
          </List>
           </Typography>

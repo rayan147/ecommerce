@@ -302,7 +302,7 @@ const deliverHandler = useCallback(() => {
                    <>
                   
                   {loadingPay && <Alert severity="info">Loading...</Alert>}
-                  {paymentMethod === 'PayPal' ? (
+                  {!sdkReady ?(
                     <Alert severity="info">Loading...</Alert>
                   ) : (
                     <PayPalButton

@@ -43,7 +43,8 @@ const orderSchema = new Schema({
    },
    paymentMethod :{
         type: String,
-        required: true
+        required: true,
+        default: 'PayPal'
    },
    paymentResult :{
     id: { type: String },
