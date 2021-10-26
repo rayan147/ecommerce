@@ -58,10 +58,10 @@ const { isLoading: loadingPay, isSuccess: successPay } = orderPay
 const userLogin = useSelector((state) => state.userLogin)
 const { userInfo } = userLogin
 
-
+const cart = useSelector((state) => state.cart)
+ const {paymentMethod} = cart
 const orderDeliver = useSelector((state) => state.orderDeliver)
 const { isLoading: loadingDeliver, isSucesss: successDeliver } = orderDeliver
-
 
  if (!isLoading) {
   //   Calculate prices
@@ -78,7 +78,8 @@ useEffect(() => {
 }, [userInfo,history])
 
 useEffect(() => {
-const addPayPalScript = async () => {
+
+ const addPayPalScript = async () => {
     const { data: clientId } = await axios.get('/api/config/paypal')
     const script = document.createElement('script')
     script.type = 'text/javascript'
@@ -89,8 +90,13 @@ const addPayPalScript = async () => {
     }
     document.body.appendChild(script)
   } 
-  addPayPalScript()
-} ,[])
+  if(order.paymentMethod === 'PayPal'){
+     addPayPalScript()
+  }
+
+
+  
+} ,[order.paymentMethod])
 
 useEffect(() => {
 
@@ -294,8 +300,9 @@ const deliverHandler = useCallback(() => {
           </CardContent> 
           {!order.isPaid && (
                    <>
+                  
                   {loadingPay && <Alert severity="info">Loading...</Alert>}
-                  {!sdkReady ? (
+                  {paymentMethod === 'PayPal' ? (
                     <Alert severity="info">Loading...</Alert>
                   ) : (
                     <PayPalButton
@@ -325,155 +332,7 @@ const deliverHandler = useCallback(() => {
         </Card>
         </Grid>
          
-          {/* <Row>
-            <Col md={8}>
-              <ListGroup variant="flush"> */}
-                  {/* <ol className="shadow-sm rounded p-3 my-2">
-                      <h3 className="fs-3">SHIPPING</h3>
-                       
-                         <strong>Adress Info:</strong>
-                         <>
-                        <ul><strong>Name:{order.user.name}</strong></ul>
-                        <ul><a href={`mailto:${order.user.email}`}> Email:{order.user.email}</a></ul> 
-                        </>
-                       <ul> {order.shippingAddress.address},</ul>
-                        <ul>{order.shippingAddress.city}, {order.shippingAddress._state}{""}{order.shippingAddress.zipCode}</ul>
-                        <ul>{order.shippingAddress.country}</ul>
-                        <span className="my-4">
-                            
-                        <ul><strong>Deliver Status:</strong></ul>
-                        {order.isDelivered ? <ul><strong>Deliver Status:</strong> 
-                        <Alert severity="success"> Delivered on {order.deliveredAt}</Alert>
-                        </ul> 
-                        : <Alert severity="warning">Order is not delivered yet</Alert>
-                        }
-                        </span>
-  
-                  </ol> */}
-                  {/* <ol className="shadow-sm rounded p-3 my-2">
-                      <h2 className="fs-2">BILLING</h2>
-                     
-                      <span>
-                        <strong>Billing Info:</strong>
-                        <ul><strong>{order.user.name}</strong></ul>
-                        <ul> {order.shippingAddress.address},</ul>
-                        <ul>{order.shippingAddress.city}, {order.shippingAddress._state}{""}{order.shippingAddress.zipCode}</ul>
-                        <ul>{order.shippingAddress.country}</ul> 
-                      </span>
-                  </ol> */}
-                  {/* <ol className="shadow-sm rounded p-3 my-2">
-                      <h3 className="fs-3">PAYMENT</h3>
-                     
-                        <span className="my-4">
-                            <strong>Payment Method:</strong>
-                        <ul>{order?.paymentMethod ?? 'Choose a payment Method'}</ul>
-                        {order.isPaid ? <ul><strong>Payment Status:</strong> 
-                        <Alert severity="success"> Paid on {order.paidAt}</Alert></ul> 
-                          : <Alert severity="warning">Order is not paid yet</Alert>
-                          }
-                        </span>
-                      
-                   
-                  </ol> */}
-                  {/* <ol >
-                      <h2 className="fs-2 my-5 text-center">ORDER DETAILS</h2>
-                      <span>
-                        <strong>Items:</strong>
-                        {order.orderItems.legth === 0 && <Alert>Your order is empty</Alert>}
-                        <ListGroup variant="flush">
-                          {order.orderItems.map(item =>(
-                            <ul key={item._id} className="shadow-sm rounded p-3 my-2">
-                              <Row>
-                                <Col md={2}>
-                                    <Image src={item.image} alt={item.name} fluid rounded/>
-                                 </Col>
-                                <Col >
-                                  <Link to={`/product/${item.product_id}`} style={{ textDecoration:'none'}}>
-                                    <h5>{item.name}</h5>
-                                  </Link>
-                                </Col>
-                                <Col md={4}>
-                                 {item.price} * {item.quantity} =  {item.price} * {item.quantity}
-                                </Col>
-                                  
-                                 
-                               
-                              </Row>
-                           </ul>
-                          ))}
-                        </ListGroup>
-                      </span>
-                  </ol>
-              </ListGroup>
-            </Col>
-            <Col md={4}>
-          <Card>
-            <ListGroup  >
-              <ol>
-                <h2>Order Summary</h2>
-              </ol>
-              <ul>
-                <Row>
-                  <Col>Items</Col>
-                  <Col>${order.itemsPrice}</Col>
-                </Row>
-              </ul>
-              <ul>
-                <Row>
-                  <Col>Shipping</Col>
-                  <Col>${order.shippingPrice}</Col>
-                </Row>
-              </ul>
-              <ul>
-                <Row>
-                  <Col>Tax</Col>
-                  <Col>${order.taxPrice}</Col>
-                </Row>
-              </ul>
-              <ul>
-                <Row>
-                  <Col>Total</Col>
-                  <Col>${order.totalPrice}</Col>
-                </Row>
-              </ul>
-              <Container>
-                
-                  {!order.isPaid && (
-                   <>
-                  {loadingPay && <Alert severity="info">Loading...</Alert>}
-                  {!sdkReady ? (
-                    <Alert severity="info">Loading...</Alert>
-                  ) : (
-                    <PayPalButton
-                      amount={order.totalPrice}
-                      onSuccess={successPaymentHandler}
-                    />
-                   
-                  )}
-               </>
-              )}
-              {loadingDeliver && <h4>Loading...</h4>}
-                 {userInfo &&
-                userInfo.isAdmin &&
-                order.isPaid &&
-                !order.isDelivered && (
-                  <>
-                    <Button
-                      type='button'
-                      className='btn w-100 mb-3'
-                      onClick={deliverHandler}
-                    >
-                      Mark As Delivered
-                    </Button>
-                  </>
-                )}
-        
-              </Container>
-             
-            </ListGroup>
-          </Card>
-        </Col>
-          </Row>  */}
+          
           </>
         )  
                           }

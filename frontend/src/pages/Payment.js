@@ -18,7 +18,7 @@ const Payment = ({history}) => {
     const cart = useSelector(state => state.cart)
     const {shippingAddress } = cart
   
-    const [paymentMethod,setPaymentMethod] = useState('Paypal')
+    const [paymentMethod,setPaymentMethod] = useState('')
       if(!shippingAddress.address){
         history.push('/shipping')
       }
