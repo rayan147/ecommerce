@@ -30,6 +30,7 @@ useEffect(()=>{
 
 
 useEffect(()=>{
+    
     const pushImagesCarouselTosaparateArray = ()=>{
         const sliderItems = products.length > 5 ? 5 : products.length
         const  sliderItemsArr= []
@@ -49,7 +50,10 @@ useEffect(()=>{
         setItems(sliderItemsArr)
         return sliderItemsArr
         }
-    pushImagesCarouselTosaparateArray()
+        if(products.length>0 && !loading){
+            console.log({products})
+          pushImagesCarouselTosaparateArray()
+       }
     return ()=> {
         pushImagesCarouselTosaparateArray()
         setItems([])
@@ -68,7 +72,7 @@ useEffect(()=>{
         {!loading && !error && products && (
             <>
              <Typography style={{marginTop:'5rem',marginBottom:'2rem'}} variant="h6" gutterBottom >TOP PRODUCTS</Typography>
-            <Carousel >
+            <Carousel animation="slide" autoPlay={false} cycleNavigation timeout={300}>
                {items}
             </Carousel>
             </>
