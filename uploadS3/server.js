@@ -13,7 +13,7 @@ const unlink = util.promisify(fs.unlink);
 const app = express();
 const upload = multer({ dest: 'uploads/' });
 
-app.get('/images/:key',(req,res)=>{
+app.get('/:key',(req,res)=>{
   const key = req.params.key;
   const readStream = getFileStream(key);
     readStream.pipe(res);
