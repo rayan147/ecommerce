@@ -13,13 +13,13 @@ const unlink = util.promisify(fs.unlink);
 const app = express();
 const upload = multer({ dest: 'uploads/' });
 
-app.get('/:key',(req,res)=>{
+app.get('/images/:key',(req,res)=>{
   const key = req.params.key;
   const readStream = getFileStream(key);
     readStream.pipe(res);
 })
 
-app.post('/', upload.single('image'),async (req, res) => {
+app.post('/images', upload.single('image'),async (req, res) => {
     try {
         const file = req.file;
         console.log({file});
