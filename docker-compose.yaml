@@ -15,10 +15,10 @@ services:
   #   ports:
   #     - '80:80'
     
-    networks:
-      - app-network
-    depends_on:
-      - api
+    # networks:
+    #   - app-network
+    # depends_on:
+    #   - api
   redis:
     image: 'redis'
     user: root
