@@ -57,7 +57,7 @@ app.use(cors());
 // app.use('/orders',orderRoutes);
 // app.get('/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
 
-DEVELOPMENT ROUTES
+//DEVELOPMENT ROUTES
 app.use('/api/products', productRoutes);
 app.use('/api/auth/users', adminRoutes);
 app.use('/api/users',userRoutes); 
