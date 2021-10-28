@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 
-const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
+const PlaceOrderIn = ({shippingAddress,title,userInfo,payment='Paypal'}) => {
 
 
    

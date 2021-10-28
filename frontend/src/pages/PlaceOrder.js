@@ -82,7 +82,7 @@ const PlaceOrder = ({ history }) => {
           <PlaceOrderIn
             shippingAddress={cart.shippingAddress}
             title='BILLING'
-            payment={cart.payment}
+            
             userInfo={userInfo}
           />
         </Grid>
