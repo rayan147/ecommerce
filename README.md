@@ -9,7 +9,16 @@ Use the package manager [npm](https://www.npmjs.com/) to install ProduceX.
 ```bash
 npm i
 ```
-
+## Admin Credentials
+```bash
+admin123@gmail.com
+admin123
+```
+## User Credentials
+```bash
+user123@gmail.com
+user123
+```
 ## Features 
  User | Admin product management
  -----|------
