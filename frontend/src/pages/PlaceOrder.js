@@ -61,7 +61,7 @@ const PlaceOrder = ({ history }) => {
       createOrder({
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
+        paymentMethod: 'Paypal',
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
