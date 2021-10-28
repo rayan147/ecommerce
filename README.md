@@ -35,7 +35,10 @@ user123
  update profile|
  shopping cart|
 
-
+## Run backend server tests
+```bash
+cd backend && npm run test
+```
 ## Working on Features
  User | Admin
  -----|------
@@ -45,11 +48,21 @@ user123
 ## Dependecies
 ```
 # create a .env in the root dir and add the following vars 
-NODE_ENV = xxxxx
-PORT = 5000 # or which ever you want 
-MONGO_URL =xxxxxxxxxxxxxx
-JWT_TOKEN_SECRET = xxxxxxxxxx
-PAYPAL_CLIENT_ID=xxxxxxxxxxxx
+#########################
+# ECOMMERNCE SETTINGS
+##########################
+#NODE_ENV=development
+NODE_ENV=production
+PORT=5000
+MONGO_URL_PROD=MONGO_URL_PROD
+MONGO_URL_TEST=MONGO_URL_TEST
+JWT_TOKEN_SECRET=JWT_TOKEN_SECRET
+PAYPAL_CLIENT_ID=PAYPAL_CLIENT_ID
+AWS_BUCKET_IMAGES_NAME=producx-holds-images
+AWS_BUCKET_REGION=us-east-1
+AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY
+PORT_S3=5001
 ```
 ## Usage
 
