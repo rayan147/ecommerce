@@ -38,43 +38,71 @@ const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
     const {email,name} = userInfo;
     const classes = useStyles();
     return (
-        <Card className={classes.root}>
-        <CardContent> 
-            <Typography variant="h5" component="h2" gutterBottom>
+      <Card className={classes.root}>
+        <CardContent>
+          <Typography variant='h5' component='h2' gutterBottom>
             {title}
           </Typography>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-          <strong> Name: </strong> {name}
+          <Typography
+            className={classes.title}
+            color='textSecondary'
+            gutterBottom
+          >
+            <strong> Name: </strong> {name}
           </Typography>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-          <strong> Email: </strong> {email}
+          <Typography
+            className={classes.title}
+            color='textSecondary'
+            gutterBottom
+          >
+            <strong> Email: </strong> {email}
           </Typography>
-          <Typography variant="body2" component="span">
-          
-         <List dense component="nav" aria-label="adress">
-           {/* {shippingAddressList} */}
-             <strong> Address:</strong>
-            <ListItem>
-              
-            <ListItemText primary={address} secondary={
-                <React.Fragment>
-                <Typography component="span" variant="body2" color="textPrimary" className={classes.pos}>
-                {city},
-                </Typography>
-                <Typography component="span" variant="body2" color="textPrimary" className={classes.pos}>
-                {_state},
-                </Typography>
-                <Typography component="span" variant="body2" color="textPrimary" className={classes.pos}>
-                {zipCode}
-                </Typography>
-                <Typography component="span" variant="body2" color="textPrimary" className={classes.pos}>
-                {country}
-                </Typography>
-                </React.Fragment>
-            } />
-            
-            </ListItem>
-            {/* {title === 'BILLING' && (<ListItem>  
+          <Typography variant='body2' component='span'>
+            <List dense component='nav' aria-label='adress'>
+              {/* {shippingAddressList} */}
+              <strong> Address:</strong>
+              <ListItem>
+                <ListItemText
+                  primary={address}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        component='span'
+                        variant='body2'
+                        color='textPrimary'
+                        className={classes.pos}
+                      >
+                        {city},
+                      </Typography>
+                      <Typography
+                        component='span'
+                        variant='body2'
+                        color='textPrimary'
+                        className={classes.pos}
+                      >
+                        {_state},
+                      </Typography>
+                      <Typography
+                        component='span'
+                        variant='body2'
+                        color='textPrimary'
+                        className={classes.pos}
+                      >
+                        {zipCode}
+                      </Typography>
+                      <Typography
+                        component='span'
+                        variant='body2'
+                        color='textPrimary'
+                        className={classes.pos}
+                      >
+                        {country}
+                      </Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              {/* {title === 'BILLING' && (<ListItem>  
                <ListItemText primary={<strong>Payment Method</strong>} secondary={
                 <React.Fragment>
                 <Typography component="span" variant="body2" color="textPrimary" className={classes.pos}>
@@ -83,13 +111,11 @@ const PlaceOrderIn = ({shippingAddress,title,userInfo,payment}) => {
                 </React.Fragment>
             } />
             </ListItem>)} */}
-            
-         </List>
+            </List>
           </Typography>
         </CardContent>
-
       </Card>
-    )
+    );
 }
 
 export default PlaceOrderIn

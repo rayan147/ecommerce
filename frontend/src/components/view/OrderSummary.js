@@ -34,76 +34,69 @@ const OrderSummary = ({cart,placeOrderHandler,error}) => {
     const classes = useStyles();
     const subTotalItem =useCallback(()=>cartItems.reduce((acc,item)=> acc + item.quantity ,0),[cartItems])
     return (
-        <Grid container >
+      <Grid container>
         <Card className={classes.root}>
-            <CardContent>
-        <Typography  gutterBottom>
-         <strong>   Order Summary </strong>
-          </Typography> 
-          {cartItems.legth === 0 && (
-               <Alert severity="info">
-               <AlertTitle>Info</AlertTitle>
+          <CardContent>
+            <Typography gutterBottom>
+              <strong> Order Summary </strong>
+            </Typography>
+            {cartItems.legth === 0 && (
+              <Alert severity='info'>
+                <AlertTitle>Info</AlertTitle>
                 Your cart is empty
-             </Alert>
-          )}
-        
-        <List>
-             {cartItems.map(item => (
-                 <>
-                 <ListItem key={item.product_id}>
-                <OrderItemSummary key={item.product_id} item={item} />
-                </ListItem>
+              </Alert>
+            )}
+
+            <List>
+              {cartItems.map((item) => (
+                <>
+                  <ListItem key={item.product_id}>
+                    <OrderItemSummary key={item.product_id} item={item} />
+                  </ListItem>
                 </>
-          ))} 
-         </List>
-            <List dense  >
-            <ListItem>
-                <ListItemText  secondary={`Total items`} />
+              ))}
+            </List>
+            <List dense>
+              <ListItem>
+                <ListItemText secondary={`Total items`} />
                 <ListItemSecondaryAction>
-                <Typography>{subTotalItem()}</Typography>
+                  <Typography>{subTotalItem()}</Typography>
                 </ListItemSecondaryAction>
-                </ListItem>
-                <ListItem >  
-                    <ListItemText primary="Subtotal"  />
-                     ${itemsPrice}
-                    
-                </ListItem> 
-                <ListItem >
-                    <ListItemText primary="Tax"/>
-                     ${taxPrice}
-                </ListItem>
-                <ListItem>
-                    <ListItemText primary="Shipping" />
-                     ${shippingPrice}
-                </ListItem>
-                <ListItem>
-                    
-                    <ListItemText primary="Total" />
-                    <strong>
-                     ${totalPrice}
-                    </strong>
-                </ListItem>
+              </ListItem>
+              <ListItem>
+                <ListItemText primary='Subtotal' />${itemsPrice}
+              </ListItem>
+              <ListItem>
+                <ListItemText primary='Tax' />${taxPrice}
+              </ListItem>
+              <ListItem>
+                <ListItemText primary='Shipping' />${shippingPrice}
+              </ListItem>
+              <ListItem>
+                <ListItemText primary='Total' />
+                <strong>${totalPrice}</strong>
+              </ListItem>
             </List>
             {error && (
-               <Alert severity="error">
-               <AlertTitle>Error</AlertTitle>
+              <Alert severity='error'>
+                <AlertTitle>Error</AlertTitle>
                 {error}
-             </Alert>
-          )}
-            <Button 
-        disabled={cartItems === 0}
-        type='button'
-        fullWidth
-        variant="contained" 
-        color="primary"
-        onClick={placeOrderHandler}
-        >
-            Place Order
+              </Alert>
+            )}
+            <Button
+              disabled={cartItems === 0}
+              type='button'
+              fullWidth
+              variant='contained'
+              color='primary'
+              onClick={placeOrderHandler}
+            >
+              Place Order
             </Button>
-          </CardContent> 
+          </CardContent>
         </Card>
-        </Grid>
-    )
+      </Grid>
+    );
 }
 
 export default OrderSummary

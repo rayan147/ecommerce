@@ -64,20 +64,30 @@ useEffect(()=>{
 
 
     return (
-        <>
-      
-        {loading && <Alert severity="info">Loading...</Alert>}
-        {error && <Alert severity="error">{error}</Alert>}
+      <>
+        {loading && <Alert severity='info'>Loading...</Alert>}
+        {error && <Alert severity='error'>{error}</Alert>}
         {!loading && !error && products && (
-            <>
-             <Typography style={{marginTop:'5rem',marginBottom:'2rem'}} variant="h6" gutterBottom >TOP PRODUCTS</Typography>
-            <Carousel animation="slide" autoPlay={false} cycleNavigation timeout={300}>
-               {items}
+          <>
+            <Typography
+              style={{ marginTop: "5rem", marginBottom: "2rem" }}
+              variant='h6'
+              gutterBottom
+            >
+              TOP PRODUCTS
+            </Typography>
+            <Carousel
+              animation='slide'
+              autoPlay={false}
+              cycleNavigation
+              timeout={300}
+            >
+              {items}
             </Carousel>
-            </>
+          </>
         )}
-        </>
-    )
+      </>
+    );
 }
 
 export default ProductCarousel

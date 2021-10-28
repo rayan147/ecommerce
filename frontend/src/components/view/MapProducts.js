@@ -29,43 +29,46 @@ const useStyles = makeStyles((theme) => ({
 const MapProducts = ({products,history,match,keyword,page,pages,isAdmin=false }) => {
   const classes = useStyles();
     return (
-        <>
-          <Grid container className={classes.root} spacing={3}>
+      <>
+        <Grid container className={classes.root} spacing={3}>
           <Grid item xs={12}>
-           <Grid container justifyContent="center" spacing={3}>
-             {products && products.map( product => (
-                 <>
-                 <Grid  key={product._id} item>
-                    <Product key={product._id} product={product} history={history} match={match}/>
-                 </Grid>
-                 </>
-             ))
-            }
-         
-         </Grid>
-         </Grid>
-         </Grid> 
-    
-     
-            <Pagination
-              page={page}
-              count={pages}
-              renderItem={(item) => (
-                <PaginationItem
-                  component={Link}
-                  to={
-                    !isAdmin
-                ? keyword
-                  ? `/search/${keyword}/page/${item.page + 1}`
-                  : `/page/${item.page}`
-                : `/admin/productlist/${item.page + 1}`}
-                  {...item}
-                />
-              )}
+            <Grid container justifyContent='center' spacing={3}>
+              {products &&
+                products.map((product) => (
+                  <>
+                    <Grid key={product._id} item>
+                      <Product
+                        key={product._id}
+                        product={product}
+                        history={history}
+                        match={match}
+                      />
+                    </Grid>
+                  </>
+                ))}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Pagination
+          page={page}
+          count={pages}
+          renderItem={(item) => (
+            <PaginationItem
+              component={Link}
+              to={
+                !isAdmin
+                  ? keyword
+                    ? `/search/${keyword}/page/${item.page + 1}`
+                    : `/page/${item.page}`
+                  : `/admin/productlist/${item.page + 1}`
+              }
+              {...item}
             />
-  
-        </>
-    )
+          )}
+        />
+      </>
+    );
 }
 
 MapProducts.propTypes = {

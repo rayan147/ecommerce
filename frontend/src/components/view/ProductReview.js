@@ -31,68 +31,47 @@ const ProductReview = ({product}) => {
     const classes = useStyles();
     const {reviews} =product
     return (
-        <Grid 
-        container 
-        spacing={1} 
-        alignItems="center"
-        justifyContent="center">
-            <List className={classes.root}>
-              <ListItem alignItems="flex-center">
-                
-                <ListItemText primary={
-                    <Typography variant="h6" component="h6">
-                        <strong>Customer Reviews</strong>
-                    </Typography>
-                }
-                secondary={
-                  <>
-                    <Rating value={product.rating} 
-                text={
-                  `${product.rating}`}
-                  />
-                  <Typography variant="body2" component="span">
-                    {product.reviews.length} customer reviews
-                  </Typography>
-                  </>
-                }
-                
-                >
+      <Grid container spacing={1} alignItems='center' justifyContent='center'>
+        <List className={classes.root}>
 
-                </ListItemText>
-                
-              </ListItem>
-          
-                {reviews.map((review)=>
-                <>
-      <ListItem alignItems="flex-start" key={review._id} className={classes.ListItemMargin}>
-        <ListItemAvatar>
-          <Avatar alt={review.name}  />
-        </ListItemAvatar>
-        <ListItemText
-          primary={<strong>{review.name}</strong>}
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
+
+          {reviews.map((review) => (
+            <>
+              <ListItem
+                alignItems='flex-start'
+                key={review._id}
+                className={classes.ListItemMargin}
               >
-               <Rating value={review.rating} />
-              </Typography>
-              
-           <ListItemText primary={review.comment} secondary={review.createdAt.substring(0, 10)} />   
-            </React.Fragment>
-          }
-        />
-        
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      </>
-                )}
-      </List>
-        </Grid>
-    )
+                <ListItemAvatar>
+                  <Avatar alt={review.name} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={<strong>{review.name}</strong>}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        component='span'
+                        variant='body2'
+                        className={classes.inline}
+                        color='textPrimary'
+                      >
+                        <Rating value={review.rating} />
+                      </Typography>
+
+                      <ListItemText
+                        primary={review.comment}
+                        secondary={review.createdAt.substring(0, 10)}
+                      />
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <Divider variant='inset' component='li' />
+            </>
+          ))}
+        </List>
+      </Grid>
+    );
 }
 
 export default ProductReview

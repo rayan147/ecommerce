@@ -38,49 +38,49 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   const classes = useStyles();
   return (
     <Grid container className={classes.root} spacing={5}>
-      <Grid container justifyContent="center" spacing={5}>
-      <Grid item> 
-        {step1 ? (
-      
-          
-         <Card className={classes.card}  >
-          <ListItemLink  to='/login'>
-            <Button startIcon={<LockOpenIcon/>}>Sign In </Button>
-          </ListItemLink>
-           </Card>
-       
-        ) : (
-          <Button startIcon={<LockOpenIcon/>} disabled>Signed In</Button>
-        )}
-       
-      </Grid>
+      <Grid container justifyContent='center' spacing={5}>
+        <Grid item>
+          {step1 ? (
+            <Card className={classes.card}>
+              <ListItemLink to='/login'>
+                <Button startIcon={<LockOpenIcon />}>Sign In </Button>
+              </ListItemLink>
+            </Card>
+          ) : (
+            <Button startIcon={<LockOpenIcon />} disabled>
+              Signed In
+            </Button>
+          )}
+        </Grid>
 
-      <Grid item>
-        {step2 ? (
-          <Card className={classes.card} >
-          <ListItemLink to='/shipping'>
-            <Button startIcon={<LocalShippingIcon/>}>Shipping</Button>
-          </ListItemLink>
-           </Card>
-        ) : (
-          <Button disabled startIcon={<LocalShippingIcon/>}>Shipping</Button>
-        )}
-      </Grid>
+        <Grid item>
+          {step2 ? (
+            <Card className={classes.card}>
+              <ListItemLink to='/shipping'>
+                <Button startIcon={<LocalShippingIcon />}>Shipping</Button>
+              </ListItemLink>
+            </Card>
+          ) : (
+            <Button disabled startIcon={<LocalShippingIcon />}>
+              Shipping
+            </Button>
+          )}
+        </Grid>
 
-    
-
-      <Grid item>
-        {step4 ? (
-          <Card className={classes.card} >
-          <ListItemLink to='/placeorder'>
-            <Button startIcon={<ShopIcon/>} >Place Order</Button>
-          </ListItemLink>
-           </Card>
-        ) : (
-          <Button disabled startIcon={<ShopIcon/>}>Place Order</Button>
-        )}
-      </Grid>
-      {/* <Grid item>
+        <Grid item>
+          {step4 ? (
+            <Card className={classes.card}>
+              <ListItemLink to='/placeorder'>
+                <Button startIcon={<ShopIcon />}>Place Order</Button>
+              </ListItemLink>
+            </Card>
+          ) : (
+            <Button disabled startIcon={<ShopIcon />}>
+              Place Order
+            </Button>
+          )}
+        </Grid>
+        {/* <Grid item>
         {step3 ? (
           <Card className={classes.card}>
           <ListItemLink to='/payment'>
@@ -91,9 +91,9 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
           <Button disabled startIcon={<PaymentIcon/>}>Payment</Button>
         )}
       </Grid> */}
+      </Grid>
     </Grid>
-    </Grid>
-  )
+  );
 }
 
 export default CheckoutSteps

@@ -44,63 +44,69 @@ const ProductCard = ({product,addToCartHandler,qty,setQty}) => {
   const {countInStock,image,name,numReviews,price,description } = product
     const classes = useStyles();
     return (
-        <Grid 
-        container 
-        spacing={1} 
-        alignItems="center"
-        justifyContent="center">
-           <Meta title={name} description={description} keywords={description}/>
-           <Card className={classes.root}>
-           <Grid item xs>
-           <CardMedia
-        className={classes.cover}
-        image={image}
-        title={name}
-      />
+      <Grid container spacing={1} alignItems='center' justifyContent='center'>
+        <Meta title={name} description={description} keywords={description} />
+        <Card className={classes.root}>
+          <Grid item xs>
+            <CardMedia className={classes.cover} image={image} title={name} />
+          </Grid>
+          <Grid item xs>
+            <CardContent>
+              <Typography variant='subtitle1' color='secondary'>
+                ${price}
+              </Typography>
+              <Typography
+                variant='subtitle1'
+                color='textSecondary'
+                gutterBottom
+              >
+                <Rating value={product.rating} text={`${product.rating}`} />
+              </Typography>
+              <Typography gutterBottom>
+                <strong> {name}</strong>
+              </Typography>
+
+              <Typography variant='body2' color='textSecondary' gutterBottom>
+                {description}
+              </Typography>
+              {countInStock > 0 && (
+                <TextField
+                  id='countInStockId'
+                  select
+                  label={
+                    countInStock > 0 ? (
+                      <strong style={{ color: "green" }}>In stock</strong>
+                    ) : (
+                      "Out of stock"
+                    )
+                  }
+                  value={qty}
+                  onChange={(e) => setQty(e.target.value)}
+                  helperText='Please select your quantity'
+                >
+                  {[...Array(countInStock).keys()].map((x) => (
+                    <MenuItem key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )}
+            </CardContent>
+
+            <CardActions>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={addToCartHandler}
+                disabled={countInStock === 0}
+              >
+                Add to cart
+              </Button>
+            </CardActions>
+          </Grid>
+        </Card>
       </Grid>
-      <Grid item xs>
-        <CardContent >
-            <Typography variant="subtitle1" color="secondary">
-           ${price}
-          </Typography>
-            <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-            <Rating value={product.rating} text={`${product.rating}`}/>
-          </Typography>
-          <Typography gutterBottom >
-          <strong>  {name}</strong>
-          </Typography>
-           
-          <Typography variant="body2" color="textSecondary"  gutterBottom>
-  
-           {description}
-          </Typography>
-          {countInStock > 0 && (
-           <TextField
-          id="countInStockId"
-          select
-          label={countInStock > 0 ? <strong style={{color:'green'}}>In stock</strong> : 'Out of stock'}
-          value={qty}
-          onChange={(e)=>setQty(e.target.value)}
-          helperText="Please select your quantity"
-        >
-          {[...Array(countInStock).keys()].map((x)=>(
-            <MenuItem key={x+1} value={x+1}>{x+1}</MenuItem>
-          ))}
-        </TextField>
-        )}
-      
-        </CardContent>
-       
-        <CardActions>
-         <Button variant="contained" color="primary" onClick={addToCartHandler} disabled={countInStock === 0}>
-          Add to cart
-        </Button>
-      </CardActions>
-  </Grid>
-     
-    </Card>  
-        </Grid>
-    )
+    );
 }
 
 export default ProductCard

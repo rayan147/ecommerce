@@ -56,47 +56,38 @@ const Product = ({product }) => {
     const truncatedDescription = trancateString(description)
       
     return (
-           <>
-         
-      <Link to={`/product/${_id}`} style={{ textDecoration:'none'}} >
-            <Card  className={classes.root} >
+      <>
+        <Link to={`/product/${_id}`} style={{ textDecoration: "none" }}>
+          <Card className={classes.root}>
             <CardActionArea>
-          
-               { <CardMedia 
-               className={classes.cover}
-                image={image} 
-                alt={name} 
-                component="img"  />
-               }
-            <CardContent>
-           
-              <Typography   display="block" >{`${name}`.substr(0,15)}
-              </Typography>
-              <Typography>
-                <Rating value={rating}   />
-            </Typography>
-              <Typography variant="caption" display="block" gutterBottom >
-               { truncatedDescription }
-              </Typography>
-         
-           
-            <Typography variant="overline" display="block" gutterBottom >
-             ${price}/<small>lb</small> 
-            </Typography>  
-         
-            </CardContent>
-       </CardActionArea> 
-       </Card> 
-       </Link>
-       </>
-  
-    
+              {
+                <CardMedia
+                  className={classes.cover}
+                  image={image}
+                  alt={name}
+                  component='img'
+                />
+              }
+              <CardContent>
+                <Typography display='block'>
+                  {`${name}`.substr(0, 15)}
+                </Typography>
+                <Typography>
+                  <Rating value={rating} />
+                </Typography>
+                <Typography variant='caption' display='block' gutterBottom>
+                  {truncatedDescription}
+                </Typography>
 
-   
-  
-       
-  
-    )
+                <Typography variant='overline' display='block' gutterBottom>
+                  ${price}/<small>lb</small>
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Link>
+      </>
+    );
 }
 
 Product.propTypes = {

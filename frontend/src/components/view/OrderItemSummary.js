@@ -39,31 +39,30 @@ const OrderItemSummary = ({item}) => {
   
   return (
     <Card className={classes.root}>
-    <CardMedia
-      className={classes.cover}
-      image={item.image}
-      title={item.name}
-    />
-    <div >
-      <CardContent>
-        <Typography >
-        <Link to={`/product/${item.product_id}`} style={{ textDecoration:'none'}}>
-          {item.name}
-          </Link>
-        </Typography>
-        <Typography  
-        >
-     <strong>Quantity {item.quantity} </strong>
-        </Typography>
-        <Typography  
-        >
-     <small>lb/${item.price} </small>
-        </Typography>
-      </CardContent>
-        
-    </div>
-  
-  </Card>
+      <CardMedia
+        className={classes.cover}
+        image={item.image}
+        title={item.name}
+      />
+      <div>
+        <CardContent>
+          <Typography>
+            <Link
+              to={`/product/${item.product_id}`}
+              style={{ textDecoration: "none" }}
+            >
+              {item.name}
+            </Link>
+          </Typography>
+          <Typography>
+            <strong>Quantity {item.quantity} </strong>
+          </Typography>
+          <Typography>
+            <small>lb/${item.price} </small>
+          </Typography>
+        </CardContent>
+      </div>
+    </Card>
   );
 }
 

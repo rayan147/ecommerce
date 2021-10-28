@@ -61,61 +61,54 @@ const FormSubmintReview = ({
    
     
     return (
-        <Grid  className={classes.root} >
-      
-      <Grid  justifyContent="center" spacing={1}>
-        <Card className={classes.card}>
-            
-          <form onSubmit={submitHandler} noValidate autoComplete="off">
-             <CardContent>
-              <Grid  item xs className={classes.item}>
-          <TextField
-          id="options"
-          select
-         
-          label="Select"
-          value={rating}
-          onChange={handleChangeValue}
-          helperText="Please rate your purchase with us."
-        >
-            {optionsArray.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.value}-{option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+      <Grid className={classes.root}>
+        <Grid justifyContent='center' spacing={1}>
+          <Card className={classes.card}>
+            <form onSubmit={submitHandler} noValidate autoComplete='off'>
+              <CardContent>
+                <Grid item xs className={classes.item}>
+                  <TextField
+                    id='options'
+                    select
+                    label='Select'
+                    value={rating}
+                    onChange={handleChangeValue}
+                    helperText='Please rate your purchase with us.'
+                  >
+                    {optionsArray.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.value}-{option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+                <Grid item xs className={classes.item}>
+                  <TextField
+                    id='outlined-multiline-static'
+                    label='Customer reviews'
+                    multiline
+                    rows={4}
+                    variant='outlined'
+                    value={comment}
+                    onChange={handleChangeComment}
+                  />
+                </Grid>
+              </CardContent>
+              <CardActions>
+                <Button
+                  disabled={loadingProductReview}
+                  type='submit'
+                  variant='contained'
+                  color='primary'
+                >
+                  Submit
+                </Button>
+              </CardActions>
+            </form>
+          </Card>
         </Grid>
-        <Grid  item xs className={classes.item}>
-        <TextField
-          id="outlined-multiline-static"
-          label="Customer reviews"
-          multiline
-          rows={4}
-          variant="outlined"
-          value={comment}
-          onChange={handleChangeComment}
-        />
-        </Grid>
-                      
-
-                    </CardContent> 
-                    <CardActions>
-                    <Button
-                        disabled={loadingProductReview}
-                        type='submit'
-                        variant='contained'
-                        color="primary"
-                        
-                      >
-                        Submit
-                      </Button>
-               </CardActions>
-               </form> 
-                  </Card>
-                  </Grid>
-                  </Grid>
-                  
-    )
+      </Grid>
+    );
 }
 
 export default FormSubmintReview

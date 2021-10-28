@@ -1,4 +1,1 @@
-export default {
-    displayName: 'backend',
-    testEnvironment: 'node',
-}
+export default { displayName: 'backend', testEnvironment: 'node' };
