@@ -1,7 +1,6 @@
 # ProduceX
 
-ProduceX is an ecommerce mern webapp that sells organic local grown produces in season. 
-
+An MERN e-commerce application with features such as login system, search product by name, shopping cart features, review, administration page, user management, rate, paypal payment. 
 ## Installation
 
 Use the package manager [npm](https://www.npmjs.com/) to install ProduceX.
