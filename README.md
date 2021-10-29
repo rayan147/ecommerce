@@ -1,7 +1,17 @@
 # ProduceX
 
 An MERN e-commerce application with features such as login system, search product by name, shopping cart features, review, administration page, user management, rate, paypal payment. 
-## Installation
+
+<p align="center">
+  <img src="./images/shop.png" width="350" title="shop">
+  <img src="./images/item.png" width="350" alt="produce">
+  <img src="./images/placeorder.png" width="350" alt="place order">
+  <img src="./images/paypal.png" width="350" alt="paypal">
+</p>
+
+# Hosted here 
+ [here](http://ecommerce.rayanr.com)
+# Installation
 
 Use the package manager [npm](https://www.npmjs.com/) to install ProduceX.
 
