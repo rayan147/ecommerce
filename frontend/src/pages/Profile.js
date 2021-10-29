@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useCallback } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -94,25 +94,28 @@ const Profile = ({ location, history }) => {
     return;
   }, [dispatchUseReducer, dispatch, userInfo, history, user, success]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      dispatchUseReducer({
-        type: ERROR_Alert,
-        errorAlert: "Passwords do not match",
-      });
-      return;
-    }
-    const updatedUserDetails = {
-      user_id: user._id,
-      name: state.name,
-      email: state.email,
-      password: state.password,
-    };
-    // console.log({updatedUserDetails})
-    // DISPATCH UPDATES PROFILE
-    dispatch(updateUserProfile(updatedUserDetails));
-  };
+  const submitHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (password !== confirmPassword) {
+        dispatchUseReducer({
+          type: ERROR_Alert,
+          errorAlert: "Passwords do not match",
+        });
+        return;
+      }
+      const updatedUserDetails = {
+        user_id: user._id,
+        name: state.name,
+        email: state.email,
+        password: state.password,
+      };
+      // console.log({updatedUserDetails})
+      // DISPATCH UPDATES PROFILE
+      dispatch(updateUserProfile(updatedUserDetails));
+    },
+    [dispatchUseReducer, dispatch, state, user, password, confirmPassword]
+  );
 
   return (
     <Grid container className={classes.root} spacing={2}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useCallback } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -68,10 +68,10 @@ const Login = ({ location, history }) => {
       history.push(redirect);
     }
   }, [redirect, history, userInfo]);
-  const submitHandler = (e) => {
+  const submitHandler = useCallback((e) => {
     e.preventDefault();
     dispatch(login(email, password));
-  };
+  }, [email, password, dispatch]);
 
   return (
     <Card className={classes.root} boxShadow={3}>

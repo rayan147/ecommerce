@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useCallback } from "react";
 
 import { Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -98,16 +98,16 @@ const ProductList = ({ history, match }) => {
     pageNumber,
   ]);
 
-  const deleteHandler = (id) => {
+  const deleteHandler = useCallback((id) => {
     if (window.confirm("Are you sure")) {
       dispatch(deleteProduct(id));
     }
-  };
+  }, [dispatch]);
 
-  const createProductHandler = () => {
+  const createProductHandler =useCallback( () => {
     dispatch(createProduct());
     dispatch(listProducts("", pageNumber));
-  };
+  }, [dispatch, pageNumber]);
 
   return (
     <>

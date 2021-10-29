@@ -55,7 +55,7 @@ const Order = ({ match, history }) => {
   const { userInfo } = userLogin;
 
   const cart = useSelector((state) => state.cart);
-  const { paymentMethod } = cart;
+ 
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const { isLoading: loadingDeliver, isSucesss: successDeliver } = orderDeliver;
 
@@ -131,9 +131,7 @@ const Order = ({ match, history }) => {
               <Typography className={classes.title} componen='div' variant='h6'>
                 <Alert
                   severity='info'
-                  style={{
-                    width: "40%",
-                  }}
+                  
                 >
                   {" "}
                   Order Number <strong>{`${order._id}`.toUpperCase()} </strong>

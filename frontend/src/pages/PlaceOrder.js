@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect ,useCallback} from "react";
 
 import Grid from "@material-ui/core/Grid";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,7 +56,7 @@ const PlaceOrder = ({ history }) => {
     // eslint-disable-next-line
   }, [history, isFetchingRequestSuccess]);
 
-  const placeOrderHandler = () => {
+  const placeOrderHandler =useCallback(()=> () => {
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -68,7 +68,7 @@ const PlaceOrder = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     );
-  };
+  },[cart.cartItems,cart.shippingAddress,cart.itemsPrice,cart.shippingPrice,cart.taxPrice,cart.totalPrice])]);
   return (
     <div className={classes.root}>
       <Grid container>

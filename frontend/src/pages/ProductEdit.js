@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 
 import axios from "axios";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
@@ -73,7 +73,7 @@ const ProductEdit = ({ match, history }) => {
     }
   }, [dispatch, history, productId, product, successUpdate]);
 
-  const uploadFileHandler = async (e) => {
+  const uploadFileHandler =  useCallback( async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("image", file);
@@ -94,9 +94,9 @@ const ProductEdit = ({ match, history }) => {
       console.error(error);
       setUploading(false);
     }
-  };
+  }, [ setUploading, setImage ]);
 
-  const submitHandler = (e) => {
+  const submitHandler =useCallback( (e) => {
     e.preventDefault();
     dispatch(
       updateProduct({
@@ -110,7 +110,7 @@ const ProductEdit = ({ match, history }) => {
         countInStock,
       })
     );
-  };
+  },[ dispatch, productId, name, price, image, brand, category, description, countInStock ]);
 
   return (
     <>

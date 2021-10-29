@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer,useCallback } from "react";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -76,7 +76,7 @@ const Register = ({ location, history }) => {
       history.push(redirect);
     }
   }, [redirect, history, userInfo]);
-  const submitHandler = (e) => {
+  const submitHandler = useCallback((e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       dispatchUseReducer({
@@ -86,7 +86,7 @@ const Register = ({ location, history }) => {
       return;
     }
     dispatch(register(name, email, password));
-  };
+  }, [dispatch, name, email, password, confirmPassword]);
 
   return (
     <>

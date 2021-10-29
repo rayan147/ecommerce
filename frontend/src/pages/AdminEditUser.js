@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 
 import { Link } from "react-router-dom";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -49,13 +49,14 @@ const AdminEditUser = ({ match, history }) => {
     }
   }, [dispatch, history, userId, user, successUpdate]);
 
-  const submitHandler = (e) => {
+  const submitHandler =useCallback(()=> (e) => {
     e.preventDefault();
     dispatch(adminUpdatedUser({ _id: userId, name, email, isAdmin }));
-  };
-  const handleChange = (event) => {
+  },[userId, name, email, isAdmin, dispatch]);
+
+  const handleChange = useCallback((event) => {
     setIsAdmin(event.target.checked);
-  };
+  },[setIsAdmin]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useCallback } from "react";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -60,12 +60,12 @@ const AdminGetUsersList = ({ history }) => {
     }
   }, [dispatch, history, successDelete, userInfo]);
 
-  const deleteHandler = (id) => {
+  const deleteHandler =useCallback( (id) => {
     if (window.confirm("Are you sure")) {
       console.log(id);
       dispatch(deleteUser(id));
     }
-  };
+  },[dispatch]);
 
   return (
     <>

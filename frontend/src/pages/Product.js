@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -49,19 +49,21 @@ const Product = ({ history, match }) => {
   }, [dispatch, match, successProductReview, product._id]);
 
   // Handlers
-  const addToCartHandler = () => {
+  const addToCartHandler =useCallback(() => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
-  };
-  const handleChangeValue = (e) => {
+  },[history,match.params.id,qty]);
+
+  const handleChangeValue = useCallback((e) => {
     e.preventDefault();
     setRating(e.target.value);
-  };
-  const handleChangeComment = (e) => {
+  },[setRating]);
+
+  const handleChangeComment =useCallback( (e) => {
     e.preventDefault();
     setComment(e.target.value);
-  };
+  },[setComment]);
 
-  const submitHandler = (e) => {
+  const submitHandler = useCallback((e) => {
     e.preventDefault();
     dispatch(
       createProductReview(match.params.id, {
@@ -69,7 +71,7 @@ const Product = ({ history, match }) => {
         comment,
       })
     );
-  };
+  }, [dispatch, match.params.id, rating, comment]);
   const formSubmintReviewProps = {
     rating,
     comment,
