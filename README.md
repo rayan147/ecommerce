@@ -79,6 +79,9 @@ npm run data:import
 data:destroy
 ```
 
+## Backend REST-API Documentation
+ Postman documentation for the REST-API is available here:
+ [Backend](https://github.com/rayan147/ecommerce/tree/master/backend)
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
