@@ -68,7 +68,7 @@ const PlaceOrder = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     );
-  },[cart.cartItems,cart.shippingAddress,cart.itemsPrice,cart.shippingPrice,cart.taxPrice,cart.totalPrice])]);
+  },[cart.cartItems,cart.shippingAddress,cart.itemsPrice,cart.shippingPrice,cart.taxPrice,cart.totalPrice,dispatch]);
   return (
     <div className={classes.root}>
       <Grid container>
