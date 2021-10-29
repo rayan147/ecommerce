@@ -8,7 +8,10 @@ An MERN e-commerce application with features such as login system, search produc
   <img src="./images/placeorder.png" width="350" alt="place order">
   <img src="./images/paypal.png" width="350" alt="paypal">
 </p>
-## Installation
+
+# Hosted here 
+ [here](http://ecommerce.rayanr.com)
+# Installation
 
 Use the package manager [npm](https://www.npmjs.com/) to install ProduceX.
 
