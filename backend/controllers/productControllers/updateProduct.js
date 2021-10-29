@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler';
 
 /**
- * @description - gets the current user profile
+ * @description - Update a product in the database and return the updated product
  * @route  PUT /api/products/:id
  * @access Private route
  * @return

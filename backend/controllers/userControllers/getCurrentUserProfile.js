@@ -1,5 +1,4 @@
-
-import asyncHandler from "express-async-handler"
+import asyncHandler from 'express-async-handler';
 import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
 
 /**
@@ -8,23 +7,19 @@ import mongoFactoryMethods from '../../config/mongoFactoryMethods.js';
  * @access Private route
  * @return  user object
  * */
-const getCurrentUserProfile = asyncHandler(async(req, res) => {
-   
+const getCurrentUserProfile = asyncHandler(async (req, res) => {
   const user = await req.db.findUserById(req.user._id);
 
-  if(!user) {
-     res.status(404)
-     throw new Error('User not found');
- 
-   };
-   res.status(200).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin
-   });
-
-     
-})
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+  res.status(200).json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    isAdmin: user.isAdmin,
+  });
+});
 
 export default getCurrentUserProfile;

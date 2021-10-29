@@ -1,27 +1,21 @@
-
-import asyncHandler from "express-async-handler"
-
-
+import asyncHandler from 'express-async-handler';
 
 /**
- * @description - gets the current user profile
+ * @description - Delete a user by id
  * @route   DELETE /api/auth/users/:id
  * @access Private route
- * @return  
+ * @return
  * */
-const deleteUserById = asyncHandler(async(req, res) => {
+const deleteUserById = asyncHandler(async (req, res) => {
   const user = await req.db.findUserByIdAndDelete(req.params.id);
   if (!user) {
     return res.status(404).json({
-      message: 'User not found'
+      message: 'User not found',
     });
   }
   res.status(200).json({
-    message: "Product deleted successfully",
+    message: 'User deleted successfully',
   });
 });
- 
-     
-
 
 export default deleteUserById;

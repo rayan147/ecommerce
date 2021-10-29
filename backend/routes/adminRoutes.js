@@ -5,7 +5,6 @@ import isAdmin from '../middleware/isAdmin.js';
 import deleteUserById from '../controllers/adminControllers/deleteUserById.js';
 import updateUserById from '../controllers/adminControllers/updateUserById.js';
 import getUserById from '../controllers/adminControllers/getUserById.js';
-import getUserProfile from '../controllers/adminControllers/getUserProfile.js';
 
 import exposeDatabase from '../middleware/exposeDatabase.js';
 
@@ -17,6 +16,6 @@ router
   .route('/:id')
   .delete(exposeDatabase, authenticateUserToken, isAdmin, deleteUserById)
   .put(exposeDatabase, authenticateUserToken, isAdmin, updateUserById)
-  .get(exposeDatabase, authenticateUserToken, isAdmin, getUserById)
-  .get(exposeDatabase, authenticateUserToken, isAdmin, getUserProfile);
+  .get(exposeDatabase, authenticateUserToken, isAdmin, getUserById);
+
 export default router;

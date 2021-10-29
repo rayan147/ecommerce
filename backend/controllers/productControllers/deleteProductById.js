@@ -1,8 +1,8 @@
 import asyncHandler from 'express-async-handler';
 
 /**
- * @description - gets the current user profile
- * @route   DELETE /api/auth/users/:id
+ * @description - Delete a product by id
+ * @route   DELETE /api/product/:id
  * @access Private route
  * @return
  * */
@@ -11,11 +11,11 @@ const deleteProductById = asyncHandler(async (req, res) => {
   const product = await req.db.deleteProductByItsId(req.params.id);
   if (!product) {
     return res.status(404).json({
-      message: 'User not found',
+      message: 'Product not found',
     });
   }
   res.status(200).json({
-    message: 'User deleted successfully',
+    message: 'Product deleted successfully',
   });
 });
 

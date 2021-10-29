@@ -32,13 +32,22 @@ const mongoFactoryMethods = () => {
   const findOrderById = async (id) => Order.findById(id).populate('user', 'name email');
   const findOrderByIdAndNotPopulate = async (id) => Order.findById(id);
   const findCurrentUserOrders = async (id) => Order.find({ user: id });
+  const findOrderByIdAndUpdate = async (id, data) =>
+    Order.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+  const findOrderByIdAndDelete = async (id) => Order.findByIdAndDelete(id);
+
   return Object.freeze({
     findUserByEmailWidthPasswordReturn,
     findUserByEmailWidthOutPasswordReturn,
     findOrderByIdAndNotPopulate,
+    findOrderByIdAndDelete,
     findUserByEmail,
     findUserById,
     findUserByIdAndUpdate,
+    findOrderByIdAndUpdate,
     createUser,
     createProductAndAddItToMongodb,
     findProductById,
