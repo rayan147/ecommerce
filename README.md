@@ -5,6 +5,8 @@ An MERN e-commerce application with features such as login system, search produc
 <p align="center">
   <img src="./images/shop.png" width="350" title="shop">
   <img src="./images/item.png" width="350" alt="produce">
+  <img src="./images/placeorder.png" width="350" alt="place order">
+  <img src="./images/paypal.png" width="350" alt="paypal">
 </p>
 ## Installation
 
