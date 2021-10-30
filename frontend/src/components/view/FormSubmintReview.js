@@ -9,6 +9,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
+import PropTypes from 'prop-types';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -109,6 +111,16 @@ const FormSubmintReview = ({
         </Grid>
       </Grid>
     );
+}
+
+
+FormSubmintReview.propTypes = {
+    submitHandler: PropTypes.func.isRequired,
+    loadingProductReview: PropTypes.bool.isRequired,
+    handleChangeValue: PropTypes.func.isRequired,
+    handleChangeComment: PropTypes.func.isRequired,
+    comment: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired
 }
 
 export default FormSubmintReview

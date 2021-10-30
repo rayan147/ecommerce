@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-
+import PropTypes from "prop-types";
 
 import Rating from "./Rating";
 
@@ -47,5 +47,7 @@ const CustomerReviews = ({ product }) => {
     </Card>
   );
 };
-
+CustomerReviews.propTypes = {
+  product: PropTypes.object.isRequired,
+};
 export default CustomerReviews;

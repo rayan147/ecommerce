@@ -6,6 +6,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom'
 
+
+import PropTypes from 'prop-types';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -65,5 +68,9 @@ const OrderItemSummary = ({item}) => {
     </Card>
   );
 }
+
+OrderItemSummary.propTypes = {
+  item: PropTypes.object.isRequired,
+};
 
 export default OrderItemSummary

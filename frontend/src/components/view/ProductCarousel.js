@@ -12,7 +12,7 @@ import Product from './Product';
 
 
 
-
+import Proptypes from 'prop-types';
 
 
 
@@ -38,7 +38,7 @@ useEffect(()=>{
             sliderItemsArr.push(
                 <div key={i}>
                     <Box display="flex" justifyContent="center"  >
-                        {products && Array.from(products).slice(i, i + sliderItems).map((product, index) => (
+                        {products.slice(i, i + sliderItems).map((product, index) => (
         
                             <Product key={index} product={product} />
                         ))}
@@ -90,4 +90,7 @@ useEffect(()=>{
     );
 }
 
+ProductCarousel.propTypes = {
+    products: Proptypes.array
+}
 export default ProductCarousel

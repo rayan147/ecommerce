@@ -239,7 +239,7 @@ const Order = ({ match, history }) => {
                   <ListItemText
                     primary='Payment Method'
                     secondary={
-                      order?.paymentMethod ?? "Choose a payment Method"
+                      order?.paymentMethod ?? "PayPal"
                     }
                   />
                 </ListItem>

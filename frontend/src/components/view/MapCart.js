@@ -15,7 +15,7 @@ import {Link} from 'react-router-dom'
 import { CardActions } from '@material-ui/core';
 
 
-
+import PropTypes from 'prop-types';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -124,4 +124,12 @@ const MapCart = ({cartItems,dispatch,addToCart,removeFromCartHandler}) => {
     );
 }
 
+
+MapCart.propTypes = {
+    cartItems: PropTypes.array.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    addToCart: PropTypes.func.isRequired,
+    removeFromCartHandler: PropTypes.func.isRequired,
+  };
+  
 export default MapCart

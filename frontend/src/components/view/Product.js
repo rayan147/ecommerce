@@ -98,13 +98,13 @@ Product.propTypes = {
    rating: PropTypes.number.isRequired,
    price: PropTypes.number.isRequired
 }
-Product.defaultProps = {
-    name: '',
-    _id:'',
-    image: '',
-    numReviews: 0,
-    rating: 0,
-    price: 0  
-}
+// Product.defaultProps = {
+//     name: '',
+//     _id:'',
+//     image: '',
+//     numReviews: 0,
+//     rating: 0,
+//     price: 0  
+// }
 
 export default Product

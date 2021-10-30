@@ -7,6 +7,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import PropTypes from 'prop-types';
+
 const useStyles = makeStyles({
   root: {
     minWidth: 375,
@@ -30,9 +32,9 @@ const useStyles = makeStyles({
 });
 
 
-const PlaceOrderIn = ({shippingAddress,title,userInfo,payment='Paypal'}) => {
+const PlaceOrderIn = ({shippingAddress,title,userInfo},props) => {
 
-
+    const {payment} =props;
    
     const { address, city, _state, zipCode, country} = shippingAddress;
     const {email,name} = userInfo;
@@ -117,5 +119,12 @@ const PlaceOrderIn = ({shippingAddress,title,userInfo,payment='Paypal'}) => {
       </Card>
     );
 }
+
+PlaceOrderIn.propTypes = {
+  shippingAddress: PropTypes.object,
+  title: PropTypes.string,
+  userInfo: PropTypes.object,
+  payment: PropTypes.string,
+};  
 
 export default PlaceOrderIn

@@ -3,7 +3,7 @@ import Product from './Product'
 
 
 
-import PropTypes from 'prop-types'
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
+
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,8 +74,15 @@ const MapProducts = ({products,history,match,keyword,page,pages,isAdmin=false })
 }
 
 MapProducts.propTypes = {
-    products: PropTypes.array.isRequired
-}
+    products: PropTypes.array.isRequired,
+    history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    keyword: PropTypes.string,
+    page: PropTypes.number,
+    pages: PropTypes.number,
+    isAdmin: PropTypes.bool,
+};
+
 
 
 export default MapProducts

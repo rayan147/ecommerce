@@ -14,6 +14,8 @@ import Button from '@material-ui/core/Button';
 
 import OrderItemSummary from './OrderItemSummary';
 
+import PropTypes from 'prop-types';
+
 const useStyles = makeStyles({
     root: {
       minWidth: 205,
@@ -97,6 +99,12 @@ const OrderSummary = ({cart,placeOrderHandler,error}) => {
         </Card>
       </Grid>
     );
+}
+
+OrderSummary.propTypes = {
+    cart: PropTypes.object.isRequired,
+    placeOrderHandler: PropTypes.func.isRequired,
+    error: PropTypes.string
 }
 
 export default OrderSummary

@@ -11,6 +11,8 @@ import  Grid  from '@material-ui/core/Grid';
 
 import Rating from "./Rating"
 
+import PropsTypes from 'prop-types'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -72,6 +74,9 @@ const ProductReview = ({product}) => {
         </List>
       </Grid>
     );
+}
+ProductReview.propTypes = {
+  product: PropsTypes.object.isRequired
 }
 
 export default ProductReview

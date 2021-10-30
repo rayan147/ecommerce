@@ -12,6 +12,8 @@ import CardActions from '@material-ui/core/CardActions';
 
 import Rating from './Rating'
 import Meta from './Meta';
+
+import Proptypes from 'prop-types';
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
    
   }));
 const ProductCard = ({product,addToCartHandler,qty,setQty}) => {
-  const {countInStock,image,name,numReviews,price,description } = product
+  const {countInStock,image,name,price,description } = product
     const classes = useStyles();
     return (
       <Grid container spacing={1} alignItems='center' justifyContent='center'>
@@ -108,5 +110,13 @@ const ProductCard = ({product,addToCartHandler,qty,setQty}) => {
       </Grid>
     );
 }
+
+ProductCard.propTypes = {
+  product: Proptypes.object.isRequired,
+  addToCartHandler: Proptypes.func.isRequired,
+  qty: Proptypes.number.isRequired,
+  setQty: Proptypes.func.isRequired,
+};
+
 
 export default ProductCard
