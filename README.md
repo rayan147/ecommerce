@@ -28,6 +28,11 @@ admin123
 user123@gmail.com
 user123
 ```
+## PayPal Credentials
+```bash
+sb-7dupl7258161@personal.example.com
+KhFwVD/0
+```
 ## Features 
  User | Admin product management
  -----|------
