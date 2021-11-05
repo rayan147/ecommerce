@@ -68,7 +68,11 @@ const PlaceOrder = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     );
+<<<<<<< HEAD
   };
+=======
+  },[cart.cartItems,cart.shippingAddress,cart.itemsPrice,cart.shippingPrice,cart.taxPrice,cart.totalPrice])]);
+>>>>>>> parent of a422a25... added dispatch to the dependcy array
   return (
     <div className={classes.root}>
       <Grid container>
