@@ -20,7 +20,7 @@ router
   .post(exposeDatabase, authenticateUserToken, isAdmin, createProduct);
 
 router.route('/:id/reviews').post(exposeDatabase, authenticateUserToken, createProductReview);
-router.get('/top', exposeDatabase, getTopProducts);
+router.get('/top', getTopProducts);
 
 router
   .route('/:id')
