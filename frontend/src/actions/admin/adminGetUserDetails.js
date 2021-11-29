@@ -1,4 +1,4 @@
-import axios from "axios"
+
 import ADMIN_CONSTANTS from "../../constants/adminConstants"
 
 const  {
@@ -6,7 +6,7 @@ const  {
     ADMIN_USER_DETAILS_FAILURE,
     ADMIN_USER_DETAILS_SUCCESS,
     } = ADMIN_CONSTANTS
-    const adminGetUserDetails = (id) => async (dispatch,getState) => {
+    const adminGetUserDetails = (id) => async (dispatch,api,getState) => {
         try {
           dispatch({
             type: ADMIN_USER_DETAILS_REQUEST,
@@ -19,7 +19,7 @@ const  {
             },
           }
       
-          const { data } = await axios.get( `/api/auth/users/${id}`, config
+          const { data } = await api.get( `/api/auth/users/${id}`, config
           )
       
        dispatch({

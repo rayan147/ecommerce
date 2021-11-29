@@ -1,5 +1,5 @@
 
-import axios from 'axios';
+
 import PRODUCT_CONSTANTS from '../../constants/productConstants'
 const {
     PRODUCT_LIST_FAILURE,
@@ -8,10 +8,10 @@ const {
    
 } = PRODUCT_CONSTANTS
 
- const listProducts =(keyword='',pageNumber= '') => async (dispatch, getState) => {
+ const listProducts =(keyword='',pageNumber= '') => async (dispatch,api, getState) => {
    try {
        dispatch({type: PRODUCT_LIST_REQUEST})
-       const {data} = await axios(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`)
+       const {data} = await api.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`)
        dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
    } catch (error) {
        dispatch({

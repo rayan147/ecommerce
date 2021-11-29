@@ -1,5 +1,6 @@
 import {createStore,applyMiddleware} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
+import api from '../api/api'
 
 import thunk from 'redux-thunk'
 import reducer from './combineReducer'
@@ -25,7 +26,7 @@ const initialState = {
     
 }
 
-const middleware = [thunk]
+const middleware = [thunk.withExtraArgument(api)]
 const store = createStore(reducer,initialState, composeWithDevTools(applyMiddleware(...middleware)))
 
 
