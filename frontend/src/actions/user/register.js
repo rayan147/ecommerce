@@ -21,7 +21,7 @@ const  {
           }
       
           const { data } = await api.post(
-            '/api/users/register',
+            '/users/register',
             { name, email, password },
             config
           )

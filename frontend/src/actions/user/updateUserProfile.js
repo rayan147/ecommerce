@@ -20,7 +20,7 @@ const  {
             },
           }
       
-          const { data } = await api.put( `/api/users/profile`,user, config
+          const { data } = await api.put( `/users/profile`,user, config
           )
       
        dispatch({

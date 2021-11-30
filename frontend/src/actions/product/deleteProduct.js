@@ -23,7 +23,7 @@ const deleteProduct = (id) => async (dispatch, getState,api) => {
         },
       }
   
-      await api.delete(`/api/products/${id}`, config)
+      await api.delete(`/products/${id}`, config)
   
       dispatch({
         type: PRODUCT_DELETE_SUCCESS,
