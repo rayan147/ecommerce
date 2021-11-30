@@ -37,7 +37,7 @@ export default function app() {
 
   app.use(
     cors({
-      origin: '*',
+      origin: 'http://ecommerce.rayanr.com',
     })
   );
 
