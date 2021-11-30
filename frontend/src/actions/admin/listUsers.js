@@ -6,7 +6,7 @@ const  {
   ADMIN_USER_LIST_SUCCESS,
   ADMIN_USER_LIST_FAILURE
     } = ADMIN_CONSTANTS
-    const listUsers = () => async (dispatch,getState) => {
+    const listUsers = () => async (dispatch,getState,api) => {
         try {
           dispatch({
             type: ADMIN_USER_LIST_REQUEST,
@@ -18,7 +18,7 @@ const  {
             },
           }
       
-          const { data } = await axios.get( `/api/auth/users`, config
+          const { data } = await api.get( `/api/auth/users`, config
           )
       
        dispatch({

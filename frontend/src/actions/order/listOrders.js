@@ -11,7 +11,7 @@ const {
  
  
  
- const listOrders = () => async (dispatch, getState) => {
+ const listOrders = () => async (dispatch, getState,api) => {
     try {
       dispatch({
         type: ORDER_LIST_REQUEST,
@@ -27,7 +27,7 @@ const {
         },
       }
   
-      const { data } = await axios.get(`/api/orders`, config)
+      const { data } = await api.get(`/orders`, config)
   
       dispatch({
         type: ORDER_LIST_SUCCESS,

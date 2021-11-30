@@ -2,7 +2,7 @@ import axios from "axios"
 import { USER_CONSTANTS } from "../../constants/userConstants"
 const {USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAILURE} = USER_CONSTANTS
 
-const login = (email, password) => async (dispatch) => {
+const login = (email, password) => async (dispatch,_,api) => {
     try {
         dispatch({
           type: USER_LOGIN_REQUEST,
@@ -14,7 +14,7 @@ const login = (email, password) => async (dispatch) => {
           },
         }
     
-        const { data } = await axios.post(
+        const { data } = await api.post(
           '/api/users/login',
           { email, password },
           config

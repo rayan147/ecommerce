@@ -17,7 +17,7 @@ const {
 } = ADMIN_CONSTANTS;
  
  
- const admninUpdatedUser = (user) => async (dispatch, getState) => {
+ const admninUpdatedUser = (user) => async (dispatch, getState,api) => {
     try {
       dispatch({
         type: ADMIN_USER_UPDATE_REQUEST,
@@ -34,7 +34,7 @@ const {
         },
       }
   
-      const { data } = await axios.put(`/api/auth/users/${user._id}`, user, config)
+      const { data } = await api.put(`/auth/users/${user._id}`, user, config)
   
       dispatch({ type: ADMIN_USER_UPDATE_SUCCESS })
   

@@ -11,7 +11,7 @@ const {
  } = ORDER_STATUS;
  
 
-const getOrderDetails = (id) => async (dispatch,getState) => {
+const getOrderDetails = (id) => async (dispatch,getState,api) => {
     try {
       dispatch({
         type: ORDER_DETAILS_REQUEST_START,
@@ -23,7 +23,7 @@ const getOrderDetails = (id) => async (dispatch,getState) => {
         },
       }
   
-      const { data } = await axios.get( `/api/orders/${id}`, config
+      const { data } = await api.get( `/orders/${id}`, config
       )
   
    

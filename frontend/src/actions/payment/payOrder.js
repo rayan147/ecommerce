@@ -11,7 +11,7 @@ const {
  } = ORDER_STATUS;
  
 
-const orderPay = (orderId,paymentResult) => async (dispatch,getState) => {
+const orderPay = (orderId,paymentResult) => async (dispatch,getState,api) => {
     try {
       dispatch({
         type: ORDER_PAYMENT_REQUEST_START,
@@ -24,7 +24,7 @@ const orderPay = (orderId,paymentResult) => async (dispatch,getState) => {
         },
       }
   
-      const { data } = await axios.put( `/api/orders/${orderId}/pay`,paymentResult, config
+      const { data } = await api.put( `/api/orders/${orderId}/pay`,paymentResult, config
       )
   
    

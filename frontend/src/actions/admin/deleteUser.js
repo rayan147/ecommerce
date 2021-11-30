@@ -1,6 +1,7 @@
 import axios from "axios"
 import  ADMIN_CONSTANTS  from "../../constants/adminConstants"
 
+import logout from '../user/logout'
 const {
   ADMIN_USER_DELETE_SUCCESS,
   ADMIN_USER_DELETE_FAILURE,
@@ -8,6 +9,7 @@ const {
 } = ADMIN_CONSTANTS
 
 const deleteUser = (id) => async (dispatch, getState,api) => {
+  
     try {
       dispatch({
         type: ADMIN_USER_DELETE_REQUEST,
@@ -23,14 +25,14 @@ const deleteUser = (id) => async (dispatch, getState,api) => {
         },
       }
   
-      await api.delete(`/api/auth/users/${id}`, config)
+      await api.delete(`/auth/users/${id}`, config)
   
       dispatch({ type: ADMIN_USER_DELETE_SUCCESS })
     } catch (error) {
       const message =error?.response?.data?.message ?? error.message
-    //   if (message === 'Not authorized, token failed') {
-    //     dispatch(logout())
-    //   }
+      if (message === 'Not authorized, token failed') {
+        dispatch(logout())
+      }
       dispatch({
         type: ADMIN_USER_DELETE_FAILURE,
         payload: message,

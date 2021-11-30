@@ -1,4 +1,4 @@
-import axios from "axios"
+
 import { USER_CONSTANTS } from "../../constants/userConstants"
 
 const  {
@@ -6,7 +6,7 @@ const  {
     USER_DETAILS_FAILURE,
     USER_DETAILS_SUCCESS,
     } = USER_CONSTANTS
-    const getUserDetails = (id) => async (dispatch,getState) => {
+    const getUserDetails = (id) => async (dispatch,getState,api) => {
         try {
           dispatch({
             type: USER_DETAILS_REQUEST,
@@ -19,7 +19,7 @@ const  {
             },
           }
       
-          const { data } = await axios.get( `/api/users/${id}`, config
+          const { data } = await api.get( `/users/${id}`, config
           )
       
        dispatch({

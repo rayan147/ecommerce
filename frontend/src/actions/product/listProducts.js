@@ -12,7 +12,7 @@ const {
      
    try {
        dispatch({type: PRODUCT_LIST_REQUEST})
-       const {data} = await api(`/products?keyword=${keyword}&pageNumber=${pageNumber}`)
+       const {data} = await api.get(`/products?keyword=${keyword}&pageNumber=${pageNumber}`)
        dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
    } catch (error) {
        dispatch({

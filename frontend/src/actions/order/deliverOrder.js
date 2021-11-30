@@ -15,7 +15,7 @@ const {
  
  
  
- const deliverOrder = (order) => async (dispatch, getState) => {
+ const deliverOrder = (order) => async (dispatch, getState,api) => {
     try {
       dispatch({
         type: ORDER_DELIVER_REQUEST,
@@ -31,7 +31,7 @@ const {
         },
       }
   
-      const { data } = await axios.put(
+      const { data } = await api.put(
         `/api/orders/${order._id}/deliver`,
         {},
         config

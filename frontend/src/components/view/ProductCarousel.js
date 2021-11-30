@@ -19,10 +19,13 @@ import Product from './Product';
 const ProductCarousel = () => {
 const dispatch = useDispatch()
 const productTopRated = useSelector(state => state.productTopRated)
+
+
 const {loading,error,products}= productTopRated
 const [items,setItems] =useState([])
 useEffect(()=>{
     dispatch(listTopProducts())
+ 
 },[dispatch])
 
 

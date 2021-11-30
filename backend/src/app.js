@@ -1,8 +1,7 @@
-
-
 import express from 'express';
 import dotenv from 'dotenv';
 import _ from 'colors';
+import morgan from 'morgan';
 import cors from 'cors';
 import hpp from 'hpp';
 import helmet from 'helmet';
@@ -15,8 +14,7 @@ import adminRoutes from '../routes/adminRoutes.js';
 // import  errorHandler from '../middleware/errorHandler.js';
 import { successHandler, errorHandler } from '../logs/loggerMiddleware.js';
 
-export default function app(database) {
-
+export default function app() {
   // CONFIG
   dotenv.config({ path: './local.env' });
 
@@ -32,11 +30,11 @@ export default function app(database) {
     res.send(`Nodejs API is running in ${process.env.NODE_ENV}`).status(200)
   );
 
-  // // Dev logging middleware
-  // if (process.env.NODE_ENV === 'development') {
-  //     app.use(morgan('dev'));
-  //   }
-  // CORS
+  // Dev logging middleware
+  if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+  }
+
   app.use(cors());
 
   // PRODUCTIONS ROUTES
@@ -45,13 +43,6 @@ export default function app(database) {
   app.use('/users', userRoutes);
   app.use('/orders', orderRoutes);
   app.get('/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
-
-  // DEVELOPMENT ROUTES
-  // app.use('/api/products', productRoutes);
-  // app.use('/api/auth/users', adminRoutes);
-  // app.use('/api/users',userRoutes);
-  // app.use('/api/orders',orderRoutes);
-  // app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
 
   // ERROR HANDLERS
   app.use(errorHandler);

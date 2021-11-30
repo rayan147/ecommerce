@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 
 import PRODUCT_CONSTANTS from '../../constants/productConstants'
 
@@ -9,11 +9,11 @@ const {
    
 } = PRODUCT_CONSTANTS
  
- const listTopProducts = () => async (dispatch) => {
+ const listTopProducts = () => async (dispatch,_,api) => {
     try {
       dispatch({ type: PRODUCT_TOP_REQUEST })
   
-      const { data } = await axios.get(`/api/products/top`)
+      const { data } = await api.get(`/products/top`)
   
       dispatch({
         type: PRODUCT_TOP_SUCCESS,

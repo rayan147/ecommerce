@@ -12,7 +12,7 @@ const {
     
 } = ORDER_STATUS;
 
-const createOrder = (order) => async (dispatch,getState) => {
+const createOrder = (order) => async (dispatch,getState,api) => {
     try {
       dispatch({
         type: ORDER_CREATE_REQUEST_START,
@@ -25,7 +25,7 @@ const createOrder = (order) => async (dispatch,getState) => {
         },
       }
   
-      const { data } = await axios.post( `/api/orders`,order, config
+      const { data } = await api.post( `/orders`,order, config
       )
   
     dispatch({

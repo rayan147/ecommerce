@@ -8,7 +8,7 @@ const  {
     USER_LOGIN_SUCCESS
     
     } = USER_CONSTANTS
-    const register = (name, email, password) => async (dispatch) => {
+    const register = (name, email, password) => async (dispatch,_,api) => {
         try {
           dispatch({
             type: USER_REGISTER_REQUEST,
@@ -20,7 +20,7 @@ const  {
             },
           }
       
-          const { data } = await axios.post(
+          const { data } = await api.post(
             '/api/users/register',
             { name, email, password },
             config

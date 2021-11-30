@@ -8,7 +8,7 @@ const {
    
 } = PRODUCT_CONSTANTS
  
- const createProduct = () => async (dispatch, getState) => {
+ const createProduct = () => async (dispatch, getState,api) => {
     try {
       dispatch({
         type: PRODUCT_CREATE_REQUEST,
@@ -24,7 +24,7 @@ const {
         },
       }
   
-      const { data } = await axios.post(`/api/products`, {}, config)
+      const { data } = await api.post(`/products`, {}, config)
   
       dispatch({
         type: PRODUCT_CREATE_SUCCESS,

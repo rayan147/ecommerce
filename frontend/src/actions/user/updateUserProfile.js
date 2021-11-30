@@ -7,7 +7,7 @@ const  {
     USER_UPDATE_PROFILE_SUCCESS,
     USER_LOGIN_SUCCESS,
     } = USER_CONSTANTS
-    const updateUserProfile = (user) => async (dispatch,getState) => {
+    const updateUserProfile = (user) => async (dispatch,getState,api) => {
         try {
           dispatch({
             type: USER_UPDATE_PROFILE_REQUEST,
@@ -20,7 +20,7 @@ const  {
             },
           }
       
-          const { data } = await axios.put( `/api/users/profile`,user, config
+          const { data } = await api.put( `/api/users/profile`,user, config
           )
       
        dispatch({

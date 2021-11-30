@@ -1,5 +1,4 @@
 
-import axios from 'axios';
 import PRODUCT_CONSTANTS from '../../constants/productConstants'
 const {
     PRODUCT_DETAILS_FAILURE,
@@ -7,10 +6,10 @@ const {
     PRODUCT_DETAILS_SUCCESS
 } = PRODUCT_CONSTANTS
 
- const listProductDetails =(id) => async (dispatch) => {
+ const listProductDetails =(id) => async (dispatch,_,api) => {
    try {
        dispatch({type: PRODUCT_DETAILS_REQUEST})
-       const {data} = await axios(`/api/products/${id}`)
+       const {data} = await api.get(`/products/${id}`)
        dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data})
    } catch (error) {
        dispatch({

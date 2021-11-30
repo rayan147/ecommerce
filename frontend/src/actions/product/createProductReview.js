@@ -14,7 +14,8 @@ const {
 
 const createProductReview = (productId, review) => async (
     dispatch,
-    getState
+    getState,
+    api
   ) => {
     try {
       dispatch({
@@ -32,7 +33,7 @@ const createProductReview = (productId, review) => async (
         },
       }
   
-      await axios.post(`/api/products/${productId}/reviews`, review, config)
+      await api.post(`/api/products/${productId}/reviews`, review, config)
   
       dispatch({
         type: PRODUCT_CREATE_REVIEW_SUCCESS,

@@ -11,7 +11,7 @@ const {
  } = ORDER_STATUS;
  
 
-const getUserOrderList = () => async (dispatch,getState) => {
+const getUserOrderList = () => async (dispatch,getState,api) => {
     try {
       dispatch({
         type: ORDER_USER_LIST_REQUEST_START,
@@ -23,7 +23,7 @@ const getUserOrderList = () => async (dispatch,getState) => {
         },
       }
   
-      const { data } = await axios.get( `/api/orders/myorders`, config
+      const { data } = await api.get( `/orders/myorders`, config
       )
   
    

@@ -10,7 +10,7 @@ const {
 } = PRODUCT_CONSTANTS
  
  
- const updateProduct = (product) => async (dispatch, getState) => {
+ const updateProduct = (product) => async (dispatch, getState,api) => {
     try {
       dispatch({
         type: PRODUCT_UPDATE_REQUEST,
@@ -27,7 +27,7 @@ const {
         },
       }
   
-      const { data } = await axios.put(
+      const { data } = await api.put(
         `/api/products/${product._id}`,
         product,
         config

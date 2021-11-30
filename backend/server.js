@@ -1,14 +1,13 @@
 import dotenv from 'dotenv';
-import mongoFactoryMethods from './config/mongoFactoryMethods.js';
 import db from './config/db.js';
-import makeApp from './src/app.js';
+import app from './src/app.js';
 
-dotenv.config({ path: '/local.env' });
+dotenv.config({ path: './.env' });
 
 db().connectMongo(process.env.MONGO_URL_PROD);
-const app = makeApp(mongoFactoryMethods);
 
-const server = app.listen(process.env.PORT, () =>
+const serverApp = app();
+const server = serverApp.listen(process.env.PORT, () =>
   console.log(
     `Listening on port ${process.env.PORT} running in ${process.env.NODE_ENV} mode`.cyan.underline
   )
