@@ -70,7 +70,7 @@ services:
     ports:
       - '5000:5000'
     depends_on:
-       - ngnix_proxy
+       - nginx_proxy
     
 
   uploadS3:
@@ -93,7 +93,7 @@ services:
     ports:
       - '5001:5001'
     depends_on:
-       - ngnix_proxy
+       - nginx_proxy
 
 networks:
   app-network:
