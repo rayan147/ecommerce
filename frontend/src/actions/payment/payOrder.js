@@ -24,7 +24,7 @@ const orderPay = (orderId,paymentResult) => async (dispatch,getState,api) => {
         },
       }
   
-      const { data } = await api.put( `/orders/${orderId}/pay`,paymentResult, config
+      const { data } = await api.put( `/api/orders/${orderId}/pay`,paymentResult, config
       )
   
    

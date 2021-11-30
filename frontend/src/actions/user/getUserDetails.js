@@ -19,7 +19,7 @@ const  {
             },
           }
       
-          const { data } = await api.get( `/users/${id}`, config
+          const { data } = await api.get( `/api/users/${id}`, config
           )
       
        dispatch({

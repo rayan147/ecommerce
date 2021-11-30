@@ -23,7 +23,7 @@ const getOrderDetails = (id) => async (dispatch,getState,api) => {
         },
       }
   
-      const { data } = await api.get( `/orders/${id}`, config
+      const { data } = await api.get( `/api/orders/${id}`, config
       )
   
    

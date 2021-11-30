@@ -18,7 +18,7 @@ const  {
             },
           }
       
-          const { data } = await api.get( `/auth/users`, config
+          const { data } = await api.get( `/api/auth/users`, config
           )
       
        dispatch({

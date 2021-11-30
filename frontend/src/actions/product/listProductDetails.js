@@ -9,7 +9,7 @@ const {
  const listProductDetails =(id) => async (dispatch,_,api) => {
    try {
        dispatch({type: PRODUCT_DETAILS_REQUEST})
-       const {data} = await api.get(`/products/${id}`)
+       const {data} = await api.get(`/api/products/${id}`)
        dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data})
    } catch (error) {
        dispatch({

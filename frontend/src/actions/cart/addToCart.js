@@ -4,7 +4,7 @@ import {CART_TYPES_CHOICES} from '../../constants/cartConstants'
 const {CART_ADD_TO_CART} = CART_TYPES_CHOICES
 
 const addToCart = (productId, quantity) => async (dispatch,getState,api) => {
-    const {data} = await api.get(`/products/${productId}`);
+    const {data} = await api.get(`/api/products/${productId}`);
     const {price,_id,image,countInStock,name} = data;
     dispatch({
         type: CART_ADD_TO_CART,

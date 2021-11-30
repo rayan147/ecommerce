@@ -32,7 +32,7 @@ const {
       }
   
       const { data } = await api.put(
-        `/orders/${order._id}/deliver`,
+        `/api/orders/${order._id}/deliver`,
         {},
         config
       )

@@ -13,7 +13,7 @@ const {
     try {
       dispatch({ type: PRODUCT_TOP_REQUEST })
   
-      const { data } = await api.get(`/products/top`)
+      const { data } = await api.get(`/api/products/top`)
   
       dispatch({
         type: PRODUCT_TOP_SUCCESS,

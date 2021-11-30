@@ -24,7 +24,7 @@ const {
         },
       }
   
-      const { data } = await api.post(`/products`, {}, config)
+      const { data } = await api.post(`/api/products`, {}, config)
   
       dispatch({
         type: PRODUCT_CREATE_SUCCESS,

@@ -25,7 +25,7 @@ const deleteUser = (id) => async (dispatch, getState,api) => {
         },
       }
   
-      await api.delete(`/auth/users/${id}`, config)
+      await api.delete(`/api/auth/users/${id}`, config)
   
       dispatch({ type: ADMIN_USER_DELETE_SUCCESS })
     } catch (error) {

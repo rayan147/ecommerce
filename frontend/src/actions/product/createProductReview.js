@@ -33,7 +33,7 @@ const createProductReview = (productId, review) => async (
         },
       }
   
-      await api.post(`/products/${productId}/reviews`, review, config)
+      await api.post(`/api/products/${productId}/reviews`, review, config)
   
       dispatch({
         type: PRODUCT_CREATE_REVIEW_SUCCESS,

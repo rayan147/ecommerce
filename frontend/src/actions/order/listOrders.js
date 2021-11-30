@@ -27,7 +27,7 @@ const {
         },
       }
   
-      const { data } = await api.get(`/orders`, config)
+      const { data } = await api.get(`/api/orders`, config)
   
       dispatch({
         type: ORDER_LIST_SUCCESS,

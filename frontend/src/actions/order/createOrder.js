@@ -25,7 +25,7 @@ const createOrder = (order) => async (dispatch,getState,api) => {
         },
       }
   
-      const { data } = await api.post( `/orders`,order, config
+      const { data } = await api.post( `/api/orders`,order, config
       )
   
     dispatch({

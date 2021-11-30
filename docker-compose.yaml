@@ -1,24 +1,24 @@
 version: '3.4'
 
 services:
-  # frontend:
-  #   build: 
-  #     context: ./frontend
-  #     dockerfile: Dockerfile.prod
-  #     # target: dev
-  #   restart: unless-stopped
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
-  #   volumes: 
-  #       - ./frontend:/app/frontend
-  #   image: fronted:v1.0.0
-  #   ports:
-  #     - '80:80'
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      # target: dev
+    restart: unless-stopped
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes: 
+        - ./frontend:/app/frontend
+    image: fronted:v1.0.0
+    ports:
+      - '8080:80'
     
-  #   networks:
-  #     - app-network
-  #   depends_on:
-  #     - api
+    networks:
+      - app-network
+    depends_on:
+      - api
   redis:
     image: 'redis'
     user: root
@@ -73,26 +73,26 @@ services:
        - nginx_proxy
     
 
-  # uploadS3:
-  #   environment:
-  #   -  AWS_BUCKET_IMAGES_NAME=$AWS_BUCKET_IMAGES_NAME
-  #   -  AWS_BUCKET_REGION=$AWS_BUCKET_REGION
-  #   -  AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-  #   -  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-  #   build:
-  #     context: ./uploadS3
-  #     dockerfile: Dockerfile
-  #   image: v1.0.5
-  #   container_name: uploadS3
-  #   restart: unless-stopped
-  #   volumes:
-  #   - ./uploadS3:/app/uploadS3
-  #   networks:
-  #     - app-network
-  #   ports:
-  #     - '5001:5001'
-  #   depends_on:
-  #      - nginx_proxy
+  uploadS3:
+    environment:
+    -  AWS_BUCKET_IMAGES_NAME=$AWS_BUCKET_IMAGES_NAME
+    -  AWS_BUCKET_REGION=$AWS_BUCKET_REGION
+    -  AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    -  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    build:
+      context: ./uploadS3
+      dockerfile: Dockerfile
+    image: v1.0.5
+    container_name: uploadS3
+    restart: unless-stopped
+    volumes:
+    - ./uploadS3:/app/uploadS3
+    networks:
+      - app-network
+    ports:
+      - '5001:5001'
+    depends_on:
+       - nginx_proxy
 
 networks:
   app-network:

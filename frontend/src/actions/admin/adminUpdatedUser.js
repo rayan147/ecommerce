@@ -34,7 +34,7 @@ const {
         },
       }
   
-      const { data } = await api.put(`/auth/users/${user._id}`, user, config)
+      const { data } = await api.put(`/api/auth/users/${user._id}`, user, config)
   
       dispatch({ type: ADMIN_USER_UPDATE_SUCCESS })
   

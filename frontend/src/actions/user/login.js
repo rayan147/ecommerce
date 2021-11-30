@@ -15,7 +15,7 @@ const login = (email, password) => async (dispatch,_,api) => {
         }
     
         const { data } = await api.post(
-          '/users/login',
+          '/api/users/login',
           { email, password },
           config
         )

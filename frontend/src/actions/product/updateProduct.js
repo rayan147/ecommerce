@@ -28,7 +28,7 @@ const {
       }
   
       const { data } = await api.put(
-        `/products/${product._id}`,
+        `/api/products/${product._id}`,
         product,
         config
       )
