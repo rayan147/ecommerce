@@ -51,6 +51,7 @@ services:
   api:
     environment:
     -  NODE_ENV=$NODE_ENV
+    -  PORT=$PORT
     -  MONGO_URL_PROD=$MONGO_URL_PROD
     -  JWT_TOKEN_SECRET=$JWT_TOKEN_SECRET
     -  PAYPAL_CLIENT_ID=$PAYPAL_CLIENT_ID
@@ -72,26 +73,26 @@ services:
        - nginx_proxy
     
 
-  uploadS3:
-    environment:
-    -  AWS_BUCKET_IMAGES_NAME=$AWS_BUCKET_IMAGES_NAME
-    -  AWS_BUCKET_REGION=$AWS_BUCKET_REGION
-    -  AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-    -  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-    build:
-      context: ./uploadS3
-      dockerfile: Dockerfile
-    image: v1.0.5
-    container_name: uploadS3
-    restart: unless-stopped
-    volumes:
-    - ./uploadS3:/app/uploadS3
-    networks:
-      - app-network
-    ports:
-      - '5001:5001'
-    depends_on:
-       - nginx_proxy
+  # uploadS3:
+  #   environment:
+  #   -  AWS_BUCKET_IMAGES_NAME=$AWS_BUCKET_IMAGES_NAME
+  #   -  AWS_BUCKET_REGION=$AWS_BUCKET_REGION
+  #   -  AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+  #   -  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+  #   build:
+  #     context: ./uploadS3
+  #     dockerfile: Dockerfile
+  #   image: v1.0.5
+  #   container_name: uploadS3
+  #   restart: unless-stopped
+  #   volumes:
+  #   - ./uploadS3:/app/uploadS3
+  #   networks:
+  #     - app-network
+  #   ports:
+  #     - '5001:5001'
+  #   depends_on:
+  #      - nginx_proxy
 
 networks:
   app-network:
