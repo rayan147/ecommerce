@@ -9,6 +9,7 @@ const {
 } = PRODUCT_CONSTANTS
 
  const listProducts =(keyword='',pageNumber= '') => async (dispatch,api, getState) => {
+     
    try {
        dispatch({type: PRODUCT_LIST_REQUEST})
        const {data} = await api.get(`/products?keyword=${keyword}&pageNumber=${pageNumber}`)
