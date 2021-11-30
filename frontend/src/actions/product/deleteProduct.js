@@ -7,7 +7,7 @@ const {
     PRODUCT_DELETE_FAILURE
 } = PRODUCT_CONSTANTS
 
-const deleteProduct = (id) => async (dispatch, getState) => {
+const deleteProduct = (id) => async (dispatch, getState,api) => {
     try {
       dispatch({
         type: PRODUCT_DELETE_REQUEST,
@@ -23,7 +23,7 @@ const deleteProduct = (id) => async (dispatch, getState) => {
         },
       }
   
-      await axios.delete(`/api/products/${id}`, config)
+      await api.delete(`/api/products/${id}`, config)
   
       dispatch({
         type: PRODUCT_DELETE_SUCCESS,
