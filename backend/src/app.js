@@ -35,7 +35,7 @@ export default function app() {
   //   app.use(morgan('dev'));
   // }
 
-  app.use(cors({ origin: '*' }));
+  app.use(cors({ origin: 'http://73.195.210.32/' }));
 
   // PRODUCTIONS ROUTES
   app.use('/products', productRoutes);
