@@ -44,7 +44,7 @@ services:
     networks:
       - app-network
     ports:
-      - '9080:9080'
+      - '5000:9080'
    
   
      
