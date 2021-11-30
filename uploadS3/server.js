@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import util from 'util';
 import { uploadFile, getFileStream } from './s3.js';
+import cors from 'cors'
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ dotenv.config();
 const unlink = util.promisify(fs.unlink);
 
 const app = express();
+app.use(cors())
 const upload = multer({ dest: 'uploads/' });
 
 app.get('/images/:key', (req, res) => {
