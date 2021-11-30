@@ -19,17 +19,17 @@ services:
   #     - app-network
   #   depends_on:
   #     - api
-  # redis:
-  #   image: 'redis'
-  #   user: root
-  #   environment:
-  #     - ALLOW_EMPTY_PASSWORD=yes
-  #   ports:
-  #     - '6379:6379'
-  #   volumes:
-  #     - ./redis/conf:/usr/local/etc/redis
-  #   networks:
-  #     - app-network 
+  redis:
+    image: 'redis'
+    user: root
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./redis/conf:/usr/local/etc/redis
+    networks:
+      - app-network 
  
 
   nginx_proxy:
