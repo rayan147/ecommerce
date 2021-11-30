@@ -6,7 +6,7 @@ const  {
     ADMIN_USER_DETAILS_FAILURE,
     ADMIN_USER_DETAILS_SUCCESS,
     } = ADMIN_CONSTANTS
-    const adminGetUserDetails = (id) => async (dispatch,api,getState) => {
+    const adminGetUserDetails = (id) => async (dispatch,getState,api) => {
         try {
           dispatch({
             type: ADMIN_USER_DETAILS_REQUEST,
