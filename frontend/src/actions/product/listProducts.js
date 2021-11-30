@@ -8,7 +8,7 @@ const {
    
 } = PRODUCT_CONSTANTS
 
- const listProducts =(keyword='',pageNumber= '') => async (dispatch,api, getState) => {
+ const listProducts =(keyword='',pageNumber= '') => async (dispatch,_,api) => {
      
    try {
        dispatch({type: PRODUCT_LIST_REQUEST})
