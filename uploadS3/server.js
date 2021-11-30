@@ -3,9 +3,9 @@ import multer from 'multer';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import util from 'util';
-import { uploadFile, getFileStream } from './s3.js';
 import cors from 'cors'
 
+import { uploadFile, getFileStream } from './s3.js';
 dotenv.config();
 
 // unlink upload folder
