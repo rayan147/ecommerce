@@ -35,7 +35,7 @@ services:
   nginx_proxy:
     restart: always
     build:
-      context: ./nginx
+      context: ./frontend/nginx
       dockerfile: Dockerfile
     image: proxy:v1.0.1
     container_name: nginx_proxy
