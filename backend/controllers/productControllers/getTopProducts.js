@@ -11,12 +11,12 @@ const getTopProducts = asyncHandler(async (req, res) => {
 
   if (cachedData) {
     console.log('data from cached data'.yellow.bold);
-    res.json(cachedData);
+    return res.json(cachedData);
   }
 
   const products = await Product.find({}).sort({ rating: -1 }).limit(15);
   await saveWithTtl(cacheKey, products, 300);
-  res.json(products);
+  return res.json(products);
 });
 
 export default getTopProducts;

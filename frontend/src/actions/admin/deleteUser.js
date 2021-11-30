@@ -7,7 +7,7 @@ const {
   ADMIN_USER_DELETE_REQUEST
 } = ADMIN_CONSTANTS
 
-const deleteUser = (id) => async (dispatch, getState) => {
+const deleteUser = (id) => async (dispatch, getState,api) => {
     try {
       dispatch({
         type: ADMIN_USER_DELETE_REQUEST,
@@ -23,7 +23,7 @@ const deleteUser = (id) => async (dispatch, getState) => {
         },
       }
   
-      await axios.delete(`/api/auth/users/${id}`, config)
+      await api.delete(`/api/auth/users/${id}`, config)
   
       dispatch({ type: ADMIN_USER_DELETE_SUCCESS })
     } catch (error) {
