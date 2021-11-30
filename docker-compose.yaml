@@ -67,6 +67,11 @@ services:
     - ./backend:/app/backend
     networks:
       - app-network
+    ports:
+      - '5000:5000'
+    depends_on:
+       - ngnix_proxy
+    
 
   uploadS3:
     environment:
@@ -85,6 +90,10 @@ services:
     - ./uploadS3:/app/uploadS3
     networks:
       - app-network
+    ports:
+      - '5001:5001'
+    depends_on:
+       - ngnix_proxy
 
 networks:
   app-network:
