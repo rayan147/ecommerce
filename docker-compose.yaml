@@ -1,35 +1,35 @@
 version: '3.4'
 
 services:
-  frontend:
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile.prod
-      # target: dev
-    restart: unless-stopped
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    volumes: 
-        - ./frontend:/app/frontend
-    image: fronted:v1.0.0
-    ports:
-      - '80:80'
+  # frontend:
+  #   build: 
+  #     context: ./frontend
+  #     dockerfile: Dockerfile.prod
+  #     # target: dev
+  #   restart: unless-stopped
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   volumes: 
+  #       - ./frontend:/app/frontend
+  #   image: fronted:v1.0.0
+  #   ports:
+  #     - '80:80'
     
-    networks:
-      - app-network
-    depends_on:
-      - api
-  redis:
-    image: 'redis'
-    user: root
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-    ports:
-      - '6379:6379'
-    volumes:
-      - ./redis/conf:/usr/local/etc/redis
-    networks:
-      - app-network 
+  #   networks:
+  #     - app-network
+  #   depends_on:
+  #     - api
+  # redis:
+  #   image: 'redis'
+  #   user: root
+  #   environment:
+  #     - ALLOW_EMPTY_PASSWORD=yes
+  #   ports:
+  #     - '6379:6379'
+  #   volumes:
+  #     - ./redis/conf:/usr/local/etc/redis
+  #   networks:
+  #     - app-network 
  
 
   nginx_proxy:
