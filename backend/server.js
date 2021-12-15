@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import db from './config/db.js';
 import app from './src/app.js';
 
-dotenv.config({ path: './.env' });
+// dotenv.config({ path: './.env' });
 
 db().connectMongo(process.env.MONGO_URL_PROD);
 
