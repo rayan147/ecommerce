@@ -9,6 +9,22 @@ An MERN e-commerce application with features such as login system, search produc
   <img src="./images/paypal.png" width="350" alt="paypal">
 </p>
 
+## CI/CD with Jenkins
+commit to master > build > push to docker hub > deploy to raspberry pi with docker-compose
+
+<p align="center">
+ 
+  <img src="./images/jenkins.png" width="350" alt="jenkins">
+</p>
+
+## Added Service Descovery with Consul
+http://69.141.53.112:8500/ui/dc/services
+
+<p align="center">
+  <img src="./images/consul.png" width="350" alt="consul">
+  <img src="./images/services.png" width="350" alt="services">
+  
+</p>
 # Hosted here 
  [here](http://ecommerce.rayanr.com)
 # Installation
@@ -49,22 +65,7 @@ KhFwVD/0
  update profile|
  shopping cart|
 
-## CI/CD with Jenkins
-commit to master > build > push to docker hub > deploy to raspberry pi with docker-compose
 
-<p align="center">
- 
-  <img src="./images/jenkins.png" width="350" alt="jenkins">
-</p>
-
-## Added Service Descovery with Consul
-http://69.141.53.112:8500/ui/dc/services
-
-<p align="center">
-  <img src="./images/consul.png" width="350" alt="consul">
-  <img src="./images/services.png" width="350" alt="services">
-  
-</p>
 ## Run backend server tests
 ```bash
 cd backend && npm run test
