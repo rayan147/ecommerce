@@ -19,7 +19,7 @@ pipeline{
 
 			steps {
 				sh 'docker build -t rayan147/eco-backend-restful-api:latest ./backend'
-                sh 'docker build -t rayan147/frontend:latest ./frontend/Dockerfile.prod'
+                sh 'docker build -t rayan147/frontend:latest ./frontend/'
                 sh 'docker build -t rayan147/nginx:latest ./nginx'
                 sh 'docker build -t rayan147/uploads3:latest ./uploadS3'
 			}
