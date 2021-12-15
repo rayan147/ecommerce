@@ -52,6 +52,7 @@ pipeline{
 				sh 'cd /home/ubuntu/projects/ecommerce'
 				sh 'git pull origin master'
 				sh 'ls -ltra'
+				sh 'docker-compose config'
 				sh 'docker-compose stop'
 				sh 'docker-compose up --build'
 			}
