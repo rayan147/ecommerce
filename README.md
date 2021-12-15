@@ -52,6 +52,11 @@ KhFwVD/0
 ## CI/CD with Jenkins
 commit to master > build > push to docker hub > deploy to raspberry pi with docker-compose
 
+<p align="center">
+ 
+  <img src="./images/jenkins.png" width="350" alt="jenkins">
+</p>
+
 ## Added Service Descovery with Consul
 http://69.141.53.112:8500/ui/dc/services
 
