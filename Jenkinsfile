@@ -52,8 +52,7 @@ pipeline{
 				sh 'cd /home/ubuntu/projects/ecommerce'
 				sh 'git pull origin master'
 				sh 'docker-compose stop'
-				sh 'docker-compose up --env-file ./prod.env --build'
-				sh 'docker-compose --env-file ./prod.env  config'
+				sh 'docker-compose up --build'
 			}
 		}
 	}
