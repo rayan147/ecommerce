@@ -6,11 +6,10 @@ dotenv.config({ path: './.env' });
 
 db().connectMongo(process.env.MONGO_URL_PROD);
 
+const PORT = process.env?.PORT ?? 5000;
 const serverApp = app();
-const server = serverApp.listen(process.env.PORT, () =>
-  console.log(
-    `Listening on port ${process.env.PORT} running in ${process.env.NODE_ENV} mode`.cyan.underline
-  )
+const server = serverApp.listen(PORT, () =>
+  console.log(`Listening on port ${PORT} running in ${process.env.NODE_ENV} mode`.cyan.underline)
 );
 process.on('SIGINT', () => {
   server.close(() => {
