@@ -18,7 +18,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t rayan147/eco-backend-restful-API:latest ./backend'
+				sh 'docker build -t rayan147/eco-backend-restful-api:latest ./backend'
 			}
 		}
 
@@ -32,7 +32,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push rayan147/eco-backend-restful-API:latest ./backend'
+				sh 'docker push rayan147/eco-backend-restful-api:latest ./backend'
 			}
 		}
 	}
