@@ -7,6 +7,9 @@ An MERN e-commerce application with features such as login system, search produc
   <img src="./images/item.png" width="350" alt="produce">
   <img src="./images/placeorder.png" width="350" alt="place order">
   <img src="./images/paypal.png" width="350" alt="paypal">
+  <img src="./images/consul.png" width="350" alt="consul">
+  <img src="./images/services.png" width="350" alt="services">
+  
 </p>
 
 # Hosted here 
