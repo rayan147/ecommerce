@@ -2,16 +2,12 @@ version: '3.4'
 
 services:
   frontend:
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile.prod
-      # target: dev
     restart: always
     environment:
       - CHOKIDAR_USEPOLLING=true
     volumes: 
         - ./frontend:/app/frontend
-    image: fronted:v1.0.0
+    image: 'rayan147/frontend'
     ports:
       - '8080:80'
     
@@ -34,10 +30,7 @@ services:
 
   nginx_proxy:
     restart: always
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    image: proxy:v1.0.4
+    image: 'rayan147/nginx:latest'
     container_name: nginx_proxy
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -57,10 +50,7 @@ services:
     -  PAYPAL_CLIENT_ID=$PAYPAL_CLIENT_ID
     -  REDIS_SERVER_IP=redis
     -  REDIS_PORT=6379
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    image: api:v1.1.9
+    image: 'rayan147/eco-backend-restful-api:latest'
     container_name: api
     restart: always
     volumes:
@@ -79,10 +69,7 @@ services:
     -  AWS_BUCKET_REGION=$AWS_BUCKET_REGION
     -  AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     -  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-    build:
-      context: ./uploadS3
-      dockerfile: Dockerfile
-    image: v1.0.5
+    image: 'rayan147/uploads3:latest'
     container_name: uploadS3
     restart: always
     volumes:

@@ -42,6 +42,15 @@ pipeline{
                 sh 'docker push rayan147/uploads3:latest'
 			}
 		}
+	
+		stage('Deploy') {
+			
+			steps {
+				sh 'cd /home/ubuntu/projects/ecommerce'
+				sh 'git pull'
+				sh 'docker-compose up  --build'
+			}
+		}
 	}
 
 	post {
