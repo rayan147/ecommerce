@@ -19,16 +19,11 @@ pipeline{
 
 			steps {
 				sh 'docker build -t rayan147/eco-backend-restful-api:latest ./backend'
+                sh 'docker build -t rayan147/frontend:latest ./frontend/Dockerfile.prod'
+                sh 'docker build -t rayan147/nginx:latest ./nginx'
+                sh 'docker build -t rayan147/uploads3:latest ./uploadS3'
 			}
-			steps {
-				sh 'docker build -t rayan147/frontend:latest ./frontend/Dockerfile.prod'
-			}
-			steps {
-				sh 'docker build -t rayan147/nginx:latest ./nginx'
-			}
-			steps {
-				sh 'docker build -t rayan147/uploads3:latest ./uploadS3'
-			}
+		
 		}
 
 		stage('Login') {
@@ -42,15 +37,9 @@ pipeline{
 
 			steps {
 				sh 'docker push rayan147/eco-backend-restful-api:latest'
-			}
-            steps {
-				sh 'docker push rayan147/frontend:latest'
-			}
-			steps {
-				sh 'docker push rayan147/nginx:latest'
-			}
-			steps {
-				sh 'docker push rayan147/uploads3:latest'
+                sh 'docker push rayan147/frontend:latest'
+                sh 'docker push rayan147/nginx:latest'
+                sh 'docker push rayan147/uploads3:latest'
 			}
 		}
 	}
