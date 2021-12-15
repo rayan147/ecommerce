@@ -32,7 +32,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push rayan147/eco-backend-restful-api:latest ./backend'
+				sh 'docker push rayan147/eco-backend-restful-api:latest'
 			}
 		}
 	}
