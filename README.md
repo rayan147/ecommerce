@@ -53,6 +53,11 @@ KhFwVD/0
  update profile|
  shopping cart|
 
+## CI/CD with Jenkins
+commit to master > build > push to docker hub > deploy to raspberry pi with docker-compose
+
+## Added Service Descovery with Consul
+http://69.141.53.112:8500/ui/dc/services
 ## Run backend server tests
 ```bash
 cd backend && npm run test
