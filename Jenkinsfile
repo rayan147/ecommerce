@@ -54,7 +54,8 @@ pipeline{
 				sh 'ls -ltra'
 				sh 'docker-compose config'
 				sh 'docker-compose stop'
-				sh 'docker-compose up --build'
+				sh "docker-compose build"
+                sh "docker-compose up -d"
 			}
 		}
 	}
