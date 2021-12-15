@@ -1,9 +1,10 @@
 import db from './config/db.js';
 import app from './src/app.js';
 
-db().connectMongo(process.env.MONGO_URL_PROD);
+db().connectMongo(
+  'mongodb+srv://produce:produce@produce.yiddo.mongodb.net/products?retryWrites=true'
+);
 
-console.log('process.env.MONGO_URL_PROD', process.env.MONGO_URL_PROD);
 const PORT = process.env.PORT || 5000;
 const serverApp = app();
 const server = serverApp.listen(PORT, () =>
