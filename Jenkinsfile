@@ -17,17 +17,7 @@ pipeline{
 
 		stage('Build') {
               environment { 
-                    AWS_BUCKET_IMAGES_NAME=$AWS_BUCKET_IMAGES_NAME
-                    AWS_BUCKET_REGION=$AWS_BUCKET_REGION
-                    AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                    AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-					NODE_ENV=$NODE_ENV
-                    PORT=$PORT
-                    MONGO_URL_PROD=$MONGO_URL_PROD
-                    JWT_TOKEN_SECRET=$JWT_TOKEN_SECRET
-                    PAYPAL_CLIENT_ID=$PAYPAL_CLIENT_ID
-                    REDIS_SERVER_IP=$REDIS_SERVER_IP
-                    REDIS_PORT=$REDIS_PORT
+                    REDIS_SERVER_IP='redis'
                 }
 			steps {
 				sh 'echo $REDIS_PORT'
