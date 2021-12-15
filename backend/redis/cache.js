@@ -1,11 +1,8 @@
 import redis from 'redis';
 import { promisify } from 'util';
 
-const { REDIS_PORT, REDIS_SERVER_IP } = process.env;
-const redisClient = redis.createClient({
-  port: REDIS_PORT,
-  host: REDIS_SERVER_IP,
-});
+const { REDIS_PORT } = process.env;
+const redisClient = redis.createClient({ url: `redis://redis:${REDIS_PORT}` });
 
 const setAsyncEx = promisify(redisClient.setex).bind(redisClient);
 const getAsync = promisify(redisClient.get).bind(redisClient);
