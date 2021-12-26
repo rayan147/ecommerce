@@ -57,13 +57,18 @@ const Shipping = ({ history }) => {
 
   const [state, dispatchUseReducer] = useReducer(shippingReducer, initialState);
   const { address, country, city, zipCode, _state } = state;
-
+  
+  const refreshPage = useCallback(() => {
+    window.location.reload(false);
+  }, []);
   //HANDLERS
   const submitHandler = useCallback(
     (event) => {
       event.preventDefault();
       dispatch(saveShippingAddress(state));
+
       history.push("/placeOrder");
+      refreshPage();
     },
     [state, history, dispatch]
   );
