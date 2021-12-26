@@ -1,9 +1,7 @@
 import db from './config/db.js';
 import app from './src/app.js';
 
-db().connectMongo(
-  'mongodb+srv://produce:produce@produce.yiddo.mongodb.net/products?retryWrites=true'
-);
+db().connectMongo(process.env.MONGO_URL_PROD);
 console.log('process.env.JWT_TOKEN_SECRET: ', process.env.JWT_TOKEN_SECRET);
 const PORT = process.env.PORT || 5000;
 const serverApp = app();
