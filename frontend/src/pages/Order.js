@@ -89,7 +89,7 @@ const Order = ({ match, history }) => {
     };
 
     addPayPalScript();
-  }, []);
+  }, [sdkReady]);
 
   useEffect(() => {
     if (!order || successPay || successDeliver || order._id !== orderId) {
