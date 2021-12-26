@@ -30,11 +30,13 @@ const useStyles = makeStyles({
 });
 
 
-const PlaceOrderIn = ({shippingAddress,title,userInfo,payment='Paypal'}) => {
+const PlaceOrderIn = ({title,userInfo,payment='Paypal'}) => {
 
 
    
-    const { address, city, _state, zipCode, country} = shippingAddress;
+    const shippingAddress = localStorage.getItem('shippingAddress')
+    const parsedShippingAddress = JSON.parse(shippingAddress)
+    const {address,city,_state,zipCode,country} = parsedShippingAddress
     const {email,name} = userInfo;
     const classes = useStyles();
     return (

@@ -75,12 +75,12 @@ const PlaceOrder = ({ history }) => {
         <CheckoutSteps step1 step2 step3 step4 />
         <Grid item xs={12} sm={8}>
           <PlaceOrderIn
-            shippingAddress={cart.shippingAddress}
+            
             title='SHIPPING'
             userInfo={userInfo}
           />
           <PlaceOrderIn
-            shippingAddress={cart.shippingAddress}
+            
             title='BILLING'
             
             userInfo={userInfo}
