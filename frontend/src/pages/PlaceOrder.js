@@ -46,7 +46,9 @@ const PlaceOrder = ({ history }) => {
   cart.totalPrice = roundDecimalToTwo(
     cart.itemsPrice + cart.shippingPrice + cart.taxPrice
   );
-
+ useEffect(() => {
+  window.location.reload();
+ }, []);
   useEffect(() => {
     if (isFetchingRequestSuccess) {
       history.push(`/order/${order._id}`);
