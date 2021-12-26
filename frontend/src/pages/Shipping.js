@@ -85,7 +85,7 @@ const Shipping = ({ history }) => {
               name='address'
               autoComplete='address'
               autoFocus
-              placeholder={shippingAddress?.address ?? "Enter address"}
+              placeholder={address ?? "Enter address"}
               value={address}
               required
               onChange={(e) =>
@@ -100,7 +100,7 @@ const Shipping = ({ history }) => {
               name='city'
               autoComplete='city'
               autoFocus
-              placeholder={shippingAddress?.city ?? "Enter City"}
+              placeholder={city ?? "Enter City"}
               value={city}
               required
               onChange={(e) =>
@@ -115,7 +115,7 @@ const Shipping = ({ history }) => {
               name='state'
               autoComplete='state'
               autoFocus
-              placeholder={shippingAddress?._state ?? "Enter state"}
+              placeholder={_state ?? "Enter state"}
               value={_state}
               required
               onChange={(e) =>
@@ -130,7 +130,7 @@ const Shipping = ({ history }) => {
               name='zipCode'
               autoComplete='zipCode'
               autoFocus
-              placeholder={shippingAddress?.zipCode ?? "Enter Zip code"}
+              placeholder={zipCode ?? "Enter Zip code"}
               value={zipCode}
               required
               onChange={(e) =>
@@ -146,7 +146,7 @@ const Shipping = ({ history }) => {
               name='country'
               autoComplete='country'
               autoFocus
-              placeholder={shippingAddress?.country ?? "Enter country"}
+              placeholder={country ?? "Enter country"}
               value={country}
               required
               onChange={(e) =>
