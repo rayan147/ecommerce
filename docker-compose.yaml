@@ -43,7 +43,7 @@ services:
      
   api:
     env_file:
-      - ./.env
+      - ./variables.env
     image: 'rayan147/eco-backend-restful-api:latest'
     container_name: api
     restart: always
