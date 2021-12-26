@@ -3,6 +3,7 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 
 const authenticateUserToken = asyncHandler(async (req, res, next) => {
+  console.log('JWT authenticateUserToken middleware',process.env.JWT_SECRET);
   let token = null;
   switch (true) {
     case req.headers.authorization !== undefined && req.headers.authorization.includes('Bearer'):
