@@ -3,6 +3,7 @@ import app from './src/app.js';
 
 db().connectMongo(process.env.MONGO_URL_PROD);
 console.log('process.env.JWT_TOKEN_SECRET: ', process.env.JWT_TOKEN_SECRET);
+console.log('PORT: ', process.env.PORT);
 const PORT = process.env.PORT || 5000;
 const serverApp = app();
 const server = serverApp.listen(PORT, () =>
